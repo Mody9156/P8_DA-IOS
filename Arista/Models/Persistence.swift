@@ -29,6 +29,8 @@ struct PersistenceController {
 
     let container: NSPersistentContainer
 
+    // MARK: - Init
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Arista")
         if inMemory {

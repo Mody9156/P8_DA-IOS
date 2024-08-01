@@ -9,14 +9,21 @@ import Foundation
 import CoreData
 
 class SleepHistoryViewModel: ObservableObject {
+    
+    // MARK: - Properties
+    
     @Published var sleepSessions = [Sleep]()
     
     private var viewContext: NSManagedObjectContext
+    
+    // MARK: - Init
     
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         fetchSleepSessions()
     }
+    
+    // MARK: - Private
     
     private func fetchSleepSessions() {
         

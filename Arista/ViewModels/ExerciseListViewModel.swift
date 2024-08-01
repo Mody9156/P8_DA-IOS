@@ -10,15 +10,22 @@ import Foundation
 import CoreData
 
 class ExerciseListViewModel: ObservableObject {
+    
+    // MARK: - Properties
+    
     @Published var exercises = [Exercise]()
 
     var viewContext: NSManagedObjectContext
 
+    // MARK: - Init
+    
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         fetchExercises()
     }
 
+    // MARK: - Private
+    
     private func fetchExercises() {
         // TODO: fetch data in CoreData and replace dumb value below with appropriate information
 //        exercises = [FakeExercise(), FakeExercise(), FakeExercise()]
