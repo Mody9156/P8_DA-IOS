@@ -28,7 +28,6 @@ class ExerciseListViewModel: ObservableObject {
     
     private func fetchExercises() {
         // TODO: fetch data in CoreData and replace dumb value below with appropriate information
-//        exercises = [FakeExercise(), FakeExercise(), FakeExercise()]
         do{
             let data = ExerciseRepository(viewContext: viewContext)
             exercises = try data.getExercise()
@@ -38,12 +37,3 @@ class ExerciseListViewModel: ObservableObject {
         
     }
 }
-//
-//struct FakeExercise: Identifiable {
-//    var id = UUID()
-//
-//    var category: String = "Football"
-//    var duration: Int = 120
-//    var intensity: Int = 8
-//    var date: Date = Date()
-//}

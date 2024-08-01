@@ -34,11 +34,5 @@ class SleepHistoryViewModel: ObservableObject {
             
         }
     }
-    
-//    struct FakeSleepSession: Identifiable {
-//        var id = UUID()
-//        var startDate: Date = Date()
-//        var duration: Int = 695
-//        var quality: Int = (0...10).randomElement()!
-//    }
+
 }
