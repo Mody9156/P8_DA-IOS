@@ -10,11 +10,14 @@ import CoreData
 
 struct DefaultData {
     
+    // MARK: - Properties
     let viewContext  : NSManagedObjectContext
     
     init(viewContext: NSManagedObjectContext  = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
     }
+    
+    // MARK: - Public
     
     func apply() throws {
         let userRepository = UserRepository(viewContext: viewContext)

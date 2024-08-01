@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 struct ExerciseRepository {
+    
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
