@@ -83,6 +83,3 @@ struct IntensityIndicator: View {
     }
 }
 
-#Preview {
-    ExerciseListView(viewModel: ExerciseListViewModel(context: PersistenceController.preview.container.viewContext))
-}

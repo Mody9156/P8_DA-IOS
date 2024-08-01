@@ -8,6 +8,9 @@
 import CoreData
 
 struct PersistenceController {
+    
+    // MARK: - Singleton
+    
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
