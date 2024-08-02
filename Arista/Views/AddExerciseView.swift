@@ -18,15 +18,44 @@ struct AddExerciseView: View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Catégorie", text: $viewModel.category)
-                    TextField("Heure de démarrage", text: $startTimeText).onChange(of: startTimeText) { newValue in
-                        viewModel.startTime = DateFormatter.date(newValue)
-                    }
-                    TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
-                        viewModel.duration = Int(newValue)
-                    }
-                    TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
-                        viewModel.intensity = Int(newValue)
+                    Section{
+                        
+                        TextField("Catégorie", text: $viewModel.category)
+                        let dateFormatter : DateFormatter = {
+                            let formatter = DateFormatter()
+                            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                            return formatter
+                        }()
+                        TextField("Heure de démarrage", text: $startTimeText).onChange(of: startTimeText) { newValue in
+                            
+                            if let hours = dateFormatter.date(from: newValue){
+                                viewModel.startTime = hours
+                            }else {
+                                viewModel.startTime =  Date()
+                            }
+                          
+                           
+                        }
+                        TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
+                           
+                            if let timer = Int(newValue) {
+                                viewModel.duration = timer
+                            }else {
+                                viewModel.duration  = 0
+                            }
+                           
+                            
+                        }
+                        TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
+                           
+                            if let intensity = Int(newValue) {
+                                viewModel.intensity = intensity
+                            }else {
+                                viewModel.intensity = 0
+                            }
+                          
+                            
+                        }
                     }
                 }.formStyle(.grouped)
                 Spacer()
