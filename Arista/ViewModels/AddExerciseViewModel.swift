@@ -14,8 +14,8 @@ class AddExerciseViewModel: ObservableObject {
     
     @Published var category: String = ""
     @Published var startTime: Date = Date()
-    @Published var duration: Int = 0
-    @Published var intensity: Int = 0
+    @Published var duration: Int? = 0
+    @Published var intensity: Int? = 0
 
     private var viewContext: NSManagedObjectContext
 
