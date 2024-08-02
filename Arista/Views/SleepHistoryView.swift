@@ -17,7 +17,10 @@ struct SleepHistoryView: View {
                         .padding()
                     VStack(alignment: .leading) {
                         
-                        Text("Début : \(session.startDate.formatted())")
+                        if let date = session.startDate {
+                            Text("Début : \(date.formatted())")
+                        }
+                        
                         Text("Durée : \(session.duration/60) heures")
                     }
                 }
