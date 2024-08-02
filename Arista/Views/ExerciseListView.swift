@@ -15,18 +15,39 @@ struct ExerciseListView: View {
         NavigationView {
             List(viewModel.exercises) { exercise in
                 HStack {
-                    Image(systemName: iconForCategory(exercise.category))
+                    
+                    if let category = exercise.category {
+                        Image(systemName: iconForCategory(category))
+                    }
+                    
                     VStack(alignment: .leading) {
-                        Text(exercise.category)
-                            .font(.headline)
-                        Text("Durée: \(exercise.duration) min")
-                            .font(.subheadline)
-                        Text(exercise.date.formatted())
-                            .font(.subheadline)
+                        
+                        
+                        if let category = exercise.category {
+                            Text(category)
+                                .font(.headline)
+                        }
+                        if let duration = exercise.duration {
+                            Text("Durée: \(duration) min")
+                                .font(.subheadline)
+                        }
+                        
+                        let dateFormatter : DateFormatter = {
+                            let formatter = DateFormatter()
+                            formatter.dateStyle = .medium
+                            formatter.timeStyle = .short
+                            return formatter
+                        }()
+                        
+                        if let date = exercise.startDate {
+                            Text(dateFormatter.string(from: date))
+                                .font(.subheadline)
+                        }
+                        
                         
                     }
                     Spacer()
-                    IntensityIndicator(intensity: exercise.intensity)
+                    IntensityIndicator(intensity: Int(exercise.intensity))
                 }
             }
             .navigationTitle("Exercices")
