@@ -22,11 +22,11 @@ struct ExerciseListView: View {
                     
                     VStack(alignment: .leading) {
                         
-                        
                         if let category = exercise.category {
                             Text(category)
                                 .font(.headline)
                         }
+                        
                         if let duration = exercise.duration {
                             Text("Durée: \(duration) min")
                                 .font(.subheadline)

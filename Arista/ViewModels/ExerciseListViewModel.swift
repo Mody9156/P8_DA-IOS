@@ -42,4 +42,10 @@ class ExerciseListViewModel: ObservableObject {
         }
         
     }
+    
+    // MARK: - Public
+    
+    func reload(){
+        fetchExercises()
+    }
 }
