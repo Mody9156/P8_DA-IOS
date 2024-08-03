@@ -23,6 +23,12 @@ class UserDataViewModel: ObservableObject {
         self.viewContext = context
         fetchUserData()
     }
+    // MARK: - Enum
+    
+    enum UserError : Error {
+        case InvalidUser
+    }
+    
     // MARK: - Private
     
     private func fetchUserData() {
@@ -34,7 +40,7 @@ class UserDataViewModel: ObservableObject {
             firstName = user.firstName ?? ""
             lastName = user.lastName ?? ""
         }catch{
-            
+             UserError.InvalidUser
         }
     }
 }
