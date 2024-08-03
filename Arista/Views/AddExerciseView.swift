@@ -13,13 +13,19 @@ struct AddExerciseView: View {
     @State private var integerText = ""
     @State private var intensityText = ""
     @State private var startTimeText = ""
+    @State private var exercises = "Football"
+    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","bicycle","questionmark"]
 
     var body: some View {
         NavigationView {
             VStack {
                 Form {
                     Section{
-                        
+                        Picker("Catégorie", selection: $exercises) {
+                            ForEach(array,id:\.self) {
+                                Text($0)
+                            }
+                        }
                         TextField("Catégorie", text: $viewModel.category)
                         let dateFormatter : DateFormatter = {
                             let formatter = DateFormatter()

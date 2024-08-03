@@ -16,8 +16,9 @@ struct ExerciseListView: View {
             List(viewModel.exercises) { exercise in
                 HStack {
                     
+                    if let category = exercise.category {
                         Image(systemName: iconForCategory(category))
-                    
+                    }
                     
                     VStack(alignment: .leading) {
                         
