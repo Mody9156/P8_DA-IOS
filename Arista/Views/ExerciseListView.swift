@@ -81,6 +81,8 @@ struct ExerciseListView: View {
             return "figure.walk"
         case "Cyclisme":
             return "bicycle"
+        case "Yoga" :
+            return "figure.yoga"
         default:
             return "questionmark"
         }
