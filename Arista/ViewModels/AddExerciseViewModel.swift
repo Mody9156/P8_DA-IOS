@@ -24,7 +24,7 @@ class AddExerciseViewModel: ObservableObject {
     init(context: NSManagedObjectContext) {
         self.viewContext = context
     }
-
+  
     // MARK: - Public
     
     func addExercise() -> Bool {
