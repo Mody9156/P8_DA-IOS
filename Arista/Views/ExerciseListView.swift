@@ -57,8 +57,10 @@ struct ExerciseListView: View {
                 Image(systemName: "plus")
             })
         }
-        .sheet(isPresented: $showingAddExerciseView) {
-            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
+        .sheet(isPresented: $showingAddExerciseView,onDismiss: {
+            
+        }) {
+            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext)).onAppear()
         }
         
     }
