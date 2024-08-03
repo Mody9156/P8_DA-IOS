@@ -16,9 +16,8 @@ struct ExerciseListView: View {
             List(viewModel.exercises) { exercise in
                 HStack {
                     
-                    if let category = exercise.category {
                         Image(systemName: iconForCategory(category))
-                    }
+                    
                     
                     VStack(alignment: .leading) {
                         
@@ -57,12 +56,16 @@ struct ExerciseListView: View {
                 Image(systemName: "plus")
             })
         }
-        .sheet(isPresented: $showingAddExerciseView,onDismiss: {
-            
-        }) {
-            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext)).onAppear()
+        .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
+            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext)).onAppear{
+                viewModel.reload()
+            }
         }
         
+    }
+    
+    func didDismiss(){
+        viewModel.reload()
     }
     
     func iconForCategory(_ category: String) -> String {
