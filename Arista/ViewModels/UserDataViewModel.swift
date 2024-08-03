@@ -10,7 +10,7 @@ import CoreData
 
 class UserDataViewModel: ObservableObject {
     
-    // MARK: - Propertie
+    // MARK: - Properties
     
     @Published var firstName: String = ""
     @Published var lastName: String = ""
