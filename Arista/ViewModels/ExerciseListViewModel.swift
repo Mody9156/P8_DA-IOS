@@ -23,6 +23,12 @@ class ExerciseListViewModel: ObservableObject {
         self.viewContext = context
         fetchExercises()
     }
+    
+    // MARK: - Enum
+    
+    enum ExerciseListError : Error {
+        case InvalidExercises
+    }
 
     // MARK: - Private
     
@@ -32,7 +38,7 @@ class ExerciseListViewModel: ObservableObject {
             let data = ExerciseRepository(viewContext: viewContext)
             exercises = try data.getExercise()
         }catch{
-            
+            ExerciseListError.InvalidExercises
         }
         
     }
