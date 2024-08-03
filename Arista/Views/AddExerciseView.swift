@@ -13,7 +13,7 @@ struct AddExerciseView: View {
     @State private var integerText = ""
     @State private var intensityText = ""
     @State private var startTimeText = ""
-    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","bicycle"]
+    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme"]
 
     var body: some View {
         NavigationView {
