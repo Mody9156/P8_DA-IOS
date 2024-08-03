@@ -55,14 +55,12 @@ struct AddExerciseView: View {
                         }
                         TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
                            
-                            if let intensity = Int(newValue) {
+                            if let intensity = Int(newValue),intensity >= 0 && intensity <= 10 {
                                 viewModel.intensity = intensity
-                            }else {
-                                viewModel.intensity = 0
                             }
                           
                             
-                        }
+                        }.keyboardType(.numberPad)
                     }
                 }.formStyle(.grouped)
                 Spacer()
