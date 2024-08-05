@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2394DF5A2C60A02D000E7A01 /* ExerciceRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DF592C60A02D000E7A01 /* ExerciceRepositoryTests.swift */; };
 		23BAE7A72C5BBA6E00004681 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A62C5BBA6E00004681 /* UserRepository.swift */; };
 		23BAE7A92C5BBB5F00004681 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */; };
 		23BAE7AB2C5BBCBC00004681 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2394DF592C60A02D000E7A01 /* ExerciceRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciceRepositoryTests.swift; sourceTree = "<group>"; };
 		23BAE7A62C5BBA6E00004681 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -97,6 +99,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2394DF5B2C60A048000E7A01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2394DF592C60A02D000E7A01 /* ExerciceRepositoryTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2394DF5C2C60A055000E7A01 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		53E587242B235E8F00E4EF99 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +158,8 @@
 		53E587452B235E9000E4EF99 /* AristaTests */ = {
 			isa = PBXGroup;
 			children = (
+				2394DF5C2C60A055000E7A01 /* ViewModel */,
+				2394DF5B2C60A048000E7A01 /* Model */,
 				53E587462B235E9000E4EF99 /* AristaTests.swift */,
 			);
 			path = AristaTests;
@@ -343,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */,
+				2394DF5A2C60A02D000E7A01 /* ExerciceRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
