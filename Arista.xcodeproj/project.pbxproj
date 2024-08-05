@@ -15,7 +15,7 @@
 		53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587302B235E8F00E4EF99 /* AristaApp.swift */; };
 		53E587352B235E9000E4EF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E587342B235E9000E4EF99 /* Assets.xcassets */; };
 		53E587382B235E9000E4EF99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E587372B235E9000E4EF99 /* Preview Assets.xcassets */; };
-		53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
+		53E5873A2B235E9000E4EF99 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* PersistenceController.swift */; };
 		53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
 		53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587462B235E9000E4EF99 /* AristaTests.swift */; };
 		53E587512B235E9000E4EF99 /* AristaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587502B235E9000E4EF99 /* AristaUITests.swift */; };
@@ -57,7 +57,7 @@
 		53E587302B235E8F00E4EF99 /* AristaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaApp.swift; sourceTree = "<group>"; };
 		53E587342B235E9000E4EF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53E587372B235E9000E4EF99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		53E587392B235E9000E4EF99 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		53E587392B235E9000E4EF99 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		53E5873C2B235E9000E4EF99 /* Arista.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Arista.xcdatamodel; sourceTree = "<group>"; };
 		53E587422B235E9000E4EF99 /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53E587462B235E9000E4EF99 /* AristaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaTests.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */,
-				53E587392B235E9000E4EF99 /* Persistence.swift */,
+				53E587392B235E9000E4EF99 /* PersistenceController.swift */,
 				23BAE7A62C5BBA6E00004681 /* UserRepository.swift */,
 				23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */,
 				23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */,
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23BAE7AD2C5BC01000004681 /* DefaultData.swift in Sources */,
-				53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */,
+				53E5873A2B235E9000E4EF99 /* PersistenceController.swift in Sources */,
 				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
 				23BAE7A72C5BBA6E00004681 /* UserRepository.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
