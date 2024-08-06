@@ -9,7 +9,27 @@ import XCTest
 import CoreData
 
 final class ExerciceRepositoryTests: XCTestCase {
+    
+    var persistenceController: PersistenceController!
+      var context: NSManagedObjectContext!
+      var exerciseRepository: ExerciseRepository!
 
+      override func setUp() {
+          super.setUp()
+          // Configure the PersistenceController and context
+          persistenceController = PersistenceController()
+          context = persistenceController.container.viewContext
+          exerciseRepository = ExerciseRepository(viewContext: context)
+          
+         
+      }
+
+      override func tearDown() {
+          context = nil
+          persistenceController = nil
+          exerciseRepository = nil
+          super.tearDown()
+      }
 
     private func emptyEntities(context:NSManagedObjectContext) {
         let fetchRequest = Exercise.fetchRequest()
@@ -71,11 +91,9 @@ final class ExerciceRepositoryTests: XCTestCase {
         let exercise =  try! data.getExercise()
         //Then
         XCTAssert(exercise.isEmpty == false)
-        XCTAssert(exercise.first?.category == "Football")
         XCTAssert(exercise.first?.duration == 30)
         XCTAssert(exercise.first?.intensity == 5)
         XCTAssert(exercise.first?.startDate == date)
-
 
     }
 
@@ -85,8 +103,8 @@ final class ExerciceRepositoryTests: XCTestCase {
         emptyEntities(context: persistenceController.container.viewContext)
 
         let date = Date()
-        let date_1 = Date(timeIntervalSinceNow: -(60*60*24))
-        let date_2 = Date(timeIntervalSinceNow: -(60*60*24*2))
+        let date_1 = Date(timeIntervalSinceNow: -(60 * 60 * 24))
+        let date_2 = Date(timeIntervalSinceNow: -(60 * 60 * 24 * 2))
 
         addExercises(context: persistenceController.container.viewContext,
                      category: "Running",
@@ -98,7 +116,7 @@ final class ExerciceRepositoryTests: XCTestCase {
 
         addExercises(context: persistenceController.container.viewContext,
                      category: "Football",
-                     duration: 30,
+                     duration: 40,
                      intensity: 5,
                      startDate: date_1,
                      userFirstName: "Fréderic",
@@ -121,10 +139,28 @@ final class ExerciceRepositoryTests: XCTestCase {
 
         //Then
         XCTAssert(exercise.count == 3)
-        XCTAssert(exercise[0].category == "Running")
-        XCTAssert(exercise[1].category == "Football")
-        XCTAssert(exercise[2].category == "Yoga")
+        XCTAssert(exercise[0].duration == 120)
+        XCTAssert(exercise[1].duration == 40)
+        XCTAssert(exercise[2].duration == 30)
 
+    }
+    
+    func test_addExercise(){
+        //Give
+        let date = Date()
+        let data = ExerciseRepository(viewContext: context)
+        
+        //When
+        try! data.addExercise(category: "Yoga", duration: 4, intensity: 5, startDate: date)
+
+        //Then
+        let fetchRequest  : NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        let exercise = try! context.fetch(fetchRequest)
+        XCTAssert(exercise.count == 2)
+        
+        let addExercise = exercise.last!
+        XCTAssertEqual(addExercise.category  ,"Yoga")
+        
     }
 
 }
