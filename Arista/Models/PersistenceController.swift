@@ -36,8 +36,10 @@ struct PersistenceController {
         container = NSPersistentContainer(name: "Arista")
         
         if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            try! DefaultData(viewContext: container.viewContext).apply()
         }
+        
+        
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
