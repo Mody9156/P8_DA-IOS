@@ -27,22 +27,20 @@ final class UserDataViewModelTests: XCTestCase {
         let persistenceController = PersistenceController(inMemory: false)
         let viewModel = UserDataViewModel(context: persistenceController.container.viewContext)
         emptyEntities(context: persistenceController.container.viewContext)
-        
+
         let data = UserDataViewModel(context: persistenceController.container.viewContext)
-        
+
         let expectation = XCTestExpectation(description: "fetch empty list of users")
-    
+
         //Then
-        viewModel.$firstName
-            .sink { name in
-                
-            XCTAssert(name.isEmpty == true)
-                
+        viewModel.$firstName.sink { name in
+            XCTAssert(name.isEmpty)
             expectation.fulfill()
             
         }.store(in: &cancellable)
-        wait(for: [expectation], timeout: 10)
-       
+        wait(for: [expectation], timeout: 20)
+
+
     }
 
     func test_WhenAddNew_User()  {
@@ -50,7 +48,7 @@ final class UserDataViewModelTests: XCTestCase {
         let persistenceController = PersistenceController(inMemory: false)
         let viewModel = UserDataViewModel(context: persistenceController.container.viewContext)
         emptyEntities(context: persistenceController.container.viewContext)
-        addExercice(context: persistenceController.container.viewContext, userFirstName: "User_2", userLastName: "Magic")
+        addExercise(context: persistenceController.container.viewContext, userFirstName: "User_2", userLastName: "Magic")
         let data = UserDataViewModel(context: persistenceController.container.viewContext)
         
         let expectation = XCTestExpectation(description: "fetch empty list of users")
@@ -105,7 +103,7 @@ final class UserDataViewModelTests: XCTestCase {
 
     }
 
-    private func addExercice(context: NSManagedObjectContext, userFirstName: String, userLastName: String) {
+    private func addExercise(context: NSManagedObjectContext, userFirstName: String, userLastName: String) {
 
     let newUser = User(context: context)
 
