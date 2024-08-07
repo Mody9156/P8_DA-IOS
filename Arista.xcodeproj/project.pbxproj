@@ -10,6 +10,7 @@
 		2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */; };
 		23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */; };
 		23AAC2AE2C637EFD00FA536A /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */; };
+		23AAC2B02C63AE2700FA536A /* ExerciseListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */; };
 		23BAE7A72C5BBA6E00004681 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A62C5BBA6E00004681 /* UserRepository.swift */; };
 		23BAE7A92C5BBB5F00004681 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */; };
 		23BAE7AB2C5BBCBC00004681 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */; };
@@ -49,14 +50,12 @@
 
 /* Begin PBXFileReference section */
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
-		23AAC28E2C624BEC00FA536A /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/iOSSupport/System/Library/Frameworks/OpenAL.framework; sourceTree = DEVELOPER_DIR; };
-		23AAC2902C624C2E00FA536A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
-		23AAC2AA2C636D2100FA536A /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arista.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		23AAC2AB2C636D2100FA536A /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		23AAC2AC2C636D2100FA536A /* AristaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AAC2AA2C636D2100FA536A /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
+		23AAC2AB2C636D2100FA536A /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
+		23AAC2AC2C636D2100FA536A /* AristaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaUITests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaUITests.xctest"; sourceTree = "<absolute>"; };
 		23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
-		23B0BEB52C622F51002630AC /* StoreKitTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKitTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/StoreKitTest.framework; sourceTree = DEVELOPER_DIR; };
+		23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModelTests.swift; sourceTree = "<group>"; };
 		23BAE7A62C5BBA6E00004681 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -115,18 +114,9 @@
 		2394DF5C2C60A055000E7A01 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		2394DF662C610A49000E7A01 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				23AAC2902C624C2E00FA536A /* OpenGL.framework */,
-				23AAC28E2C624BEC00FA536A /* OpenAL.framework */,
-				23B0BEB52C622F51002630AC /* StoreKitTest.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		53E587242B235E8F00E4EF99 = {
@@ -135,10 +125,6 @@
 				53E5872F2B235E8F00E4EF99 /* Arista */,
 				53E587452B235E9000E4EF99 /* AristaTests */,
 				53E5874F2B235E9000E4EF99 /* AristaUITests */,
-				2394DF662C610A49000E7A01 /* Frameworks */,
-				23AAC2AA2C636D2100FA536A /* Arista.app */,
-				23AAC2AB2C636D2100FA536A /* AristaTests.xctest */,
-				23AAC2AC2C636D2100FA536A /* AristaUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -373,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23AAC2B02C63AE2700FA536A /* ExerciseListViewModelTests.swift in Sources */,
 				2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */,
 				23AAC2AE2C637EFD00FA536A /* UserRepositoryTests.swift in Sources */,
 				23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */,

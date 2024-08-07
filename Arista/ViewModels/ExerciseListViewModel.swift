@@ -23,23 +23,16 @@ class ExerciseListViewModel: ObservableObject {
         self.viewContext = context
         fetchExercises()
     }
-    
-    // MARK: - Enum
-    
-    enum ExerciseListError : Error {
-        case InvalidExercises
-    }
+   
 
     // MARK: - Private
     
     private func fetchExercises() {
         // TODO: fetch data in CoreData and replace dumb value below with appropriate information
-        do{
+        
             let data = ExerciseRepository(viewContext: viewContext)
-            exercises = try data.getExercise()
-        }catch{
-            ExerciseListError.InvalidExercises
-        }
+            exercises = try! data.getExercise()
+        
         
     }
     

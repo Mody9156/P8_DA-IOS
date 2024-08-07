@@ -56,7 +56,7 @@ final class SleepRepositoryTests: XCTestCase {
         let data = SleepRepository(viewContext: context)
         
         //When
-        let request = try! sleepRepository.getSleepSessions()
+        let request = try! data.getSleepSessions()
 
         //Then
         XCTAssert(request.isEmpty == true)
@@ -73,12 +73,14 @@ final class SleepRepositoryTests: XCTestCase {
         let data = SleepRepository(viewContext: context)
         
         //When
-        let request = try! data.getSleepSessions()
+        let request_Sleep = try! data.getSleepSessions()
                 
         //Then
         
-        XCTAssert(request.isEmpty == false)
-        XCTAssert(request.duration == 22)
+        XCTAssert(request_Sleep.isEmpty == false)
+        XCTAssert(request_Sleep.first?.duration == 22)
+        XCTAssert(request_Sleep.first?.quality == 33)
+        XCTAssert(request_Sleep.first?.startDate == date)
         
     }
 
