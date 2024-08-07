@@ -39,6 +39,9 @@ final class SleepRepositoryTests: XCTestCase {
         }
     }
     
+    private func EmptyEntitites
+    
+    
     func testSleepSessionsIsEmpty(){
         //Give
         
