@@ -21,12 +21,24 @@ final class AddExerciseViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testAddNewExercise() throws {
+        
+        //Given
+        let persistence = PersistenceController(inMemory: false)
+        let date = Date()
+        emptyEntities(context: persistence.container.viewContext)
+        addExercice(context:  persistence.container.viewContext, category: "Running", duration: 10, intensity: 5, startDate: date, userFirstName: "Han", userLastName: "Solo")
+        
+        let viewModel = AddExerciseViewModel(context: persistence.container.viewContext)
+        
+        let expectation = expectation(description: "fetch empty list of exercise")
+        
+        //Then
+        viewModel.$category.sink { category in
+            <#code#>
+        }
+        
+        
     }
 
     func testPerformanceExample() throws {
