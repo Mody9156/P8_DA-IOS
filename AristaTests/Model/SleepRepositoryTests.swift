@@ -30,7 +30,7 @@ final class SleepRepositoryTests: XCTestCase {
     }
     
 
-    private func emptyEntities(context:NSManagedObjectContext)  {
+    private func EmptyEntities(context:NSManagedObjectContext)  {
         let fetch = Sleep.fetchRequest()
         let objects = try! context.fetch(fetch)
        
@@ -39,32 +39,46 @@ final class SleepRepositoryTests: XCTestCase {
         }
     }
     
-    private func EmptyEntitites
+    private func addNew_ElementsForSleep(context:NSManagedObjectContext,duration:Int,quality:Int,startDate : Date){
+        
+        let newSleep = Sleep(context: context)
+        newSleep.duration = Int64(duration)
+        newSleep.startDate = startDate
+        newSleep.quality = Int64(quality)
+        try! context.save()
+        
+    }
     
     
     func testSleepSessionsIsEmpty(){
         //Give
-        
-        //When
-        emptyEntities(context: persistenceController.container.viewContext)
+        EmptyEntities(context: persistenceController.container.viewContext)
         let data = SleepRepository(viewContext: context)
         
+        //When
         let request = try! sleepRepository.getSleepSessions()
 
         //Then
-        
         XCTAssert(request.isEmpty == true)
     }
     
     func testgetSleepSessions(){
         //Give
+        let persistence = PersistenceController(inMemory: false)
+        let context : NSManagedObjectContext!
+        context = persistence.container.viewContext
+        EmptyEntities(context: context)
+        let date = Date()
+        addNew_ElementsForSleep(context: context, duration: 22, quality: 33, startDate: date)
+        let data = SleepRepository(viewContext: context)
         
         //When
-        let request = try! sleepRepository.getSleepSessions()
+        let request = try! data.getSleepSessions()
                 
         //Then
         
         XCTAssert(request.isEmpty == false)
+        XCTAssert(request.duration == 22)
         
     }
 
