@@ -11,6 +11,7 @@
 		23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */; };
 		23AAC2AE2C637EFD00FA536A /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */; };
 		23AAC2B02C63AE2700FA536A /* ExerciseListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */; };
+		23AAC2B22C63C5C200FA536A /* UserDataViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2B12C63C5C200FA536A /* UserDataViewModelTests.swift */; };
 		23BAE7A72C5BBA6E00004681 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A62C5BBA6E00004681 /* UserRepository.swift */; };
 		23BAE7A92C5BBB5F00004681 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */; };
 		23BAE7AB2C5BBCBC00004681 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */; };
@@ -56,6 +57,7 @@
 		23AAC2AC2C636D2100FA536A /* AristaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaUITests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaUITests.xctest"; sourceTree = "<absolute>"; };
 		23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModelTests.swift; sourceTree = "<group>"; };
+		23AAC2B12C63C5C200FA536A /* UserDataViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModelTests.swift; sourceTree = "<group>"; };
 		23BAE7A62C5BBA6E00004681 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				23AAC2AF2C63AE2700FA536A /* ExerciseListViewModelTests.swift */,
+				23AAC2B12C63C5C200FA536A /* UserDataViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			files = (
 				23AAC2B02C63AE2700FA536A /* ExerciseListViewModelTests.swift in Sources */,
 				2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */,
+				23AAC2B22C63C5C200FA536A /* UserDataViewModelTests.swift in Sources */,
 				23AAC2AE2C637EFD00FA536A /* UserRepositoryTests.swift in Sources */,
 				23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */,
 			);

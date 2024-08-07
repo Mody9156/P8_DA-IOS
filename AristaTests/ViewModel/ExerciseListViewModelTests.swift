@@ -47,8 +47,10 @@ final class ExerciseListViewModelTests: XCTestCase {
     }
 
     func test_WhenAddingOneExerciseInDatabase_FEtchExercise_ReturnAListContainingTheExercise()  {
+        
         // Clean manually all data
         
+        //Given
         let persistenceController  = PersistenceController(inMemory: false)
         emptyEntities(context: persistenceController.container.viewContext)
         let date = Date()
@@ -58,6 +60,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "fetch empty list of exercise")
         
+       //Then
         viewModel.$exercises
 
         .sink { exercises in
