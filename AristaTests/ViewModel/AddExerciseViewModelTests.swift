@@ -21,7 +21,7 @@ final class AddExerciseViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testAddNewExercise() throws {
+    func testAddNewExercise()  {
         
         //Given
         let persistence = PersistenceController(inMemory: false)
@@ -34,9 +34,14 @@ final class AddExerciseViewModelTests: XCTestCase {
         let expectation = expectation(description: "fetch empty list of exercise")
         
         //Then
-        viewModel.$category.sink { category in
-            <#code#>
-        }
+        viewModel.$category
+        .sink { category in
+//            XCTAssert(category.isEmpty == false)
+//            XCTAssert(category == "Running")
+            expectation.fulfill()
+        }.store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: 11)
         
         
     }
