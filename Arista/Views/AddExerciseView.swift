@@ -63,6 +63,7 @@ struct AddExerciseView: View {
                         }.keyboardType(.numberPad)
                     }
                 }.formStyle(.grouped)
+                Text("Erreur")
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {

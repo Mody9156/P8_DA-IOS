@@ -44,8 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		230346BC2C64A0B400020C8E /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
-		230346BD2C64A0B400020C8E /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
+		230346C22C64E42F00020C8E /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
+		230346C32C64E42F00020C8E /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 			packageProductDependencies = (
 			);
 			productName = Arista;
-			productReference = 230346BC2C64A0B400020C8E /* Arista.app */;
+			productReference = 230346C22C64E42F00020C8E /* Arista.app */;
 			productType = "com.apple.product-type.application";
 		};
 		53E587412B235E9000E4EF99 /* AristaTests */ = {
@@ -223,7 +223,7 @@
 			packageProductDependencies = (
 			);
 			productName = AristaTests;
-			productReference = 230346BD2C64A0B400020C8E /* AristaTests.xctest */;
+			productReference = 230346C32C64E42F00020C8E /* AristaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
