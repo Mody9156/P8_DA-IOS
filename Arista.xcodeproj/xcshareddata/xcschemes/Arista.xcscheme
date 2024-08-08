@@ -40,17 +40,6 @@
                ReferencedContainer = "container:Arista.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "53E5874B2B235E9000E4EF99"
-               BuildableName = "AristaUITests.xctest"
-               BlueprintName = "AristaUITests"
-               ReferencedContainer = "container:Arista.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

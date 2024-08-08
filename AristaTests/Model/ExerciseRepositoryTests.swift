@@ -22,7 +22,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
     }
     
-    private func EmptyExercise(context:NSManagedObjectContext){
+    private func EmptyExercise(context:NSManagedObjectContext){//Maj
         let fetchRequest  : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Exercise")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
@@ -49,7 +49,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         exercise.user = newUser
         
         try! context.save()
-    }
+    }//*
     
     
     func test_WhenNoExerciseIsInDatabase_GetExercise_ReturnEmptyList()  {
