@@ -13,6 +13,7 @@ struct AddExerciseView: View {
     @State private var integerText = ""
     @State private var intensityText = ""
     @State private var startTimeText = ""
+    @State private var error = ""
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
 
     var body: some View {
@@ -63,7 +64,7 @@ struct AddExerciseView: View {
                         }.keyboardType(.numberPad)
                     }
                 }.formStyle(.grouped)
-                Text("Erreur")
+                Text(error).foregroundColor(.red)
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {
@@ -78,3 +79,7 @@ struct AddExerciseView: View {
     }
 }
 
+func error_InForm() -> String {
+    
+    return ""
+}
