@@ -30,10 +30,7 @@ class AddExerciseViewModel: ObservableObject {
     func addExercise() -> Bool {
         // TODO: Ajouter ici la logique pour créer et sauvegarder un nouvel exercice dans CoreData
         do{
-            if category && startTime && duration && intensity {
-                
-                
-            }
+          
             try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
             return true
         }catch{
