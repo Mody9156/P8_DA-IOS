@@ -15,6 +15,7 @@ struct AddExerciseView: View {
     @State private var startTimeText = ""
     @State private var error = ""
     @State private var value = 0
+    @State private var date = Date()
 
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
 
@@ -36,16 +37,13 @@ struct AddExerciseView: View {
                             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                             return formatter
                         }()
-                        TextField("Heure de démarrage", text: $startTimeText).onChange(of: startTimeText) { newValue in
-                            
-                            if let hours = dateFormatter.date(from: newValue){
-                                viewModel.startTime = hours
-                            }else {
-                                viewModel.startTime =  Date()
-                            }
-                          
-                           
+                       
+                        
+                        DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: [.date]).onAppear{
+                            viewModel.startTime = date
                         }
+                        
+                        
                         TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
                            
                             if let timer = Int(newValue) {
@@ -56,18 +54,18 @@ struct AddExerciseView: View {
                            
                             
                         }
-                        TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
-                           
-                            if let intensity = Int(newValue),intensity >= 0 && intensity <= 10 {
-                                viewModel.intensity = intensity
-                            }
-                          
-                            
-                        }.keyboardType(.numberPad)
-                        //steppe
+//                        TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
+//
+//                            if let intensity = Int(newValue),intensity >= 0 && intensity <= 10 {
+//                                viewModel.intensity = intensity
+//                            }
+//
+//
+//                        }.keyboardType(.numberPad)
+//                        //steppe
                         
                         Stepper {
-                            Text("Intensité (0 à 10) \(value)")
+                            Text("Intensité : \(value)")
                         }onIncrement: {
                             incrementStep()
                         }onDecrement: {
@@ -99,7 +97,9 @@ struct AddExerciseView: View {
         
         if value >= 10{
             value = 10
+            
         }
+        viewModel.intensity = value
     }
     
     func decrementStep(){
@@ -108,6 +108,7 @@ struct AddExerciseView: View {
         if value < 0{
             value = 0
         }
+        viewModel.intensity = value
     }
 }
 
