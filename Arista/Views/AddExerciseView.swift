@@ -50,7 +50,7 @@ struct AddExerciseView: View {
                         }
                         
                         Stepper {
-                            Text("Intensité (0 à 10) : \(value)")
+                            Text("Intensité : \(value)")
                         }onIncrement: {
                             incrementStep()
                         }onDecrement: {
