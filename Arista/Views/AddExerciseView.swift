@@ -15,10 +15,11 @@ struct AddExerciseView: View {
     @State private var startTimeText = ""
     @State private var error = ""
     @State private var value = 0
-    @State private var date = Date()
-
+    @State var date : Date = Date.distantFuture
+    
+   
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -30,42 +31,26 @@ struct AddExerciseView: View {
                             }
                         }.pickerStyle(MenuPickerStyle())
                         
-//                        TextField("Catégorie", text: $viewModel.category)
                         
-                        let dateFormatter : DateFormatter = {
-                            let formatter = DateFormatter()
-                            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                            return formatter
-                        }()
-                       
                         
-                        DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: [.date]).onAppear{
-                            viewModel.startTime = date
+                        DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
+                            .onChange(of: date) { newDate in
+                            viewModel.startTime = newDate
                         }
                         
-                        
                         TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
-                           
+                            
                             if let timer = Int(newValue) {
                                 viewModel.duration = timer
                             }else {
                                 viewModel.duration  = 0
                             }
-                           
+                            
                             
                         }
-//                        TextField("Intensité (0 à 10)", text: $intensityText).onChange(of: integerText) { newValue in
-//
-//                            if let intensity = Int(newValue),intensity >= 0 && intensity <= 10 {
-//                                viewModel.intensity = intensity
-//                            }
-//
-//
-//                        }.keyboardType(.numberPad)
-//                        //steppe
                         
                         Stepper {
-                            Text("Intensité : \(value)")
+                            Text("Intensité (0 à 10) : \(value)")
                         }onIncrement: {
                             incrementStep()
                         }onDecrement: {
@@ -75,7 +60,7 @@ struct AddExerciseView: View {
                     }
                 }.formStyle(.grouped)
                 Text(error).foregroundColor(.red).onAppear{
-                   error =  viewModel.error_InForm()
+                    error =  viewModel.error_InForm()
                 }
                 Spacer()
                 Button("Ajouter l'exercice") {
@@ -83,15 +68,15 @@ struct AddExerciseView: View {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)
-                    
+                
             }
             .navigationTitle("Nouvel Exercice ...")
             
         }
         
     }
-  
-
+    
+    
     func incrementStep(){
         value += 1
         
