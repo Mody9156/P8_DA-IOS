@@ -64,7 +64,9 @@ struct AddExerciseView: View {
                         }.keyboardType(.numberPad)
                     }
                 }.formStyle(.grouped)
-                Text(error).foregroundColor(.red)
+                Text(error).foregroundColor(.red).onAppear{
+                   error =  viewModel.error_InForm()
+                }
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {
@@ -76,10 +78,9 @@ struct AddExerciseView: View {
             .navigationTitle("Nouvel Exercice ...")
             
         }
+        
     }
+  
+
 }
 
-func error_InForm() -> String {
-    
-    return ""
-}
