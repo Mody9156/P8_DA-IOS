@@ -14,6 +14,8 @@ struct AddExerciseView: View {
     @State private var intensityText = ""
     @State private var startTimeText = ""
     @State private var error = ""
+    @State private var value = 0
+
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
 
     var body: some View {
@@ -62,6 +64,16 @@ struct AddExerciseView: View {
                           
                             
                         }.keyboardType(.numberPad)
+                        //steppe
+                        
+                        Stepper {
+                            Text("Intensité (0 à 10) \(value)")
+                        }onIncrement: {
+                            incrementStep()
+                        }onDecrement: {
+                            decrementStep()
+                        }
+                        
                     }
                 }.formStyle(.grouped)
                 Text(error).foregroundColor(.red).onAppear{
@@ -82,5 +94,20 @@ struct AddExerciseView: View {
     }
   
 
+    func incrementStep(){
+        value += 1
+        
+        if value >= 10{
+            value = 10
+        }
+    }
+    
+    func decrementStep(){
+        value -= 1
+        
+        if value < 0{
+            value = 0
+        }
+    }
 }
 

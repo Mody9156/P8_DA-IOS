@@ -44,8 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		230346C22C64E42F00020C8E /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
-		230346C32C64E42F00020C8E /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
@@ -57,6 +55,8 @@
 		23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		23BAE7AC2C5BC01000004681 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultData.swift; sourceTree = "<group>"; };
+		23F5FB612C66199E006D0ACB /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
+		23F5FB622C66199E006D0ACB /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
 		53E587302B235E8F00E4EF99 /* AristaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaApp.swift; sourceTree = "<group>"; };
 		53E587342B235E9000E4EF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53E587372B235E9000E4EF99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 			packageProductDependencies = (
 			);
 			productName = Arista;
-			productReference = 230346C22C64E42F00020C8E /* Arista.app */;
+			productReference = 23F5FB612C66199E006D0ACB /* Arista.app */;
 			productType = "com.apple.product-type.application";
 		};
 		53E587412B235E9000E4EF99 /* AristaTests */ = {
@@ -223,7 +223,7 @@
 			packageProductDependencies = (
 			);
 			productName = AristaTests;
-			productReference = 230346C32C64E42F00020C8E /* AristaTests.xctest */;
+			productReference = 23F5FB622C66199E006D0ACB /* AristaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

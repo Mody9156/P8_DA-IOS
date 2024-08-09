@@ -10,7 +10,6 @@ import SwiftUI
 struct ExerciseListView: View {
     @ObservedObject var viewModel: ExerciseListViewModel
     @State private var showingAddExerciseView = false
-    
     var body: some View {
         NavigationView {
             List(viewModel.exercises) { exercise in
@@ -30,6 +29,7 @@ struct ExerciseListView: View {
                         if let duration = exercise.duration {
                             Text("Durée: \(duration) min")
                                 .font(.subheadline)
+                           
                         }
                         
                         let dateFormatter : DateFormatter = {
@@ -110,4 +110,5 @@ struct IntensityIndicator: View {
             return .gray
         }
     }
+  
 }
