@@ -18,7 +18,7 @@ struct AddExerciseView: View {
     @State var date : Date = Date.distantFuture
     
    
-    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
+    var array : [String] = ["...","Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
         NavigationView {
@@ -27,7 +27,7 @@ struct AddExerciseView: View {
                     Section{
                         Picker("Catégorie", selection: $viewModel.category) {
                             ForEach(array,id:\.self) { category in
-                                Text(category).tag(category)
+                                Text(category).tag(category).foregroundColor(.black)
                             }
                         }.pickerStyle(MenuPickerStyle())
                         
@@ -45,7 +45,6 @@ struct AddExerciseView: View {
                             }else {
                                 viewModel.duration  = 0
                             }
-                            
                             
                         }
                         
