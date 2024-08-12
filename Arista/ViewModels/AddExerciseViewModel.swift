@@ -29,7 +29,7 @@ class AddExerciseViewModel: ObservableObject {
     
     
     func error_InForm() -> String {
-        var category = category
+        let category = category
         let time = startTime
         let duration  =  duration
         let intensity = intensity
