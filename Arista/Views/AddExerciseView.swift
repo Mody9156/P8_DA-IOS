@@ -16,8 +16,8 @@ struct AddExerciseView: View {
     @State private var error = ""
     @State private var value = 0
     @State var date : Date = Date.distantFuture
-    @State var selectedCategory = "Football"
-   
+    @State var selectedCategory : [String] = ["Football"]
+    
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
@@ -26,16 +26,16 @@ struct AddExerciseView: View {
             VStack {
                 Form {
                     Section{
-                            Picker("Catégorie", selection: $selectedCategory) {
-                                ForEach(array,id:\.self) { category in
-                                    Text(category).tag(category).foregroundColor(.black)
-                                }
-                            }.pickerStyle(.navigationLink)
-                       
+                        Picker("Catégorie", selection: $selectedCategory) {
+                            ForEach(array,id:\.self) { category in
+                                Text(category).tag(category).foregroundColor(.black)
+                            }
+                        }.pickerStyle(.navigationLink)
+                        
                         DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
                             .onChange(of: date) { newDate in
-                            viewModel.startTime = newDate
-                        }
+                                viewModel.startTime = newDate
+                            }
                         
                         TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
                             
@@ -70,7 +70,7 @@ struct AddExerciseView: View {
             }
             .navigationTitle("Nouvel Exercice ...")
         }
-
+        
         
     }
     
