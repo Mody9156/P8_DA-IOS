@@ -13,8 +13,6 @@ struct UserRepository {
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-    let backContext =
-        PersistenceController.shared.container.newBackgroundContext()
     
     // MARK: - Init
     

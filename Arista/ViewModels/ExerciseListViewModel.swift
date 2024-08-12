@@ -33,7 +33,6 @@ class ExerciseListViewModel: ObservableObject {
             let data = ExerciseRepository(viewContext: viewContext)
             exercises = try! data.getExercise()
         
-        
     }
     
     // MARK: - Public

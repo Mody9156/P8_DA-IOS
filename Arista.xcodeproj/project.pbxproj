@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230636F12C6A308200088452 /* AddSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230636F02C6A308200088452 /* AddSleepView.swift */; };
 		2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */; };
 		23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */; };
 		23AAC2AE2C637EFD00FA536A /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		230636EE2C69F3CE00088452 /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
 		230636EF2C69F3CE00088452 /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
+		230636F02C6A308200088452 /* AddSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepView.swift; sourceTree = "<group>"; };
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
 		23AAC2AD2C637EFD00FA536A /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				53E587642B23600400E4EF99 /* ExerciseListView.swift */,
 				53E587662B23600C00E4EF99 /* SleepHistoryView.swift */,
 				53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */,
+				230636F02C6A308200088452 /* AddSleepView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
 				53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */,
 				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
+				230636F12C6A308200088452 /* AddSleepView.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,

@@ -41,5 +41,11 @@ class SleepHistoryViewModel: ObservableObject {
             SleepHistoryError.InvalidSleep
         }
     }
+    
+    // MARK: - Public
+    
+    func reload(){
+        fetchSleepSessions()
+    }
 
 }
