@@ -17,7 +17,7 @@ struct AddExerciseView: View {
     @State private var value = 0
     @State var date : Date = Date.distantFuture
     @State private var slider = 0.0
-
+    
     let array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
@@ -46,11 +46,15 @@ struct AddExerciseView: View {
                             }
                             
                         }
-                        Slider(value: $slider, in: 0...1440).onChange(of: slider) { newValue in
-                            viewModel.duration = Int(slider)
-                        }
-                        Text("\(Int(slider))")
+                        Text("Durée : \(Int(slider)) minute(s)")
                         
+                        Slider(
+                            value: $slider,
+                            in: 0...1440)
+                            .onChange(of: slider) { newValue in
+                        viewModel.duration = Int(slider)
+                            }.minimumScaleFactor(0)
+                                                
                         Stepper {
                             Text("Intensité : \(value)")
                         }onIncrement: {
