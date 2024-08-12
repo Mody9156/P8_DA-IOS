@@ -16,6 +16,7 @@ struct ExerciseListView: View {
         formatter.timeStyle = .short
         return formatter
     }()
+    
     var body: some View {
         NavigationStack {
             List(viewModel.exercises) { exercise in

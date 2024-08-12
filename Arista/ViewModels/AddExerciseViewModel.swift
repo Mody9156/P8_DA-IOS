@@ -26,25 +26,10 @@ class AddExerciseViewModel: ObservableObject {
     }
   
     // MARK: - Public
-    
-    
-    func error_InForm() -> String {
-        let category = category
-        let time = startTime
-        let duration  =  duration
-        let intensity = intensity
-        var error = ""
-        
-        if category.isEmpty {
-            error = "nul"
-        }
-         
-        return error
-    }
+  
     
     
     func addExercise() -> Bool {
-        
         
         do{
           
@@ -53,6 +38,5 @@ class AddExerciseViewModel: ObservableObject {
         }catch{
             return false
         }
-        
     }
 }
