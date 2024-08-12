@@ -17,7 +17,7 @@ struct ExerciseListView: View {
         return formatter
     }()
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(viewModel.exercises) { exercise in
                 HStack {
                     
@@ -37,8 +37,6 @@ struct ExerciseListView: View {
                                 .font(.subheadline)
                            
                         }
-                        
-                     
                         
                         if let date = exercise.startDate {
                             Text(dateFormatter.string(from: date))

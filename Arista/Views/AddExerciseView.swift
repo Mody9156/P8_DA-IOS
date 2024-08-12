@@ -37,24 +37,20 @@ struct AddExerciseView: View {
                                 viewModel.startTime = newDate
                             }
                         
-                        TextField("Durée (en minutes)", text: $integerText).onChange(of: integerText) { newValue in
-                            
-                            if let timer = Int(newValue) {
-                                viewModel.duration = timer
-                            }else {
-                                viewModel.duration  = 0
-                            }
-                            
-                        }
+                        
                         Text("Durée : \(Int(slider)) minute(s)")
                         
                         Slider(
                             value: $slider,
-                            in: 0...1440)
+                            in: 0...120){} minimumValueLabel : {
+                                Text("0")
+                            } maximumValueLabel: {
+                                Text("120")
+                            }
                             .onChange(of: slider) { newValue in
-                        viewModel.duration = Int(slider)
-                            }.minimumScaleFactor(0)
-                                                
+                                viewModel.duration = Int(slider)
+                            }
+                        
                         Stepper {
                             Text("Intensité : \(value)")
                         }onIncrement: {
