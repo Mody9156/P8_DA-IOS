@@ -21,9 +21,8 @@ struct AddExerciseView: View {
     var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
+        
         NavigationStack{
-
-        NavigationView {
             VStack {
                 Form {
                     Section{
@@ -69,10 +68,9 @@ struct AddExerciseView: View {
                 }.buttonStyle(.borderedProminent)
                 
             }
-           
+            .navigationTitle("Nouvel Exercice ...")
         }
 
-        }.navigationTitle("Nouvel Exercice ...")
         
     }
     
