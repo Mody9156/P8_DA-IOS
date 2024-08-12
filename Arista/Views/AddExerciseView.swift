@@ -18,7 +18,7 @@ struct AddExerciseView: View {
     @State var date : Date = Date.distantFuture
     
    
-    var array : [String] = ["...","Football","Natation","Running","Marche","Cyclisme","Yoga"]
+    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
         NavigationView {
