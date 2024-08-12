@@ -47,9 +47,9 @@ struct AddExerciseView: View {
                             
                         }
                         Slider(value: $slider, in: 0...1440).onChange(of: slider) { newValue in
-                            viewModel.duration = slider
+                            viewModel.duration = Int(slider)
                         }
-                        text("\(slider)")
+                        Text("\(Int(slider))")
                         
                         Stepper {
                             Text("Intensité : \(value)")
