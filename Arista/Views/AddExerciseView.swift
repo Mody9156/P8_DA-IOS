@@ -16,9 +16,9 @@ struct AddExerciseView: View {
     @State private var error = ""
     @State private var value = 0
     @State var date : Date = Date.distantFuture
-    @State var selectedCategory : [String] = ["Football"]
-    
-    var array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
+    @State private var slider = 0.0
+
+    let array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
         
@@ -26,7 +26,7 @@ struct AddExerciseView: View {
             VStack {
                 Form {
                     Section{
-                        Picker("Catégorie", selection: $selectedCategory) {
+                        Picker("Catégorie", selection: $viewModel.category) {
                             ForEach(array,id:\.self) { category in
                                 Text(category).tag(category).foregroundColor(.black)
                             }
@@ -46,6 +46,10 @@ struct AddExerciseView: View {
                             }
                             
                         }
+                        Slider(value: $slider, in: 0...1440).onChange(of: slider) { newValue in
+                            viewModel.duration = slider
+                        }
+                        text("\(slider)")
                         
                         Stepper {
                             Text("Intensité : \(value)")
@@ -94,4 +98,5 @@ struct AddExerciseView: View {
         viewModel.intensity = value
     }
 }
+
 
