@@ -69,10 +69,10 @@ struct AddExerciseView: View {
                 }.buttonStyle(.borderedProminent)
                 
             }
-            .navigationTitle("Nouvel Exercice ...")
+           
         }
 
-        }
+        }.navigationTitle("Nouvel Exercice ...")
         
     }
     
