@@ -23,10 +23,19 @@ struct ExerciseRepository {
     // MARK: - Public
     
     func getExercise() throws -> [Exercise]{
-        let request = Exercise.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate,order: .reverse))]
+        var result : [Exercise] = []
+       try viewContext.performAndWait {
+            let request = Exercise.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate,order: .reverse))]
+            do{
+                result = try viewContext.fetch(request)
+            }catch{
+                throw error
+            }
+        }
+        return result
+       
         
-        return try viewContext.fetch(request)
     }
     
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws {
