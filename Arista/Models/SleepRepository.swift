@@ -40,13 +40,25 @@ struct SleepRepository {
     }
     
     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
-        let newSleepSessions = Sleep(context: viewContext)
-        newSleepSessions.duration = Int64(duration)
-        newSleepSessions.quality = Int64(quality)
-        newSleepSessions.startDate = startDate
-        newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
-        
-        try viewContext.save()
-        
+        try viewContext.performAndWait {
+            let newSleepSessions = Sleep(context: viewContext)
+            newSleepSessions.duration = Int64(duration)
+            newSleepSessions.quality = Int64(quality)
+            newSleepSessions.startDate = startDate
+            
+            do{
+                newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
+                
+            }catch{
+               
+            }
+            
+            do{
+                try viewContext.save()
+            }catch{
+                throw error
+            }
+        }
+      
     }
 }
