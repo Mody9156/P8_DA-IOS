@@ -32,18 +32,7 @@ class ExerciseListViewModel: ObservableObject {
         exercises = try! data.getExercise()
     }
     
-    private func deleteExercise(at offsets : IndexSet){
-        let data = ExerciseRepository(viewContext: viewContext)
-        for index in offsets {
-            let exercise = exercises[index]
-            do {
-                try data.deleteExercise(exercise)
-            }catch{
-                print("Erreur lors de la suppression de l'exercice: \(error)")
-            }
-        }
-    }
-    
+   
    
     
     // MARK: - Public

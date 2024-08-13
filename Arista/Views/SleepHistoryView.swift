@@ -27,11 +27,7 @@ struct SleepHistoryView: View {
                             Text("Durée : \(session.duration/60) heures")
                         }
                     }
-                }   .onDelete{ index in
-                    viewModel.sleepSessions.remove(atOffsets: index)
-                }
-            } .toolbar {
-                EditButton()
+                } 
             }
             .navigationTitle("Historique de sommeil")
             .navigationBarItems(trailing: Button(action: {

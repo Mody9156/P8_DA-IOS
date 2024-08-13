@@ -41,8 +41,5 @@ struct ExerciseRepository {
         
     }
     
-    func deleteExercise(_ exercise : Exercise) throws{
-        viewContext.delete(exercise)
-        try viewContext.save()
-    }
+   
 }
