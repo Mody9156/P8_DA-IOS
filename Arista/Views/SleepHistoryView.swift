@@ -30,6 +30,8 @@ struct SleepHistoryView: View {
                 }   .onDelete{ index in
                     viewModel.sleepSessions.remove(atOffsets: index)
                 }
+            } .toolbar {
+                EditButton()
             }
             .navigationTitle("Historique de sommeil")
             .navigationBarItems(trailing: Button(action: {

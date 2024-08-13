@@ -49,6 +49,8 @@ struct ExerciseListView: View {
                     Spacer()
                     IntensityIndicator(intensity: Int(exercise.intensity))
                 }
+            } .toolbar {
+                EditButton()
             }
             .navigationTitle("Exercices")
             .navigationBarItems(trailing: Button(action: {
