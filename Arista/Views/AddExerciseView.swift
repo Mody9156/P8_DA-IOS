@@ -19,7 +19,6 @@ struct AddExerciseView: View {
     @State private var slider = 0.0
     
     let array : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga"]
-    
     var body: some View {
         
         NavigationStack{
@@ -61,9 +60,7 @@ struct AddExerciseView: View {
                         
                     }
                 }.formStyle(.grouped)
-//                Text(error).foregroundColor(.red).onAppear{
-//                    error =  viewModel.error_InForm()
-//                }
+             
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {

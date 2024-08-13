@@ -40,6 +40,5 @@ struct ExerciseRepository {
         try viewContext.save()
         
     }
-    
    
 }

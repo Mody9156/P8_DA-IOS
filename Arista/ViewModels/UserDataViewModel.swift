@@ -32,7 +32,7 @@ class UserDataViewModel: ObservableObject {
     // MARK: - Private
     
     private func fetchUserData() {
-        // TODO: fetch data in CoreData and replace dumb value below with appropriate information
+       
         do{
             guard let user = try UserRepository().getUser() else {
                 fatalError()
