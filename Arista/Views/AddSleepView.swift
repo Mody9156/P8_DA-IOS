@@ -34,7 +34,7 @@ struct AddSleepView: View {
                                     Text("24")
                                 }
                                 .onChange(of: slider) { newValue in
-                                    viewModel.duration = Int(Int64(slider))
+                                    viewModel.duration = Int(Int64(newValue))
                                 }
                             Stepper {
                                 Text("Quality : \(value)")
