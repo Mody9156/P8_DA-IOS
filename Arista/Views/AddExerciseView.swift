@@ -61,9 +61,9 @@ struct AddExerciseView: View {
                         
                     }
                 }.formStyle(.grouped)
-                Text(error).foregroundColor(.red).onAppear{
-                    error =  viewModel.error_InForm()
-                }
+//                Text(error).foregroundColor(.red).onAppear{
+//                    error =  viewModel.error_InForm()
+//                }
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addExercise() {
