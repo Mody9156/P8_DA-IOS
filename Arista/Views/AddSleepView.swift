@@ -24,8 +24,8 @@ struct AddSleepView: View {
                                 .onChange(of: date) { newDate in
                                     viewModel.startTime = newDate
                                 }
+                           
                             Text("Durée : \(Int(slider)) heure(s)")
-                            
                             Slider(
                                 value: $slider,
                                 in: 0...24){} minimumValueLabel : {
@@ -34,7 +34,7 @@ struct AddSleepView: View {
                                     Text("24")
                                 }
                                 .onChange(of: slider) { newValue in
-                                    viewModel.duration = Int(Int64(newValue))
+                                    viewModel.duration = Int(newValue)
                                 }
                             Stepper {
                                 Text("Quality : \(value)")

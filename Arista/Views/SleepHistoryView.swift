@@ -24,7 +24,7 @@ struct SleepHistoryView: View {
                                 Text("Début : \( date.formatted())")
                             }
                             
-                            Text("Durée : \(session.duration/60) heures")
+                            Text("Durée : \(Int(session.duration)) heure(s)")
                         }
                     }
                 } 
