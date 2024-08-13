@@ -23,21 +23,20 @@ struct SleepRepository {
     // MARK: - Public
     
     func getSleepSessions() throws -> [Sleep] {
-        let result : [Sleep]
+        var result : [Sleep] = []
         
-        viewContext.performAndWait {
-            let request = Sleep.fetchRequest()
+       try viewContext.performAndWait {
+           let request : NSFetchRequest<Sleep> = Sleep.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Sleep>(\.startDate,order: .reverse))]
             do{
-                try viewContext.fetch(request)
+                result =  try viewContext.fetch(request)
 
             }catch{
-                
+                throw error
             }
+           
         }
-        
-   
-     
+        return  result
     }
     
     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
