@@ -26,9 +26,17 @@ struct UserRepository {
     // MARK: - Public
     
     func getUser() throws -> User? {
-        let request = User.fetchRequest()
-        request.fetchLimit = 1
-        return try viewContext.fetch(request).first
+        var result : User?
+       try viewContext.performAndWait {
+            let request : NSFetchRequest<User> = User.fetchRequest()
+            request.fetchLimit = 1
+            do{
+                result = try viewContext.fetch(request).first
+            }catch{
+                throw error
+            }
+        }
+        return result
                  
     }
     

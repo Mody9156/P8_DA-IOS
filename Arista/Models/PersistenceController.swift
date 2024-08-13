@@ -56,8 +56,9 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        container.viewContext.automaticallyMergesChangesFromParent = true //merge
         
-        try! DefaultData(viewContext: container.viewContext).apply()
+        container.viewContext.automaticallyMergesChangesFromParent = true //merge
+            try! DefaultData(viewContext: container.viewContext).apply()
+
     }
 }
