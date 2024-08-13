@@ -32,6 +32,10 @@ class ExerciseListViewModel: ObservableObject {
         exercises = try! data.getExercise()
     }
     
+    private func deleteExercise(){
+        let data = ExerciseRepository(viewContext: viewContext)
+    }
+    
     // MARK: - Public
     
     func reload(){

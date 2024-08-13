@@ -20,6 +20,9 @@ struct ExerciseListView: View {
     var body: some View {
         NavigationStack {
             List(viewModel.exercises) { exercise in
+                ForEach(viewModel.exercises,id:\.self){ exercise in
+                    
+              
                 HStack {
                     
                     if let category = exercise.category {
@@ -36,7 +39,7 @@ struct ExerciseListView: View {
                         if let duration = exercise.duration {
                             Text("Durée: \(duration) min")
                                 .font(.subheadline)
-                           
+                            
                         }
                         
                         if let date = exercise.startDate {
@@ -49,6 +52,9 @@ struct ExerciseListView: View {
                     Spacer()
                     IntensityIndicator(intensity: Int(exercise.intensity))
                 }
+            }.onDelete{ index in
+                viewModel.exercises.remove(atOffsets: index)
+            }
             } .toolbar {
                 EditButton()
             }
@@ -66,6 +72,7 @@ struct ExerciseListView: View {
         }
         
     }
+  
     
     func didDismiss(){
         viewModel.reload()
