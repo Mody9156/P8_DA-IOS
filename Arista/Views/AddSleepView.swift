@@ -25,6 +25,7 @@ struct AddSleepView: View {
                                     viewModel.startTime = newDate
                                 }
                             Text("Durée : \(Int(slider)) heure(s)")
+                            
                             Slider(
                                 value: $slider,
                                 in: 0...24){} minimumValueLabel : {
