@@ -16,29 +16,25 @@ class AddExerciseViewModel: ObservableObject {
     @Published var startTime: Date = Date()
     @Published var duration: Int = 0
     @Published var intensity: Int = 0
-
+    
     private var viewContext: NSManagedObjectContext
-
+    
     // MARK: - Init
     
     init(context: NSManagedObjectContext) {
         self.viewContext = context
     }
-  
-    // MARK: - Public
-  
     
+    // MARK: - Public
     
     func addExercise() -> Bool {
         
         do{
-          
+            
             try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
             return true
         }catch{
             return false
         }
     }
-    
-   
 }

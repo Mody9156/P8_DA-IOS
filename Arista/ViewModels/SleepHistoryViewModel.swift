@@ -22,25 +22,15 @@ class SleepHistoryViewModel: ObservableObject {
         self.viewContext = context
         fetchSleepSessions()
     }
-    
-    // MARK: - Enum
-    
-    enum SleepHistoryError : Error {
-        case InvalidSleep
-    }
-
+  
     
     // MARK: - Private
     
     private func fetchSleepSessions() {
-        
-        do{
+      
             let data = SleepRepository(viewContext: viewContext)
             sleepSessions = try! data.getSleepSessions()
-            
-        }catch{
-            SleepHistoryError.InvalidSleep
-        }
+     
     }
     
     // MARK: - Public

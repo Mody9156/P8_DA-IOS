@@ -13,18 +13,22 @@ struct SleepHistoryView: View {
     
     var body: some View {
         NavigationStack{
-            List(viewModel.sleepSessions) { session in
-                HStack {
-                    QualityIndicator(quality: Int(session.quality))
-                        .padding()
-                    VStack(alignment: .leading) {
-                        
-                        if let date = session.startDate {
-                            Text("Début : \( date.formatted())")
+            List {
+                ForEach(viewModel.sleepSessions, id: \.self){ session in
+                    HStack {
+                        QualityIndicator(quality: Int(session.quality))
+                            .padding()
+                        VStack(alignment: .leading) {
+                            
+                            if let date = session.startDate {
+                                Text("Début : \( date.formatted())")
+                            }
+                            
+                            Text("Durée : \(session.duration/60) heures")
                         }
-                        
-                        Text("Durée : \(session.duration/60) heures")
                     }
+                }   .onDelete{ index in
+                    viewModel.sleepSessions.remove(atOffsets: index)
                 }
             }
             .navigationTitle("Historique de sommeil")
@@ -42,7 +46,7 @@ struct SleepHistoryView: View {
         
     }
     
-    
+   
     
     func didDismiss(){
         viewModel.reload()
