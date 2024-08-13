@@ -14,7 +14,7 @@ class SleepHistoryViewModel: ObservableObject {
     
     @Published var sleepSessions = [Sleep]()
     
-    private var viewContext: NSManagedObjectContext
+     var viewContext: NSManagedObjectContext
     
     // MARK: - Init
     
