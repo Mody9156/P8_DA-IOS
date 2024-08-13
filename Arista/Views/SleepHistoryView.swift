@@ -20,7 +20,7 @@ struct SleepHistoryView: View {
                     VStack(alignment: .leading) {
                         
                         if let date = session.startDate {
-                            Text("Début : \(date.formatted())")
+                            Text("Début : \( date.formatted())")
                         }
                         
                         Text("Durée : \(session.duration/60) heures")
@@ -35,7 +35,7 @@ struct SleepHistoryView: View {
             })
         }
         .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
-            AddSleepView(viewModel: AddExerciseViewModel(context: viewModel.viewContext)).onAppear{
+            AddSleepView(viewModel: AddSleepViewModel(context: viewModel.viewContext)).onAppear{
                 viewModel.reload()
             }
         }

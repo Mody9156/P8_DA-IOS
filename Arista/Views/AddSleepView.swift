@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddSleepView: View {
     @State private var slider = 0.0
-    @ObservedObject var viewModel: AddExerciseViewModel
+    @ObservedObject var viewModel: AddSleepViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var date : Date = Date.distantFuture
     @State private var value = 0
@@ -36,13 +36,13 @@ struct AddSleepView: View {
                                     viewModel.duration = Int(Int64(slider))
                                 }
                             Stepper {
-                                Text("Intensité : \(value)")
+                                Text("Quality : \(value)")
                             }onIncrement: {
                                 incrementStep()
                             }onDecrement: {
                                 decrementStep()
                             }.onChange(of: value) { newValue in
-                                viewModel.intensity = newValue
+                                viewModel.quality = Int(Int64(newValue))
                             }
                          
                         }
@@ -52,7 +52,7 @@ struct AddSleepView: View {
                }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
-                    if viewModel.addExercise() {
+                    if viewModel.addSleepSessions() {
                             presentationMode.wrappedValue.dismiss()
                         }
                 }.buttonStyle(.borderedProminent)
