@@ -9,9 +9,9 @@
     </entity>
     <entity name="ExerciseEntities" representedClassName="ExerciseEntities" syncable="YES" codeGenerationType="class"/>
     <entity name="Sleep" representedClassName="Sleep" syncable="YES" codeGenerationType="class">
-        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="quality" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="duration" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quality" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sleep" inverseEntity="User"/>
     </entity>
     <entity name="SleepEntities" representedClassName="SleepEntities" syncable="YES" codeGenerationType="class"/>

@@ -1,22 +1,22 @@
 //
-//  AddExerciseViewModel.swift
+//  AddSleepViewModel.swift
 //  Arista
 //
-//  Created by Vincent Saluzzo on 08/12/2023.
+//  Created by KEITA on 13/08/2024.
 //
 
 import Foundation
 import CoreData
 
-class AddExerciseViewModel: ObservableObject {
+class AddSleepViewModel : ObservableObject{
     
     // MARK: - Properties
     
-    @Published var category: String = ""
+    @Published var quality: Int = 0
     @Published var startTime: Date = Date()
     @Published var duration: Int = 0
-    @Published var intensity: Int = 0
-
+    
+    
     private var viewContext: NSManagedObjectContext
 
     // MARK: - Init
@@ -27,18 +27,13 @@ class AddExerciseViewModel: ObservableObject {
   
     // MARK: - Public
   
-    
-    
-    func addExercise() -> Bool {
-        
+    func addSleepSessions() -> Bool {
         do{
-          
-            try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+          try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
             return true
         }catch{
             return false
         }
     }
     
-   
 }

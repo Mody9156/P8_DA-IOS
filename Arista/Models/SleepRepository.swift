@@ -27,4 +27,15 @@ struct SleepRepository {
         request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Sleep>(\.startDate,order: .reverse))]
         return try viewContext.fetch(request)
     }
+    
+    func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
+        let newSleepSessions = Sleep(context: viewContext)
+        newSleepSessions.duration = Int64(duration)
+        newSleepSessions.quality = Int64(quality)
+        newSleepSessions.startDate = startDate
+        newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
+        
+        try viewContext.save()
+        
+    }
 }

@@ -35,7 +35,7 @@ struct SleepHistoryView: View {
             })
         }
         .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
-            AddSleepView(viewModel: SleepHistoryViewModel(context: viewModel.viewContext)).onAppear{
+            AddSleepView(viewModel: AddExerciseViewModel(context: viewModel.viewContext)).onAppear{
                 viewModel.reload()
             }
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddSleepView: View {
     @State private var slider = 0.0
-    @ObservedObject var viewModel: SleepHistoryViewModel
+    @ObservedObject var viewModel: AddExerciseViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var date : Date = Date.distantFuture
     @State private var value = 0
@@ -21,9 +21,9 @@ struct AddSleepView: View {
                     
                         Section{
                             DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
-        //                        .onChange(of: date) { newDate in
-        //                            viewModel.startTime = newDate
-        //                        }
+                                .onChange(of: date) { newDate in
+                                    viewModel.startTime = newDate
+                                }
                             Text("Durée : \(Int(slider)) heure(s)")
                             Slider(
                                 value: $slider,
@@ -32,15 +32,17 @@ struct AddSleepView: View {
                                 } maximumValueLabel: {
                                     Text("24")
                                 }
-//                                .onChange(of: slider) { newValue in
-//                                    viewModel.sleepSessions.quality = Int64(Int(slider))
-//                                }
+                                .onChange(of: slider) { newValue in
+                                    viewModel.duration = Int(Int64(slider))
+                                }
                             Stepper {
                                 Text("Intensité : \(value)")
                             }onIncrement: {
                                 incrementStep()
                             }onDecrement: {
                                 decrementStep()
+                            }.onChange(of: value) { newValue in
+                                viewModel.intensity = newValue
                             }
                          
                         }
@@ -50,9 +52,9 @@ struct AddSleepView: View {
                }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
-//                        if viewModel.reload {
-//                            presentationMode.wrappedValue.dismiss()
-//                        }
+                    if viewModel.addExercise() {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                 }.buttonStyle(.borderedProminent)
 
             } .navigationTitle("Nouvel element ...")
