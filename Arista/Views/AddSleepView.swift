@@ -18,7 +18,6 @@ struct AddSleepView: View {
         NavigationStack {
             VStack {
                 Form{
-                    
                         Section{
                             DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
                                 .onChange(of: date) { newDate in

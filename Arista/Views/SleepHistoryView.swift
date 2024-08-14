@@ -10,7 +10,12 @@ import SwiftUI
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
     @State private var showingAddExerciseView = false
-    
+    let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
     var body: some View {
         NavigationStack{
             List {
@@ -21,7 +26,7 @@ struct SleepHistoryView: View {
                         VStack(alignment: .leading) {
                             
                             if let date = session.startDate {
-                                Text("Début : \( date.formatted())")
+                                Text("Début : \( dateFormatter.string(from: date))")
                             }
                             
                             Text("Durée : \(Int(session.duration)) heure(s)")
