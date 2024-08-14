@@ -8,19 +8,15 @@
 import Foundation
 import CoreData
 
-struct UserRepository {
+struct UserRepository : DataRepositoryProtocol {
     
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-    
     // MARK: - Init
     
-    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
-         
-    ) {
+    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
-        
     }
     
     // MARK: - Public

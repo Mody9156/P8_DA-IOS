@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct ExerciseRepository {
+struct ExerciseRepository : DataExerciseProtocol{
     
     // MARK: - Properties
     

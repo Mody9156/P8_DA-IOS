@@ -16,12 +16,14 @@ class UserDataViewModel: ObservableObject {
     @Published var lastName: String = ""
 
     private var viewContext: NSManagedObjectContext
+    private var userRepository: DataRepositoryProtocol
 
     // MARK: - Init
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,repository : DataRepositoryProtocol = UserRepository()) {
         self.viewContext = context
-        fetchUserData()
+        self.userRepository = repository
+       fetchUserData()
     }
     // MARK: - Enum
     
@@ -31,16 +33,21 @@ class UserDataViewModel: ObservableObject {
     
     // MARK: - Private
     
-    private func fetchUserData() {
+     func fetchUserData()  {
        
         do{
-            guard let user = try UserRepository().getUser() else {
-                fatalError()
+            if let user = try UserRepository().getUser()  {
+                
+                firstName = user.firstName ?? ""
+                lastName = user.lastName ?? ""
+            }else{
+                firstName = ""
+                lastName = ""
             }
-            firstName = user.firstName ?? ""
-            lastName = user.lastName ?? ""
+            
         }catch{
-             UserError.InvalidUser
+            UserError.InvalidUser
         }
     }
 }
+

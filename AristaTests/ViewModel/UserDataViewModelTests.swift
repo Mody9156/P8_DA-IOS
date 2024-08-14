@@ -13,107 +13,113 @@ import CoreData
 
 final class UserDataViewModelTests: XCTestCase {
     var cancellable = Set<AnyCancellable>()
-
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
-    func test_WhenUser_Is_Empty(){
-        //Given
+    func test_WhenUser_Is_Empty() {
+        // Given
         let persistenceController = PersistenceController(inMemory: false)
-        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext)
         emptyEntities(context: persistenceController.container.viewContext)
-
-        let data = UserDataViewModel(context: persistenceController.container.viewContext)
-
+        
+        let mockRepository = MockUserRepository()
+        mockRepository.user = nil // Simule l'absence d'utilisateur
+        
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        
         let expectation = XCTestExpectation(description: "fetch empty list of users")
-
-        //Then
+        
+        // Then
         viewModel.$firstName.sink { name in
-            XCTAssert(name.isEmpty)
+            XCTAssertTrue(name.isEmpty, "Expected firstName to be empty, but it was: \(name)")
             expectation.fulfill()
-            
         }.store(in: &cancellable)
-        wait(for: [expectation], timeout: 20)
-
-
-    }
-
-    func test_WhenAddNew_User()  {
-        //Given
-        let persistenceController = PersistenceController(inMemory: false)
-        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext)
-        emptyEntities(context: persistenceController.container.viewContext)
-        addExercise(context: persistenceController.container.viewContext, userFirstName: "User_2", userLastName: "Magic")
-        let data = UserDataViewModel(context: persistenceController.container.viewContext)
-        
-        let expectation = XCTestExpectation(description: "fetch empty list of users")
-        
-        //Then
-        
-        viewModel.$firstName
-            .sink { name in
-                
-            XCTAssert(name.isEmpty == false)
-            XCTAssert(name == "User_2")
-                
-                
-            expectation.fulfill()
-            
-        }.store(in: &cancellable)
-      
         
         wait(for: [expectation], timeout: 10)
-        
-        viewModel.$lastName
-            .sink { name in
-                
-            XCTAssert(name.isEmpty == false)
-            XCTAssert(name == "Magic")
-                
-                
-            expectation.fulfill()
-            
-        }.store(in: &cancellable)
     }
-
-    func testPerformanceExample() throws {
+    
+    
+    func test_WhenAddNew_User() {
+        // Given
+        let persistenceController = PersistenceController(inMemory: false)
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let mockRepository = MockUserRepository()
+        let newUser = User(context: persistenceController.container.viewContext)
+        
+        newUser.firstName = "User_2"
+        newUser.lastName = "Magic"
+        try! persistenceController.container.viewContext.save()
+        mockRepository.user = newUser // Simule un nouvel utilisateur
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        
+        let firstNameExpectation = XCTestExpectation(description: "fetch first name")
+        let lastNameExpectation = XCTestExpectation(description: "fetch last name")
+        
+        // Then
+        viewModel.$firstName.sink { name in
+            XCTAssertEqual(name, "User_2")
+            firstNameExpectation.fulfill()
+        }.store(in: &cancellable)
+        
+        
+        viewModel.$lastName.sink { name in
+            XCTAssertEqual(name, "Magic")
+            lastNameExpectation.fulfill()
+        }.store(in: &cancellable)
+        wait(for: [firstNameExpectation, lastNameExpectation], timeout: 5)
         
     }
     
-    private func emptyEntities(context: NSManagedObjectContext) {
+    func test_fetchUserData_ShouldHandleError() {
+        // Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mockRepository = MockUserRepository()
+        mockRepository.user = nil // Simule l'absence d'utilisateur pour déclencher une erreur
+        emptyEntities(context: persistenceController.container.viewContext)
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        
+        // When
+        viewModel.fetchUserData()
+        
+        // Then
+        XCTAssertEqual(viewModel.firstName, "")
+        XCTAssertEqual(viewModel.lastName, "")
+        // Optionnel: Vérifier si l'état du ViewModel correspond aux attentes après l'erreur
+    }
+}
 
+
+class MockUserRepository : DataRepositoryProtocol{
+    var user : User?
+    
+    func getUser() throws -> User?{
+        if let user = user {
+            return user
+        }else {
+            throw UserDataViewModel.UserError.InvalidUser
+        }
+    }
+}
+
+private func emptyEntities(context: NSManagedObjectContext) {
+    
     let fetchRequest = User.fetchRequest()
-
+    
     let objects = try! context.fetch(fetchRequest)
-
-     
-
+    
+    
+    
     for user in objects {
-
-    context.delete(user)
-
+        
+        context.delete(user)
+        
     }
-
+    
     try! context.save()
-
-    }
-
-    private func addExercise(context: NSManagedObjectContext, userFirstName: String, userLastName: String) {
-
-    let newUser = User(context: context)
-
-    newUser.firstName = userFirstName
-
-    newUser.lastName = userLastName
-
-    try! context.save()
-
-     
-
-    }
+    
 }

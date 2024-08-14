@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		230636F12C6A308200088452 /* AddSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230636F02C6A308200088452 /* AddSleepView.swift */; };
+		230F77822C6D390300E4AC8F /* DataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */; };
 		2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */; };
 		23A0DB5F2C6B86AF003690A9 /* AddSleepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0DB5E2C6B86AF003690A9 /* AddSleepViewModel.swift */; };
 		23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */; };
@@ -47,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		230636F02C6A308200088452 /* AddSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepView.swift; sourceTree = "<group>"; };
+		230F777E2C6D33DE00E4AC8F /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
+		230F777F2C6D33DE00E4AC8F /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
+		230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		23A0DB5E2C6B86AF003690A9 /* AddSleepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepViewModel.swift; sourceTree = "<group>"; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
@@ -55,8 +59,6 @@
 		23AAC2B12C63C5C200FA536A /* UserDataViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModelTests.swift; sourceTree = "<group>"; };
 		23AAC2B32C63DC4000FA536A /* AddExerciseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModelTests.swift; sourceTree = "<group>"; };
 		23AAC2B52C63DC5100FA536A /* SleepHistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModelTests.swift; sourceTree = "<group>"; };
-		23B7C4CA2C6CEB7D00F3AD2C /* Arista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Arista.app; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/Arista.app"; sourceTree = "<absolute>"; };
-		23B7C4CB2C6CEB7D00F3AD2C /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AristaTests.xctest; path = "/Users/keita/Documents/P8_DA-IOS/build/Debug-iphoneos/AristaTests.xctest"; sourceTree = "<absolute>"; };
 		23BAE7A62C5BBA6E00004681 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		23BAE7A82C5BBB5F00004681 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		23BAE7AA2C5BBCBC00004681 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		230F77802C6D379800E4AC8F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		2394DF5B2C60A048000E7A01 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		53E5875F2B235FD200E4EF99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				230F77802C6D379800E4AC8F /* Protocol */,
 				53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */,
 				53E587392B235E9000E4EF99 /* PersistenceController.swift */,
 				23BAE7A62C5BBA6E00004681 /* UserRepository.swift */,
@@ -209,7 +220,7 @@
 			packageProductDependencies = (
 			);
 			productName = Arista;
-			productReference = 23B7C4CA2C6CEB7D00F3AD2C /* Arista.app */;
+			productReference = 230F777E2C6D33DE00E4AC8F /* Arista.app */;
 			productType = "com.apple.product-type.application";
 		};
 		53E587412B235E9000E4EF99 /* AristaTests */ = {
@@ -229,7 +240,7 @@
 			packageProductDependencies = (
 			);
 			productName = AristaTests;
-			productReference = 23B7C4CB2C6CEB7D00F3AD2C /* AristaTests.xctest */;
+			productReference = 230F777F2C6D33DE00E4AC8F /* AristaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -311,6 +322,7 @@
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
+				230F77822C6D390300E4AC8F /* DataRepositoryProtocol.swift in Sources */,
 				23BAE7A92C5BBB5F00004681 /* SleepRepository.swift in Sources */,
 				23BAE7AB2C5BBCBC00004681 /* ExerciseRepository.swift in Sources */,
 			);

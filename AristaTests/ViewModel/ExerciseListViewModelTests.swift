@@ -48,10 +48,10 @@ final class ExerciseListViewModelTests: XCTestCase {
 
     func test_WhenAddingOneExerciseInDatabase_FEtchExercise_ReturnAListContainingTheExercise()  {
         
-        // Clean manually all data
-        
+     
         //Given
         let persistenceController  = PersistenceController(inMemory: false)
+        // Clean manually all data
         emptyEntities(context: persistenceController.container.viewContext)
         let date = Date()
         addExercice(context: persistenceController.container.viewContext, category: "Football", duration: 10, intensity: 5, startDate: date, userFirstName: "Ericw", userLastName: "Marcus")
@@ -220,4 +220,18 @@ final class ExerciseListViewModelTests: XCTestCase {
     try! context.save()
 
     }
+}
+
+class MocksExerciseViewModel : DataExerciseProtocol {
+    var result : [Exercise] = []
+    
+    func getExercise() throws -> [Exercise] {
+        <#code#>
+    }
+    
+    func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
+        <#code#>
+    }
+    
+    
 }
