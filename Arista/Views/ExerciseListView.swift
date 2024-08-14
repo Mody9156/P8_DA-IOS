@@ -22,7 +22,6 @@ struct ExerciseListView: View {
             List(viewModel.exercises) { exercise in
                 ForEach(viewModel.exercises,id:\.self){ exercise in
                     
-                    
                     HStack {
                         
                         if let category = exercise.category {

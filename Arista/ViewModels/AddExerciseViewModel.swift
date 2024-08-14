@@ -28,11 +28,19 @@ class AddExerciseViewModel: ObservableObject {
     // MARK: - Public
     
     func addExercise() -> Bool {
-        
+        guard !category.isEmpty else{return false}
         do{
-            
-            try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
-            return true
+            let  exerciseRepository = ExerciseRepository()
+            let existingExercises = try exerciseRepository.getExercise().filter{ exercise in
+                exercise.category == category && exercise.startDate == startTime
+            }
+            if existingExercises.isEmpty {
+              try  exerciseRepository.addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+                return true
+            }else{
+                return false
+            }
+         
         }catch{
             return false
         }
