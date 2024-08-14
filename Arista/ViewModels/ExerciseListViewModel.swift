@@ -16,11 +16,14 @@ class ExerciseListViewModel: ObservableObject {
     @Published var exercises = [Exercise]()
     
     var viewContext: NSManagedObjectContext
+    private var userRepository: DataExerciseProtocol
+
     
     // MARK: - Init
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
+        self.userRepository = repository
         fetchExercises()
     }
     
