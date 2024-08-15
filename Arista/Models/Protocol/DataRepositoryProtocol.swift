@@ -14,3 +14,9 @@ protocol DataExerciseProtocol {
     func getExercise() throws -> [Exercise]
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws
 }
+
+protocol DataSleepProtocol{
+    func getSleepSessions() throws -> [Sleep]
+    func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws
+    
+}

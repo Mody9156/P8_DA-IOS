@@ -6,8 +6,12 @@
 //
 
 import XCTest
+@testable import Arista
+import Combine
+import CoreData
 
 final class SleepHistoryViewModelTests: XCTestCase {
+    var cancellable = Set<AnyCancellable>()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -17,7 +21,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func test_WhenSleep_Is_Empty()() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
@@ -33,3 +37,23 @@ final class SleepHistoryViewModelTests: XCTestCase {
     }
 
 }
+
+private func emptyEntities(context: NSManagedObjectContext) {
+    
+    let fetchRequest = User.fetchRequest()
+    
+    let objects = try! context.fetch(fetchRequest)
+    
+    
+    
+    for user in objects {
+        
+        context.delete(user)
+        
+    }
+    
+    try! context.save()
+    
+}
+
+

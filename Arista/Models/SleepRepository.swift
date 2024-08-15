@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct SleepRepository {
+struct SleepRepository : DataSleepProtocol {
     
     // MARK: - Properties
     
