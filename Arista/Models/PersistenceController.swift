@@ -25,12 +25,7 @@ class PersistenceController {
         if inMemory {
             try! DefaultData(viewContext: self.backgroundContext).apply()
         }
-        
-        let storeDescription = container.persistentStoreDescriptions.first
-        storeDescription?.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
-        
-        storeDescription?.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
-
+    
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
