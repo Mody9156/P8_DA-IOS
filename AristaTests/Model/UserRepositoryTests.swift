@@ -22,13 +22,7 @@ final class UserRepositoryTests: XCTestCase {
         }
     }
     
-    private func addUser(context:NSManagedObjectContext,userFirstName: String,userLastName: String){
-        let newUser = User(context: context)
-        newUser.lastName = userLastName
-        newUser.firstName = userFirstName
-        try! context.save()
-        
-    }
+   
     
     func test_WhenAddNewUser() throws {
         //Give
@@ -36,8 +30,12 @@ final class UserRepositoryTests: XCTestCase {
         let context : NSManagedObjectContext!
         context = persistenceController.container.viewContext
         emptyEntities(context: context)
+        let newUser = User(context: context)
+        let mockViewContext = MockViewContext(user: newUser)
+        newUser.firstName = "User_2"
+        newUser.lastName = "Nelson"
         let user = UserRepository(viewContext: context)
-        addUser(context: context, userFirstName: "User_2", userLastName: "Nelson")
+//        addUser(context: context, userFirstName: "User_2", userLastName: "Nelson")
         
         //When
         let request =  try! user.getUser()
@@ -71,10 +69,14 @@ final class UserRepositoryTests: XCTestCase {
 
 // Mocking du contexte de vue
 class MockViewContext: DataRepositoryProtocol {
-    let user : User?
+    let user: User?
+    
+    init(user: User?) {
+        self.user = user
+    }
+    
     func getUser() throws -> User? {
         return user
     }
-    
-    
 }
+

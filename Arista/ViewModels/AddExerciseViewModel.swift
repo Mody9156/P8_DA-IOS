@@ -32,7 +32,9 @@ class AddExerciseViewModel: ObservableObject {
         do{
             
             try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+            print("\(intensity): intensity")
             return true
+            
         }catch{
             return false
         }
