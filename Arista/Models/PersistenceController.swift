@@ -12,20 +12,6 @@ class PersistenceController {
     
     static let shared = PersistenceController()
 
-    static var preview: PersistenceController = {//*
-        
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        
-        return result
-    }()
 
     let container: NSPersistentContainer
     let backgroundContext : NSManagedObjectContext
@@ -37,7 +23,7 @@ class PersistenceController {
         backgroundContext = container.newBackgroundContext()
         
         if inMemory {
-            try! DefaultData(viewContext: container.viewContext).apply()
+            try! DefaultData(viewContext: self.backgroundContext).apply()
         }
         
         let storeDescription = container.persistentStoreDescriptions.first
@@ -51,7 +37,7 @@ class PersistenceController {
             }
         }
         
-        container.viewContext.automaticallyMergesChangesFromParent = true//
+        self.backgroundContext.automaticallyMergesChangesFromParent = true//
         
         // Utilisation de backgroundContext pour charger des données par défaut
         backgroundContext.performAndWait {
