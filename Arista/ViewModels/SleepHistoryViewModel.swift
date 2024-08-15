@@ -30,10 +30,14 @@ class SleepHistoryViewModel: ObservableObject {
     // MARK: - Private
     
     private func fetchSleepSessions() {
-      
+        
+        do {
             let data = SleepRepository(viewContext: viewContext)
-            sleepSessions = try! data.getSleepSessions()//Do catch
-     
+            sleepSessions = try!- data.getSleepSessions()
+        }catch{
+            fatalError()
+        }
+         
     }
     
     // MARK: - Public
