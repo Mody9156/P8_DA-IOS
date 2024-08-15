@@ -33,7 +33,7 @@ class SleepHistoryViewModel: ObservableObject {
         
         do {
             let data = SleepRepository(viewContext: viewContext)
-            sleepSessions = try!- data.getSleepSessions()
+            sleepSessions = try data.getSleepSessions()
         }catch{
             fatalError()
         }
