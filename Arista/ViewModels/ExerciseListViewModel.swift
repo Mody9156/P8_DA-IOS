@@ -35,9 +35,6 @@ class ExerciseListViewModel: ObservableObject {
         exercises = try! data.getExercise()
     }
     
-   
-   
-    
     // MARK: - Public
     
     func reload(){

@@ -67,3 +67,14 @@ final class UserRepositoryTests: XCTestCase {
     }
 
 }
+
+
+// Mocking du contexte de vue
+class MockViewContext: DataRepositoryProtocol {
+    let user : User?
+    func getUser() throws -> User? {
+        return user
+    }
+    
+    
+}

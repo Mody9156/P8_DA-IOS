@@ -29,7 +29,8 @@ class AddSleepViewModel : ObservableObject{
   
     func addSleepSessions() -> Bool {
         do{
-          try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
+         let result =  try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
+            print("\(result)")
             return true
         }catch{
             return false

@@ -13,7 +13,7 @@ struct SleepRepository : DataSleepProtocol {
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-    
+
     // MARK: - Init
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {

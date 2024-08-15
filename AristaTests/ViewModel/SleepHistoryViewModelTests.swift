@@ -18,37 +18,73 @@ final class SleepHistoryViewModelTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
     }
 
-    func test_WhenSleep_Is_Empty()() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func test_WhenSleep_Is_Empty() throws {
+        //Give
+        let persistenceController = PersistenceController(inMemory: false)
+        emptyEntities(context: persistenceController.container.viewContext)
+        let mocksSleepRepository = MocksSleepRepository()
+        mocksSleepRepository.sleep = []
+        
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
+        
+        
+        let expectation = XCTestExpectation(description: "fetch empty list of users")
+        
+        //When
+        // Then
+        viewModel.$sleepSessions.sink { sleep in
+            XCTAssertEqual(sleep.isEmpty, true)
+            expectation.fulfill()
+        }.store(in: &cancellable)
+        
+        wait(for: [expectation], timeout: 10)
+    }
+        
+        //Then
+        
+   
+    func test_AddingSleepSession_IncreasesCount() {
+        // Given
+        let persistenceController = PersistenceController(inMemory: false)
+        emptyEntities(context: persistenceController.container.viewContext)
+        let date = Date()
+        let mocksSleepRepository = MocksSleepRepository()
+        let initialCount = mocksSleepRepository.sleep.count
+        
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
+        
+        let newSleep =  Sleep(context: persistenceController.container.viewContext)
+        newSleep.duration = 480
+        newSleep.startDate = date
+        newSleep.quality = 8
+        try! persistenceController.container.viewContext.save()
+        mocksSleepRepository.sleep.append(newSleep)
+        
+        let expectation = XCTestExpectation(description: "fetch first sleep")
+       
+        // Then
+        XCTAssertEqual(mocksSleepRepository.sleep.count, initialCount + 1)
+        XCTAssertEqual(mocksSleepRepository.sleep.last?.duration, 480)
+        XCTAssertEqual(mocksSleepRepository.sleep.last?.quality, 8)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }
 
 private func emptyEntities(context: NSManagedObjectContext) {
     
-    let fetchRequest = User.fetchRequest()
+    let fetchRequest = Sleep.fetchRequest()
     
     let objects = try! context.fetch(fetchRequest)
     
     
     
-    for user in objects {
+    for sleep in objects {
         
-        context.delete(user)
+        context.delete(sleep)
         
     }
     
@@ -57,3 +93,22 @@ private func emptyEntities(context: NSManagedObjectContext) {
 }
 
 
+class MocksSleepRepository: DataSleepProtocol {
+    var sleep: [Sleep] = []
+
+    func getSleepSessions() throws -> [Sleep] {
+            return sleep
+       
+      
+    }
+    
+    func addSleepSessions(duration: Int, quality: Int, startDate: Date) throws {
+
+        let newSleepSession = Sleep()
+        newSleepSession.duration = Int64(duration)
+        newSleepSession.quality = Int64(quality)
+        newSleepSession.startDate = startDate
+        
+        sleep.append(newSleepSession)
+    }
+}

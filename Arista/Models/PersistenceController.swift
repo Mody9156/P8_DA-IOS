@@ -12,15 +12,18 @@ class PersistenceController {
     
     static let shared = PersistenceController()
 
-    static var preview: PersistenceController = {
+    static var preview: PersistenceController = {//*
+        
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        
         do {
             try viewContext.save()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+        
         return result
     }()
 
@@ -39,6 +42,7 @@ class PersistenceController {
         
         let storeDescription = container.persistentStoreDescriptions.first
         storeDescription?.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+        
         storeDescription?.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
 
         container.loadPersistentStores { (storeDescription, error) in
@@ -47,10 +51,10 @@ class PersistenceController {
             }
         }
         
-        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.automaticallyMergesChangesFromParent = true//
         
         // Utilisation de backgroundContext pour charger des données par défaut
-        backgroundContext.perform {
+        backgroundContext.performAndWait {
             do {
                 try DefaultData(viewContext: self.backgroundContext).apply()
                 try self.backgroundContext.save()

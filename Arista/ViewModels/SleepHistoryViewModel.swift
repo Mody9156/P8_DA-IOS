@@ -15,11 +15,14 @@ class SleepHistoryViewModel: ObservableObject {
     @Published var sleepSessions = [Sleep]()
     
      var viewContext: NSManagedObjectContext
-    
+    private var sleepRepository: DataSleepProtocol
+
     // MARK: - Init
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,repository : DataSleepProtocol = SleepRepository()) {
         self.viewContext = context
+        self.sleepRepository = repository
+
         fetchSleepSessions()
     }
   
@@ -29,7 +32,7 @@ class SleepHistoryViewModel: ObservableObject {
     private func fetchSleepSessions() {
       
             let data = SleepRepository(viewContext: viewContext)
-            sleepSessions = try! data.getSleepSessions()
+            sleepSessions = try! data.getSleepSessions()//Do catch
      
     }
     
