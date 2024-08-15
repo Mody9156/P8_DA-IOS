@@ -194,8 +194,8 @@
 			children = (
 				53E587682B23616A00E4EF99 /* UserDataViewModel.swift */,
 				53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */,
-				53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */,
 				53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */,
+				53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */,
 				23A0DB5E2C6B86AF003690A9 /* AddSleepViewModel.swift */,
 			);
 			path = ViewModels;

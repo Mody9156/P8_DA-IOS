@@ -31,10 +31,14 @@ class ExerciseListViewModel: ObservableObject {
     
     private func fetchExercises() {
         
-        let data = ExerciseRepository(viewContext: viewContext)
-        exercises = try! data.getExercise()
-        print("data")
-        print("\(exercises)")
+        do{
+            let data = ExerciseRepository(viewContext: viewContext)
+            exercises = try data.getExercise()
+            
+        }catch{
+          fatalError()
+        }
+       
     }
     
     // MARK: - Public
