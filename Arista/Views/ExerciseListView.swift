@@ -19,7 +19,7 @@ struct ExerciseListView: View {
     
     var body: some View {
         NavigationStack {
-            List(viewModel.exercises) { exercise in
+            List{
                 ForEach(viewModel.exercises,id:\.self){ exercise in
                     
                     HStack {
