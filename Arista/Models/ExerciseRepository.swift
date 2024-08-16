@@ -13,14 +13,12 @@ struct ExerciseRepository : DataExerciseProtocol{
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-    let dataManager: DataManaging
 
     // MARK: - Init
     
-    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext,dataManager: DataManaging
+    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
 ) {
         self.viewContext = viewContext
-        self.dataManager =  dataManager
     }
     
     // MARK: - Public

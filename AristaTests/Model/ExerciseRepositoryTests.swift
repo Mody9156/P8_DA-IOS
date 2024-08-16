@@ -55,10 +55,8 @@ final class ExerciseRepositoryTests: XCTestCase {
     func test_WhenNoExerciseIsInDatabase_GetExercise_ReturnEmptyList()  {
         //Give
         let persistenceController = PersistenceController(inMemory: false)
-        let mockDataManager = MockFailingDataManager()
-
         emptyEntities(context: persistenceController.container.viewContext)
-        let data = ExerciseRepository(viewContext:  persistenceController.container.viewContext, dataManager: mockDataManager)
+        let data = ExerciseRepository(viewContext:  persistenceController.container.viewContext)
         //When
         let exercise = try! data.getExercise()
         //Then
@@ -69,8 +67,6 @@ final class ExerciseRepositoryTests: XCTestCase {
     func test_WhenAddingOneExerciseInDatabase_GetExercise_ReturnAListContainingTheExercise()  {
         
         //Give
-        let mockDataManager = MockFailingDataManager()
-
         let persistenceController = PersistenceController(inMemory:false)
         emptyEntities(context: persistenceController.container.viewContext)
         let date = Date()
@@ -81,7 +77,7 @@ final class ExerciseRepositoryTests: XCTestCase {
                      startDate: date,
                      userFirstName: "Magic",
                      userLastName: "Bryan")
-        let data = ExerciseRepository(viewContext:persistenceController.container.viewContext, dataManager:  mockDataManager)
+        let data = ExerciseRepository(viewContext:persistenceController.container.viewContext)
         
         
         //When
@@ -99,8 +95,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         //Give
         let persistenceController = PersistenceController(inMemory:false)
         emptyEntities(context: persistenceController.container.viewContext)
-        let mockDataManager = MockFailingDataManager()
-
+        
         let date = Date()
         let date_1 = Date(timeIntervalSinceNow: -(60 * 60 * 24))
         let date_2 = Date(timeIntervalSinceNow: -(60 * 60 * 24 * 2))
@@ -130,7 +125,7 @@ final class ExerciseRepositoryTests: XCTestCase {
                      userFirstName: "Erica",
                      userLastName: "Bryan")
         
-        let data = ExerciseRepository(viewContext:persistenceController.container.viewContext, dataManager:  mockDataManager)
+        let data = ExerciseRepository(viewContext:persistenceController.container.viewContext)
         
         //When
         let exercise = try! data.getExercise()
@@ -149,8 +144,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
         let context : NSManagedObjectContext
-        let mockDataManager = MockFailingDataManager()
-
+        
         context = persistenceController.container.viewContext
         
         EmptyExercise(context: context)
@@ -158,7 +152,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
         //When
         
-        let data = ExerciseRepository(viewContext: context, dataManager:  mockDataManager)
+        let data = ExerciseRepository(viewContext: context)
         try! data.addExercise(category: "Yoga", duration: 22, intensity: 5, startDate: date)
         //Then
         let fetchRequest  : NSFetchRequest<Exercise> = Exercise.fetchRequest()
@@ -176,8 +170,6 @@ final class ExerciseRepositoryTests: XCTestCase {
     
     func test_ExerciseIsEmpty() throws {
         //Give
-        let mockDataManager = MockFailingDataManager()
-
         let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
         let context : NSManagedObjectContext!
@@ -186,7 +178,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         emptyEntities(context: context)
         
         //When
-        let data = ExerciseRepository(viewContext: context, dataManager: mockDataManager)
+        let data = ExerciseRepository(viewContext: context)
         
         //Then
         let fetchRequest  : NSFetchRequest<Exercise> = Exercise.fetchRequest()
@@ -195,38 +187,5 @@ final class ExerciseRepositoryTests: XCTestCase {
         XCTAssert(exercise.isEmpty == true)
         
     }
-    func test_getExercise_throwsError() {
-        // Given
-        let mockDataManager = MockFailingDataManager()
-        let PersistenceController = PersistenceController(inMemory: false)
-        let repository = ExerciseRepository(viewContext:PersistenceController.container.viewContext,dataManager: mockDataManager )
-
-        // When & Then
-        XCTAssertThrowsError(try repository.getExercise()) { error in
-            XCTAssertEqual((error as NSError).domain, "MockErrorDomain")
-            XCTAssertEqual((error as NSError).code, 1)
-            XCTAssertEqual((error as NSError).localizedDescription, "Simulated fetch error")
-        }
-    }
-
-}
-extension NSManagedObjectContext: DataManaging {
-    public func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T] {
-            return try self.fetch(request)
-        }
-        
-    public func save() throws {
-            try self.save()
-        }
     
-   
-}
-class MockFailingDataManager: DataManaging {
-    func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T] {
-        throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
-    }
-    
-    func save() throws {
-        // Simulez des comportements si nécessaire
-    }
 }

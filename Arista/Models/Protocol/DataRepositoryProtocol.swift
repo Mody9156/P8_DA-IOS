@@ -22,7 +22,3 @@ protocol DataSleepProtocol{
     
 }
 
-protocol DataManaging {
-    func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T]
-    func save() throws
-}
