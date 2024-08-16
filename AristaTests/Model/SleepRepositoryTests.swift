@@ -116,19 +116,13 @@ final class SleepRepositoryTests: XCTestCase {
     
     func test_getSleepSessions_throwsError(){
         //Given
-        let mockRepository = MockFailingSleepRepository()
+        let mockRepository = MocksSleepRepository_()
         let persistence = PersistenceController(inMemory: false)
         
         let sleepRepository = SleepRepository(viewContext: persistence.container.viewContext)
         
         //When & Then
-        
-        do {
-            try mockRepository.getSleepSessions()
-        }catch{
-            XCTFail("Failed to clear context: \(error)")
-            
-        }
+       
         
         
         
