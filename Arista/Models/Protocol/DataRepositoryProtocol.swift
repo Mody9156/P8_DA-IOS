@@ -5,6 +5,7 @@
 //  Created by KEITA on 14/08/2024.
 //
 import Foundation
+import CoreData
 
 protocol DataRepositoryProtocol {
     func getUser() throws -> User?
@@ -19,4 +20,9 @@ protocol DataSleepProtocol{
     func getSleepSessions() throws -> [Sleep]
     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws
     
+}
+
+protocol DataManaging {
+    func fetch<T: NSFetchRequestResult>(_ request: NSFetchRequest<T>) throws -> [T]
+    func save() throws
 }

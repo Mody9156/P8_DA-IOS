@@ -32,6 +32,8 @@ struct SleepRepository : DataSleepProtocol {
             do{
                 result =  try viewContext.fetch(request)
 
+            }catch{
+                throw error
             }
            
         }
@@ -51,6 +53,8 @@ struct SleepRepository : DataSleepProtocol {
             
             do{
                 try viewContext.save()
+            }catch{
+                throw error
             }
         }
       
