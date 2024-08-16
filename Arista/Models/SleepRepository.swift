@@ -18,6 +18,7 @@ struct SleepRepository : DataSleepProtocol {
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
+        
     }
     
     // MARK: - Public
@@ -50,7 +51,7 @@ struct SleepRepository : DataSleepProtocol {
                 newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
                 
             }catch{
-               
+                throw error
             }
             
             do{

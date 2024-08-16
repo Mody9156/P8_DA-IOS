@@ -149,6 +149,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
         EmptyExercise(context: context)
         addExercises(context: context, category: "Yoga", duration: 23, intensity: 10, startDate: date, userFirstName: "Mickael", userLastName: "James")
+        
         //When
         
         let data = ExerciseRepository(viewContext: context)
