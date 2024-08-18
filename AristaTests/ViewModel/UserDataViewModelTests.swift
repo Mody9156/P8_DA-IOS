@@ -89,29 +89,15 @@ final class UserDataViewModelTests: XCTestCase {
     func test_firstName_isEmpty(){
         // Given
         let persistenceController = PersistenceController(inMemory: false)
+        let mockRepository = MockUserRepositoryThrowsError()
         
-        emptyEntities(context: persistenceController.container.viewContext)
-        let mockRepository = MockUserRepository()
-        mockRepository.user = User(context: persistenceController.container.viewContext)
-        mockRepository.user?.firstName = firstName
-        mockRepository.user?.lastName = lastName
-        
-        
-        try? persistenceController.container.viewContext.save()
-        let UserDataViewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
-       
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
         //When
-        do{
-            UserDataViewModel.fetchUserData()
-        }catch  let error as UserDataViewModel.UserError {
-            // Then
-            XCTAssertEqual(error, .InvalidUser)
-        }
+        viewModel.fetchUserData()
         
-        
-        
-        
-
+        //Then
+        XCTAssertEqual(viewModel.firstName, "")
+        XCTAssertEqual(viewModel.lastName, "")
     }
 }
 
@@ -145,3 +131,15 @@ private func emptyEntities(context: NSManagedObjectContext) {
     try! context.save()
     
 }
+
+class MockUserRepositoryThrowsError: DataRepositoryProtocol{
+    enum UserFetchError : Error {
+        case fetchFailed(Error)
+        case contextNotAvailable
+    }
+     func getUser() throws -> User? {
+         throw UserFetchError.fetchFailed(NSError(domain: "", code: 0, userInfo: nil))
+         
+     }
+}
+
