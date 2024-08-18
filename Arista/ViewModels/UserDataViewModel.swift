@@ -36,12 +36,11 @@ class UserDataViewModel: ObservableObject {
      func fetchUserData()  {
        
         do{
-            if let user = try UserRepository().getUser()  {
-                
-                firstName = user.firstName ?? ""
-                lastName = user.lastName ?? ""
-            }else{
-                return
+            if let user = try UserRepository().getUser() {
+            
+                  firstName = user.firstName ?? ""
+                  lastName = user.lastName ?? ""
+           
             }
             
         }catch{
