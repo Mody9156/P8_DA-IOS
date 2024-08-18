@@ -41,8 +41,7 @@ class UserDataViewModel: ObservableObject {
                 firstName = user.firstName ?? ""
                 lastName = user.lastName ?? ""
             }else{
-                firstName = ""
-                lastName = ""
+                return
             }
             
         }catch{

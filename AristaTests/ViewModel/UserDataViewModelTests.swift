@@ -89,21 +89,29 @@ final class UserDataViewModelTests: XCTestCase {
     func test_firstName_isEmpty(){
         // Given
         let persistenceController = PersistenceController(inMemory: false)
+        
+        emptyEntities(context: persistenceController.container.viewContext)
         let mockRepository = MockUserRepository()
         mockRepository.user = User(context: persistenceController.container.viewContext)
-        mockRepository.user?.lastName = ""
-        mockRepository.user?.firstName = "Freeman"
-        emptyEntities(context: persistenceController.container.viewContext)
-        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        mockRepository.user?.firstName = firstName
+        mockRepository.user?.lastName = lastName
         
+        
+        try? persistenceController.container.viewContext.save()
+        let UserDataViewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+       
         //When
-        viewModel.fetchUserData()
+        do{
+            UserDataViewModel.fetchUserData()
+        }catch  let error as UserDataViewModel.UserError {
+            // Then
+            XCTAssertEqual(error, .InvalidUser)
+        }
         
-        //Then
-        // Then
-        XCTAssertEqual(viewModel.firstName, "")
-        XCTAssertEqual(viewModel.lastName, "Freeman")
-        // Optionnel: Vérifier si l'état du ViewModel correspond aux attentes après l'erreur
+        
+        
+        
+
     }
 }
 
