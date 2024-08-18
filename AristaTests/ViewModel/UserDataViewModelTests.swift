@@ -96,7 +96,23 @@ final class UserDataViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.firstName, "")
         XCTAssertEqual(viewModel.lastName, "")
     }
-
+    func test_fetchUserData_When_ThrowError(){
+        //Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mockRepository = MockUserRepository()
+        mockRepository.user = nil
+       
+        emptyEntities(context: persistenceController.container.viewContext)
+        try? persistenceController.container.viewContext.save()
+        
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        
+        // When
+        viewModel.fetchUserData()
+        
+        //Then
+//à terminer
+    }
 }
 
 

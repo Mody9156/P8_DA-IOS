@@ -30,19 +30,15 @@ class UserDataViewModel: ObservableObject {
     // MARK: - Private
     
      func fetchUserData()  {
-       
-        do{
-            if let user = try UserRepository().getUser()  {
+     
+            if let user = try? UserRepository().getUser()  {
                 
                 firstName = user.firstName ?? ""
                 lastName = user.lastName ?? ""
             }else{
                 return
             }
-            
-        }catch{
-            return
-        }
+       
     }
 }
 
