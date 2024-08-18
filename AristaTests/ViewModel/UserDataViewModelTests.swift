@@ -33,6 +33,11 @@ final class UserDataViewModelTests: XCTestCase {
             expectation.fulfill()
         }.store(in: &cancellable)
         
+        viewModel.$lastName.sink { name in
+            XCTAssertTrue(name.isEmpty, "Expected firstName to be empty, but it was: \(name)")
+            expectation.fulfill()
+        }.store(in: &cancellable)
+        
         wait(for: [expectation], timeout: 10)
     }
     
@@ -69,26 +74,36 @@ final class UserDataViewModelTests: XCTestCase {
         
     }
     
-    func test_fetchUserData_ShouldHandleError() {
-        // Given
+   
+    func testFetchUserData_UserIsNil() {
+        // Given: Créer un mock de UserRepository qui retourne nil
+        class MockUserRepository: DataRepositoryProtocol {
+             func getUser() throws -> User? {
+                return nil
+            }
+        }
         let persistenceController = PersistenceController(inMemory: false)
         let mockRepository = MockUserRepository()
-        mockRepository.user = nil // Simule l'absence d'utilisateur pour déclencher une erreur
-        emptyEntities(context: persistenceController.container.viewContext)
-        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+       
         
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
         // When
         viewModel.fetchUserData()
-        
+
         // Then
         XCTAssertEqual(viewModel.firstName, "")
         XCTAssertEqual(viewModel.lastName, "")
-        // Optionnel: Vérifier si l'état du ViewModel correspond aux attentes après l'erreur
     }
-    
-    
+
 }
 
+
+
+enum MockUserRepositoryError : Error {
+    case ThrowError
+}
 
 class MockUserRepository : DataRepositoryProtocol{
     var user : User?
@@ -97,7 +112,7 @@ class MockUserRepository : DataRepositoryProtocol{
         if let user = user {
             return user
         }else {
-            throw UserDataViewModel.UserError.InvalidUser
+            throw MockUserRepositoryError.ThrowError
         }
     }
 }

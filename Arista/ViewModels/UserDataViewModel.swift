@@ -25,26 +25,23 @@ class UserDataViewModel: ObservableObject {
         self.userRepository = repository
        fetchUserData()
     }
-    // MARK: - Enum
     
-    enum UserError : Error {
-        case InvalidUser
-    }
     
     // MARK: - Private
     
      func fetchUserData()  {
        
         do{
-            if let user = try UserRepository().getUser() {
-            
-                  firstName = user.firstName ?? ""
-                  lastName = user.lastName ?? ""
-           
+            if let user = try UserRepository().getUser()  {
+                
+                firstName = user.firstName ?? ""
+                lastName = user.lastName ?? ""
+            }else{
+                return
             }
             
         }catch{
-            UserError.InvalidUser
+            return
         }
     }
 }
