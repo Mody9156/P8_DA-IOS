@@ -62,8 +62,7 @@ final class AddExerciseViewModelTests: XCTestCase {
         
         let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
         
-        let newExercise = Exercise(context: persistence.container.viewContext)
-      
+       
         
         mockExerciseViewModel.shouldFail = true
         
