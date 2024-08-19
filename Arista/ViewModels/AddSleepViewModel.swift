@@ -18,11 +18,13 @@ class AddSleepViewModel : ObservableObject{
     
     
     private var viewContext: NSManagedObjectContext
+    private var userRepository: DataSleepProtocol
 
     // MARK: - Init
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,repository : DataSleepProtocol = SleepRepository()) {
         self.viewContext = context
+        self.userRepository = repository
     }
   
     // MARK: - Public
