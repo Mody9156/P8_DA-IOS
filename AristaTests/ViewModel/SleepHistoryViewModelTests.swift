@@ -56,8 +56,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
         newSleep.quality = 8
         try! persistenceController.container.viewContext.save()
         mocksSleepRepository.sleep.append(newSleep)
-        
-        let expectation = XCTestExpectation(description: "fetch first sleep")
+     
        
         // Then
         XCTAssertEqual(mocksSleepRepository.sleep.count, initialCount + 1)

@@ -52,27 +52,22 @@ final class AddSleepViewModelTests: XCTestCase {
 
     func testAddNewSleep_ThrowError()  {
         //Given
-        let persistence = PersistenceController(inMemory: false)
         let date = Date()
+
+        let persistence = PersistenceController(inMemory: false)
         emptyEntities(context: persistence.container.viewContext)
         let mocksDataSleepProtocol = MocksDataSleepProtocol()
         
         let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mocksDataSleepProtocol)
-      
-        
-        let newSleep = Sleep(context: persistence.container.viewContext)
+       
         
         mocksDataSleepProtocol.shouldFail = true
-
         
       //When
         let succes = viewModel.addSleepSessions()
         //Then
         XCTAssertFalse(succes)
-        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 0)
-        
-        
-      
+        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 0)      
     }
     
     private func emptyEntities(context: NSManagedObjectContext) {
