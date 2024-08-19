@@ -22,41 +22,59 @@ final class AddExerciseViewModelTests: XCTestCase {
         emptyEntities(context: persistence.container.viewContext)
         let mockExerciseViewModel = MockExerciseViewModel()
         
-        
-        let newExercise = Exercise(context: persistence.container.viewContext)
-        
-        newExercise.category = "Running"
-        newExercise.intensity = 5
-        newExercise.startDate = date
-        newExercise.duration = 22
-        newExercise.user?.firstName = "Mike"
-        newExercise.user?.lastName = "Magic"
-        
-        mockExerciseViewModel.exercises.append(newExercise)
-        
-        try? persistence.container.viewContext.save()
-        //ici
         let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
         
-        let expectation = expectation(description: "fetch empty list of exercise")
+        viewModel.category = "Running"
+        viewModel.intensity = 5
+        viewModel.duration = 22
+        viewModel.startTime = date
+        
+        let newExercise = Exercise(context: persistence.container.viewContext)
+
+        newExercise.startDate = viewModel.startTime
+        newExercise.category =  viewModel.category
+        newExercise.duration =  Int64(viewModel.duration)
+        newExercise.intensity =  Int64(viewModel.intensity)
+        mockExerciseViewModel.exercises.append(newExercise)
+
+        try? persistence.container.viewContext.save()
+        
+      //When
+        let succes = viewModel.addExercise()
+        //Then
+        XCTAssertTrue(succes)
+        XCTAssertEqual(mockExerciseViewModel.exercises.count, 1)
+        
+        let addNewExercise = mockExerciseViewModel.exercises.first
+        XCTAssertEqual(addNewExercise?.category, "Running")
+        XCTAssertEqual(addNewExercise?.intensity, 5)
+        XCTAssertEqual(addNewExercise?.duration, 22)
+        XCTAssertEqual(addNewExercise?.startDate, date)
+        
+      
+    }
+ 
+    func test_AddNewExerciseFailure(){
+        //Given
+        let persistence = PersistenceController(inMemory: false)
+        let date = Date()
+        emptyEntities(context: persistence.container.viewContext)
+        let mockExerciseViewModel = MockExerciseViewModel()
+        
+        let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
+        
+        let newExercise = Exercise(context: persistence.container.viewContext)
+      
+        
+        mockExerciseViewModel.shouldFail = true
+        
+        //When
+        let success = viewModel.addExercise()
         
         //Then
-        
-//        viewModel.$category
-//        .sink { category in
-//            XCTAssert(category.isEmpty == false)
-//            XCTAssert(category == "Yoga")
-//            expectation.fulfill()
-//        }.store(in: &cancellable)
-//
-//        wait(for: [expectation], timeout: 11)
-//
-//
-        viewModel.addExercise()
-        
-        XCTAssertNoThrow(viewModel)
+        XCTAssertFalse(success)
+         XCTAssertEqual(mockExerciseViewModel.exercises.count, 0)
     }
-
    
 
     private func emptyEntities(context: NSManagedObjectContext) {
@@ -80,10 +98,7 @@ final class AddExerciseViewModelTests: XCTestCase {
 }
 class MockExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
-    var category: String = ""
-    var duration: Int64 = 0
-    var intensity: Int64 = 0
-    var startDate: Date?
+    var shouldFail : Bool = false
         
 
     func getExercise() throws -> [Exercise] {
@@ -92,7 +107,11 @@ class MockExerciseViewModel : DataExerciseProtocol {
     }
     
     func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
-     
+        
+        if shouldFail {
+                    throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+                }
+        
                 let newExercise = Exercise()
                 newExercise.category = category
                 newExercise.duration = Int64(duration)
