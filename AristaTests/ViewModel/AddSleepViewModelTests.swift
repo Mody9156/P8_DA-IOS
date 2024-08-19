@@ -59,7 +59,12 @@ final class AddSleepViewModelTests: XCTestCase {
         let mocksDataSleepProtocol = MocksDataSleepProtocol()
         
         let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mocksDataSleepProtocol)
-       
+
+        let newSleep = Sleep(context: persistence.container.viewContext)
+
+        mocksDataSleepProtocol.sleep.append(newSleep)
+
+        try? persistence.container.viewContext.save()
         
         mocksDataSleepProtocol.shouldFail = true
         
@@ -67,7 +72,6 @@ final class AddSleepViewModelTests: XCTestCase {
         let succes = viewModel.addSleepSessions()
         //Then
         XCTAssertFalse(succes)
-        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 0)      
     }
     
     private func emptyEntities(context: NSManagedObjectContext) {

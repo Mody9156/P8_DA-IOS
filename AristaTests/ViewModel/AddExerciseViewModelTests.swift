@@ -63,17 +63,8 @@ final class AddExerciseViewModelTests: XCTestCase {
 
         let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
 
-//        viewModel.category = "Running"
-//        viewModel.intensity = 5
-//        viewModel.duration = 22
-//        viewModel.startTime = date
-        
         let newExercise = Exercise(context: persistence.container.viewContext)
-        
-//        newExercise.startDate = viewModel.startTime
-//        newExercise.category =  viewModel.category
-//        newExercise.duration =  Int64(viewModel.duration)
-//        newExercise.intensity =  Int64(viewModel.intensity)
+
         mockExerciseViewModel.exercises.append(newExercise)
         
         try? persistence.container.viewContext.save()
