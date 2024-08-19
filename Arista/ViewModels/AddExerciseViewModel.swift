@@ -18,11 +18,12 @@ class AddExerciseViewModel: ObservableObject {
     @Published var intensity: Int = 0
     
     private var viewContext: NSManagedObjectContext
-    
+    private var userRepository: DataExerciseProtocol
     // MARK: - Init
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
+        self.userRepository = repository
     }
     
     // MARK: - Public
