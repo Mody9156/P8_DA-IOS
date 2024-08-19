@@ -57,7 +57,6 @@ final class AddExerciseViewModelTests: XCTestCase {
     func test_AddNewExerciseFailure(){
         //Given
         let persistence = PersistenceController(inMemory: false)
-        let date = Date()
         emptyEntities(context: persistence.container.viewContext)
         let mockExerciseViewModel = MockExerciseViewModel()
         

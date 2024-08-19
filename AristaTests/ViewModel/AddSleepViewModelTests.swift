@@ -19,40 +19,62 @@ final class AddSleepViewModelTests: XCTestCase {
         let persistence = PersistenceController(inMemory: false)
         let date = Date()
         emptyEntities(context: persistence.container.viewContext)
-        let mockExerciseViewModel = MocksDataSleepProtocol()
+        let mocksDataSleepProtocol = MocksDataSleepProtocol()
         
-        let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
+        let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mocksDataSleepProtocol)
         
-        viewModel.category = "Running"
-        viewModel.intensity = 5
+        viewModel.quality = 5
         viewModel.duration = 22
         viewModel.startTime = date
         
-        let newExercise = Exercise(context: persistence.container.viewContext)
+        let newSleep = Sleep(context: persistence.container.viewContext)
 
-        newExercise.startDate = viewModel.startTime
-        newExercise.category =  viewModel.category
-        newExercise.duration =  Int64(viewModel.duration)
-        newExercise.intensity =  Int64(viewModel.intensity)
-        mockExerciseViewModel.exercises.append(newExercise)
+        newSleep.startDate = viewModel.startTime
+        newSleep.duration =  Int64(viewModel.duration)
+        newSleep.quality =  Int64(viewModel.quality)
+        mocksDataSleepProtocol.sleep.append(newSleep)
 
         try? persistence.container.viewContext.save()
         
       //When
-        let succes = viewModel.addExercise()
+        let succes = viewModel.addSleepSessions()
         //Then
         XCTAssertTrue(succes)
-        XCTAssertEqual(mockExerciseViewModel.exercises.count, 1)
+        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 1)
         
-        let addNewExercise = mockExerciseViewModel.exercises.first
-        XCTAssertEqual(addNewExercise?.category, "Running")
-        XCTAssertEqual(addNewExercise?.intensity, 5)
+        let addNewExercise = mocksDataSleepProtocol.sleep.first
+        XCTAssertEqual(addNewExercise?.quality, 5)
         XCTAssertEqual(addNewExercise?.duration, 22)
         XCTAssertEqual(addNewExercise?.startDate, date)
         
       
     }
 
+    func testAddNewSleep_ThrowError()  {
+        //Given
+        let persistence = PersistenceController(inMemory: false)
+        let date = Date()
+        emptyEntities(context: persistence.container.viewContext)
+        let mocksDataSleepProtocol = MocksDataSleepProtocol()
+        
+        let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mocksDataSleepProtocol)
+      
+        
+        let newSleep = Sleep(context: persistence.container.viewContext)
+        
+        mocksDataSleepProtocol.shouldFail = true
+
+        
+      //When
+        let succes = viewModel.addSleepSessions()
+        //Then
+        XCTAssertFalse(succes)
+        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 0)
+        
+        
+      
+    }
+    
     private func emptyEntities(context: NSManagedObjectContext) {
 
     let fetchRequest = Sleep.fetchRequest()
