@@ -74,26 +74,26 @@ final class AddSleepViewModelTests: XCTestCase {
         XCTAssertFalse(succes)
     }
     
-    private func emptyEntities(context: NSManagedObjectContext) {
-
-    let fetchRequest = Sleep.fetchRequest()
-
-    let objects = try! context.fetch(fetchRequest)
-
-     
-
-    for sleep in objects {
-
-    context.delete(sleep)
-
-    }
-
-    try! context.save()
-
-    }
+   
 }
 
+private func emptyEntities(context: NSManagedObjectContext) {
 
+let fetchRequest = Sleep.fetchRequest()
+
+let objects = try! context.fetch(fetchRequest)
+
+ 
+
+for sleep in objects {
+
+context.delete(sleep)
+
+}
+
+try! context.save()
+
+}
 class MocksDataSleepProtocol : DataSleepProtocol {
     var sleep : [Sleep] = []
     var shouldFail : Bool = false

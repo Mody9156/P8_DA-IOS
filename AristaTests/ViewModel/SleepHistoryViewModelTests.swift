@@ -47,8 +47,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
         let date = Date()
         let mocksSleepRepository = MocksSleepRepository()
         let initialCount = mocksSleepRepository.sleep.count
-        
-        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
+     
         
         let newSleep =  Sleep(context: persistenceController.container.viewContext)
         newSleep.duration = 480
@@ -64,7 +63,17 @@ final class SleepHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(mocksSleepRepository.sleep.last?.quality, 8)
     }
 
-
+    func test_When_reload_throwError() throws {
+        //Given
+        let persistenceController = PersistenceController(inMemory: false)
+        emptyEntities(context: persistenceController.container.viewContext)
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext)
+        //When
+        
+        
+        //Then
+        
+    }
 }
 
 private func emptyEntities(context: NSManagedObjectContext) {
