@@ -13,18 +13,7 @@ import Combine
 final class ExerciseListViewModelTests: XCTestCase {
     
     var cancellable = Set<AnyCancellable>()
-    
-    override func setUpWithError() throws {
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-    }
-    
-    override func tearDownWithError() throws {
-        
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        
-    }
+   
     
     
     
@@ -152,6 +141,19 @@ final class ExerciseListViewModelTests: XCTestCase {
     }
     
     func test_When_reload_if_not_empty(){
+        // Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mocksExerciseViewModel = MocksExerciseViewModel()
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext,repository: mocksExerciseViewModel)
+        
+        //When
+        let reload = viewModel.reload()
+        
+        //Then
+        XCTAssertNotNil(reload)
         
     }
     

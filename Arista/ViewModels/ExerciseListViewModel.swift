@@ -29,7 +29,7 @@ class ExerciseListViewModel: ObservableObject {
     
     // MARK: - Private
     
-    private func fetchExercises() {
+     func fetchExercises() {
         
         do{
             let data = ExerciseRepository(viewContext: viewContext)
