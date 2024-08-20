@@ -31,10 +31,24 @@ class UserDataViewModel: ObservableObject {
     
      func fetchUserData()  {
      
-            if let user = try? UserRepository().getUser()  {
+            if let user = try? userRepository.getUser()  {
+           
+                let userFirstName: String? = user.firstName
+
+                if let unwrappedFirstName = userFirstName {
+                    firstName = unwrappedFirstName
+                } else {
+                    firstName = ""
+                }
                 
-                firstName = user.firstName ?? ""
-                lastName = user.lastName ?? ""
+                let userLastName: String? = user.lastName
+
+                if let unwrappedLastName = userLastName {
+                    lastName = unwrappedLastName
+                } else {
+                    lastName = ""
+                }
+                
             }else{
                 return
             }

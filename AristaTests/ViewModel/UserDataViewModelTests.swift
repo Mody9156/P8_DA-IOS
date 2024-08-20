@@ -14,7 +14,7 @@ import CoreData
 final class UserDataViewModelTests: XCTestCase {
     var cancellable = Set<AnyCancellable>()
     
-   
+    
     func test_WhenUser_Is_Empty() {
         // Given
         let persistenceController = PersistenceController(inMemory: false)
@@ -74,44 +74,71 @@ final class UserDataViewModelTests: XCTestCase {
         
     }
     
-   
+    
     func testFetchUserData_UserIsNil() {
         // Given: Créer un mock de UserRepository qui retourne nil
         class MockUserRepository: DataRepositoryProtocol {
-             func getUser() throws -> User? {
+            func getUser() throws -> User? {
                 return nil
             }
         }
         let persistenceController = PersistenceController(inMemory: false)
         let mockRepository = MockUserRepository()
-       
+        
         
         emptyEntities(context: persistenceController.container.viewContext)
         
         let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
         // When
         viewModel.fetchUserData()
-
+        
         // Then
         XCTAssertEqual(viewModel.firstName, "")
         XCTAssertEqual(viewModel.lastName, "")
     }
-    func test_fetchUserData_When_ThrowError(){
+    func test_WhenUserFirstNameIsNotNil_FirstNameIsAssignedCorrectly(){
         //Given
         let persistenceController = PersistenceController(inMemory: false)
-        let mockRepository = MockUserRepository()
-        mockRepository.user = nil
-       
+        
         emptyEntities(context: persistenceController.container.viewContext)
-        try? persistenceController.container.viewContext.save()
+        let mockRepository = MockUserRepository()
         
         let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
         
-        // When
-        viewModel.fetchUserData()
+        let user = User(context: persistenceController.container.viewContext)
         
+        user.firstName = ""
+        mockRepository.user = user
+        
+        try? persistenceController.container.viewContext.save()
+        
+        //When
+        viewModel.fetchUserData()
         //Then
-//à terminer
+        
+        XCTAssertEqual(user.firstName, "")
+    }
+    func test_WhenUserFirstNameIsNotNil_LastNameIsAssignedCorrectly(){
+        //Given
+        let persistenceController = PersistenceController(inMemory: false)
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        let mockRepository = MockUserRepository()
+        
+        let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
+        
+        let user = User(context: persistenceController.container.viewContext)
+        
+        user.lastName = ""
+        mockRepository.user = user
+        
+        try? persistenceController.container.viewContext.save()
+        
+        //When
+        viewModel.fetchUserData()
+        //Then
+        
+        XCTAssertEqual(user.lastName, "")
     }
 }
 
