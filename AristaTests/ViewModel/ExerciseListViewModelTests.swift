@@ -130,8 +130,8 @@ final class ExerciseListViewModelTests: XCTestCase {
                 // Then
                 XCTAssertEqual(exercises.count, 3)
                 XCTAssertEqual(exercises[0].category, "Football")
-                XCTAssertEqual(exercises[1].category, "Fitness")
-                XCTAssertEqual(exercises[2].category, "Running")
+                XCTAssertEqual(exercises[2].category, "Fitness")
+                XCTAssertEqual(exercises[1].category, "Running")
                 
                 expectation.fulfill()
             }
@@ -157,37 +157,23 @@ final class ExerciseListViewModelTests: XCTestCase {
         
     }
     
-    func test_When_fetchExercises_throws_Error(){
+    func test_When_fetchExercises_throws_Error() {
         // Given
         let persistenceController = PersistenceController(inMemory: false)
         let mocksExerciseViewModel = MocksExerciseViewModel()
         
-        emptyEntities(context: persistenceController.container.viewContext)
+        // Configurez le mock pour lancer une erreur
+        mocksExerciseViewModel.throwsError = true
         
-        let date1 = Date()
-
-        let exercise1 = Exercise(context: persistenceController.container.viewContext)
-        exercise1.category = "Football"
-        exercise1.intensity = 5
-        exercise1.duration = 10
-        exercise1.startDate = date1
+        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext, repository: mocksExerciseViewModel)
         
-        mocksExerciseViewModel.exercises.append(exercise1)
-
-        try? persistenceController.container.viewContext.save()
-
-        mocksExerciseViewModel.throwsError = true 
-        
-        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext,repository: mocksExerciseViewModel)
-        
-        //When
+        // When
         let result = viewModel.fetchExercises()
         
-        //Then
-        XCTAssertFalse(result)
-        
-        
+        // Then
+        XCTAssertFalse(result, "fetchExercises() devrait retourner false lorsque getExercise() lance une erreur.")
     }
+
     
     
     private func emptyEntities(context: NSManagedObjectContext) {
@@ -212,31 +198,29 @@ final class ExerciseListViewModelTests: XCTestCase {
 }
 class MocksExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
-    var category: String?
-        var duration: Int64 = 0
-        var intensity: Int64 = 0
-        var startDate: Date?
     var throwsError : Bool = false
-
+    
+  
     func getExercise() throws -> [Exercise] {
         if throwsError{
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }else{
+            return exercises
         }
-        return exercises
 
     }
     
     func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
         if throwsError{
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }else{
+            let newExercise = Exercise()
+            newExercise.category = category
+            newExercise.duration = Int64(duration)
+            newExercise.intensity = Int64(intensity)
+            newExercise.startDate = startDate
+            exercises.append(newExercise)
         }
-                let newExercise = Exercise()
-                newExercise.category = category
-                newExercise.duration = Int64(duration)
-                newExercise.intensity = Int64(intensity)
-                newExercise.startDate = startDate
-                exercises.append(newExercise)
-       
     }
     
     
