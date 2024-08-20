@@ -63,16 +63,29 @@ final class SleepHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(mocksSleepRepository.sleep.last?.quality, 8)
     }
 
-    func test_When_reload_throwError() throws {
+    func test_When_reload_throwError()  {
         //Given
         let persistenceController = PersistenceController(inMemory: false)
         emptyEntities(context: persistenceController.container.viewContext)
         let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext)
         //When
-        
-        
+        viewModel.fetchSleepSessions()
         //Then
         
+        
+    }
+    
+    func test_When_reload_isNoEmpty(){
+        //Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mocksSleepRepository = MocksSleepRepository()
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
+        //When
+        viewModel.reload()
+        
+        //Then
+        XCTAssertNotNil(viewModel)
+                                                          
     }
 }
 
@@ -97,6 +110,7 @@ private func emptyEntities(context: NSManagedObjectContext) {
 
 class MocksSleepRepository: DataSleepProtocol {
     var sleep: [Sleep] = []
+    let throwError : Bool : false
 
     func getSleepSessions() throws -> [Sleep] {
             return sleep
@@ -105,7 +119,9 @@ class MocksSleepRepository: DataSleepProtocol {
     }
     
     func addSleepSessions(duration: Int, quality: Int, startDate: Date) throws {
-
+        if throwError{
+            NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }
         let newSleepSession = Sleep()
         newSleepSession.duration = Int64(duration)
         newSleepSession.quality = Int64(quality)
