@@ -164,7 +164,27 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         emptyEntities(context: persistenceController.container.viewContext)
         
+        let date1 = Date()
+
+        let exercise1 = Exercise(context: persistenceController.container.viewContext)
+        exercise1.category = "Football"
+        exercise1.intensity = 5
+        exercise1.duration = 10
+        exercise1.startDate = date1
+        
+        mocksExerciseViewModel.exercises.append(exercise1)
+
+        try? persistenceController.container.viewContext.save()
+
+        mocksExerciseViewModel.throwsError = true 
+        
         let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext,repository: mocksExerciseViewModel)
+        
+        //When
+        let result = viewModel.fetchExercises()
+        
+        //Then
+        XCTAssertFalse(result)
         
         
     }
@@ -196,15 +216,20 @@ class MocksExerciseViewModel : DataExerciseProtocol {
         var duration: Int64 = 0
         var intensity: Int64 = 0
         var startDate: Date?
-        
+    var throwsError : Bool = false
 
     func getExercise() throws -> [Exercise] {
+        if throwsError{
+            throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }
         return exercises
 
     }
     
     func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
-     
+        if throwsError{
+            throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }
                 let newExercise = Exercise()
                 newExercise.category = category
                 newExercise.duration = Int64(duration)
