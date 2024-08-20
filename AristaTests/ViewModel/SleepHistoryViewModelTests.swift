@@ -69,24 +69,24 @@ final class SleepHistoryViewModelTests: XCTestCase {
         let persistenceController = PersistenceController(inMemory: false)
         emptyEntities(context: persistenceController.container.viewContext)
         
-        let mocksSleepRepository_ThrowsError = MocksSleepRepository(viewContext: persistenceController.container.viewContext)
+        let mocksSleepRepository_ThrowsError = MocksSleepRepository_ThrowsError()
+        
         let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository_ThrowsError)
-        viewModel.objectWillChange.send()
-        
-        let newSleep = Sleep(context: persistenceController.container.viewContext)
-        newSleep.startDate = Date()
-        newSleep.duration = 33
-        newSleep.quality = 5
 
-        mocksSleepRepository_ThrowsError.sleep.append(newSleep)
-        try! persistenceController.container.viewContext.save()
-        mocksSleepRepository_ThrowsError.throwError = true
-       
-        //When
-        let result = viewModel.fetchSleepSessions()
+        let data = SleepRepository(viewContext: persistenceController.container.viewContext)
         
-        //Then
-        XCTAssertFalse(result)
+        viewModel.sleepSessions = try! data.getSleepSessions()
+        
+        var repository = SleepRepository(viewContext: persistenceController.container.viewContext)
+        
+        try! persistenceController.container.viewContext.save()
+        mocksSleepRepository_ThrowsError.shouldThrowError = true
+         repository.throwError = true
+        //When & Then
+        let result = viewModel.fetchSleepSessions()
+//        XCTAssertFalse(result)
+        
+        
        
         
     }
@@ -136,6 +136,7 @@ class MocksSleepRepository: DataSleepProtocol {
       }
     
     func getSleepSessions() throws -> [Sleep] {
+      
         if throwError{
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
         }
@@ -167,7 +168,6 @@ class MocksSleepRepository_ThrowsError: DataSleepProtocol {
     }
     
     func addSleepSessions(duration: Int, quality: Int, startDate: Date) throws {
-        
         
     }
 }

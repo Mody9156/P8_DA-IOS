@@ -32,10 +32,13 @@ class SleepHistoryViewModel: ObservableObject {
     func fetchSleepSessions()  -> Bool  {
         
         do {
-            let data = SleepRepository(viewContext: viewContext)
+            var data = SleepRepository(viewContext: viewContext)
+            
             sleepSessions = try data.getSleepSessions()
+            
             return true
         }catch{
+            
             return false
         }
         

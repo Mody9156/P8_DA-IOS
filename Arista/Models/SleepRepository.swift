@@ -13,7 +13,8 @@ struct SleepRepository : DataSleepProtocol {
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-
+    var throwError = false // Propriété pour simuler les erreurs
+    
     // MARK: - Init
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
@@ -26,16 +27,13 @@ struct SleepRepository : DataSleepProtocol {
     func getSleepSessions() throws -> [Sleep] {
         var result : [Sleep] = []
         
-       try viewContext.performAndWait {
-           let request : NSFetchRequest<Sleep> = Sleep.fetchRequest()
+        try viewContext.performAndWait {
+            
+            let request : NSFetchRequest<Sleep> = Sleep.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Sleep>(\.startDate,order: .reverse))]
-            do{
-                result =  try viewContext.fetch(request)
-
-            }catch{
-                throw NSError(domain: "TestErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Ceci est une erreur de test."])
-            }
-           
+            
+            result =  try viewContext.fetch(request)
+            
         }
         return  result
     }
@@ -57,6 +55,6 @@ struct SleepRepository : DataSleepProtocol {
                 throw error
             }
         }
-      
+        
     }
 }

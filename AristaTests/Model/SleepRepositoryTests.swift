@@ -114,19 +114,7 @@ final class SleepRepositoryTests: XCTestCase {
         
     }
     
-    func test_getSleepSessions_throwsError(){
-        //Given
-        let mockRepository = MocksSleepRepository_()
-        let persistence = PersistenceController(inMemory: false)
-        
-        let sleepRepository = SleepRepository(viewContext: persistence.container.viewContext)
-        
-        //When & Then
-       
-        
-        
-        
-    }
+   
 }
 class MocksSleepRepository_ : DataSleepProtocol {
     var sleep: [Sleep] = []
