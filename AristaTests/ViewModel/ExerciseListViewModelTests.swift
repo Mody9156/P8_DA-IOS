@@ -151,7 +151,9 @@ final class ExerciseListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 10)
     }
     
-    
+    func test_When_reload_if_not_empty(){
+        
+    }
     
     
     private func emptyEntities(context: NSManagedObjectContext) {

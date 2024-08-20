@@ -26,11 +26,8 @@ struct UserRepository : DataRepositoryProtocol {
        try viewContext.performAndWait {
             let request : NSFetchRequest<User> = User.fetchRequest()
             request.fetchLimit = 1
-            do{
-                result = try viewContext.fetch(request).first
-            }catch{
-                throw error
-            }
+          result = try viewContext.fetch(request).first
+           
         }
         return result
                  

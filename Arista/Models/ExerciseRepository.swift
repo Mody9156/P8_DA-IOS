@@ -28,11 +28,9 @@ struct ExerciseRepository : DataExerciseProtocol{
      try viewContext.performAndWait {
             let request = Exercise.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate,order: .reverse))]
-            do{
+          
                 result = try viewContext.fetch(request)
-            }catch{
-                throw error
-            }
+           
         }
        return result
         
