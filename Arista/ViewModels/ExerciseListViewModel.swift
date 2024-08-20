@@ -24,19 +24,19 @@ class ExerciseListViewModel: ObservableObject {
     init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
         self.userRepository = repository
-        fetchExercises()
+        _ = fetchExercises()
     }
     
     // MARK: - Private
     
-     func fetchExercises() {
+     func fetchExercises() -> Bool{
         
         do{
             let data = ExerciseRepository(viewContext: viewContext)
             exercises = try data.getExercise()
-            
+            return true
         }catch{
-          fatalError()
+            return false
         }
        
     }

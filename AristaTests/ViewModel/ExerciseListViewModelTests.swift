@@ -157,6 +157,18 @@ final class ExerciseListViewModelTests: XCTestCase {
         
     }
     
+    func test_When_fetchExercises_throws_Error(){
+        // Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mocksExerciseViewModel = MocksExerciseViewModel()
+        
+        emptyEntities(context: persistenceController.container.viewContext)
+        
+        let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext,repository: mocksExerciseViewModel)
+        
+        
+    }
+    
     
     private func emptyEntities(context: NSManagedObjectContext) {
         
@@ -175,6 +187,8 @@ final class ExerciseListViewModelTests: XCTestCase {
         try! context.save()
         
     }
+    
+   
 }
 class MocksExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
