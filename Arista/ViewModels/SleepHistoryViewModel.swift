@@ -23,7 +23,7 @@ class SleepHistoryViewModel: ObservableObject {
         self.viewContext = context
         self.sleepRepository = repository
         
-        _ =  fetchSleepSessions()
+        _ = fetchSleepSessions()
     }
     
     
@@ -45,6 +45,6 @@ class SleepHistoryViewModel: ObservableObject {
     
     func reload() throws  {
         _ = fetchSleepSessions()
-            
+        
     }
 }

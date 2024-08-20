@@ -33,7 +33,7 @@ struct SleepRepository : DataSleepProtocol {
                 result =  try viewContext.fetch(request)
 
             }catch{
-                throw error
+                throw NSError(domain: "TestErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Ceci est une erreur de test."])
             }
            
         }

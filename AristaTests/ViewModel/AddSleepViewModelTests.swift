@@ -52,7 +52,6 @@ final class AddSleepViewModelTests: XCTestCase {
 
     func testAddNewSleep_ThrowError()  {
         //Given
-        let date = Date()
 
         let persistence = PersistenceController(inMemory: false)
         emptyEntities(context: persistence.container.viewContext)
