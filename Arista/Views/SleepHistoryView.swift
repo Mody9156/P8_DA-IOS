@@ -43,7 +43,7 @@ struct SleepHistoryView: View {
         }
         .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
             AddSleepView(viewModel: AddSleepViewModel(context: viewModel.viewContext)).onAppear{
-                viewModel.reload()
+               try? viewModel.reload()
             }
         }
         
@@ -52,7 +52,7 @@ struct SleepHistoryView: View {
    
     
     func didDismiss(){
-        viewModel.reload()
+      try?  viewModel.reload()
     }
 }
     
