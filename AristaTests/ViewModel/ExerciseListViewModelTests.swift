@@ -194,6 +194,7 @@ final class ExerciseListViewModelTests: XCTestCase {
     
     
 }
+
 class MocksExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
     var throwsError : Bool = false
