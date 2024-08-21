@@ -69,17 +69,14 @@ final class ExerciseRepositoryTests: XCTestCase {
         emptyEntities(context: persistenceController.container.viewContext)
         let date = Date()
         
-        let mockDataExerciseProtocol = MockDataExerciseProtocol()
         
-        try? mockDataExerciseProtocol.addExercise(category: "Football", duration: 30, intensity: 5, startDate: date)
-        
-//        addExercises(context: persistenceController.container.viewContext,
-//                     category: "Football",
-//                     duration: 30,
-//                     intensity: 5,
-//                     startDate: date,
-//                     userFirstName: "Magic",
-//                     userLastName: "Bryan")
+        addExercises(context: persistenceController.container.viewContext,
+                     category: "Football",
+                     duration: 30,
+                     intensity: 5,
+                     startDate: date,
+                     userFirstName: "Magic",
+                     userLastName: "Bryan")
         let data = ExerciseRepository(viewContext:persistenceController.container.viewContext)
         
         
@@ -192,37 +189,5 @@ final class ExerciseRepositoryTests: XCTestCase {
     }
     
 }
-
-
-class MockDataExerciseProtocol : DataExerciseProtocol {
-    var exercise : [Exercise] = []
-    var shouldThrowError = false // Propriété pour contrôler le lancement d'erreur
-
-    func getExercise() throws -> [Exercise] {
-        if shouldThrowError {
-            // Simule une erreur en lançant une exception
-            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
-        }
-        return exercise
-    }
-    
-    func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
-        
-        if shouldThrowError {
-            // Simule une erreur en lançant une exception
-            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
-        }
-        
-        let newExercise = Exercise()
-        newExercise.category = category
-        newExercise.duration = Int64(duration)
-        newExercise.intensity = Int64(intensity)
-        newExercise.startDate = startDate
-        exercise.append(newExercise)
-    }
-    
-    
-}
-
 
 
