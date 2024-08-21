@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		230636F12C6A308200088452 /* AddSleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230636F02C6A308200088452 /* AddSleepView.swift */; };
-		230F77822C6D390300E4AC8F /* DataRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */; };
+		230F77822C6D390300E4AC8F /* DataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230F77812C6D390200E4AC8F /* DataProtocols.swift */; };
 		2394DF5A2C60A02D000E7A01 /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */; };
 		23A0DB5F2C6B86AF003690A9 /* AddSleepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A0DB5E2C6B86AF003690A9 /* AddSleepViewModel.swift */; };
 		23AAC2A92C62AFAB00FA536A /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */; };
@@ -49,7 +49,7 @@
 
 /* Begin PBXFileReference section */
 		230636F02C6A308200088452 /* AddSleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepView.swift; sourceTree = "<group>"; };
-		230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryProtocol.swift; sourceTree = "<group>"; };
+		230F77812C6D390200E4AC8F /* DataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocols.swift; sourceTree = "<group>"; };
 		2394DF592C60A02D000E7A01 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
 		23A0DB5E2C6B86AF003690A9 /* AddSleepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepViewModel.swift; sourceTree = "<group>"; };
 		23AAC2A82C62AFAB00FA536A /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		230F77802C6D379800E4AC8F /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				230F77812C6D390200E4AC8F /* DataRepositoryProtocol.swift */,
+				230F77812C6D390200E4AC8F /* DataProtocols.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
-				230F77822C6D390300E4AC8F /* DataRepositoryProtocol.swift in Sources */,
+				230F77822C6D390300E4AC8F /* DataProtocols.swift in Sources */,
 				23BAE7A92C5BBB5F00004681 /* SleepRepository.swift in Sources */,
 				23BAE7AB2C5BBCBC00004681 /* ExerciseRepository.swift in Sources */,
 			);
