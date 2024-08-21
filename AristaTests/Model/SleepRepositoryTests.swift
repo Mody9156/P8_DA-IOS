@@ -11,8 +11,6 @@ import CoreData
 
 final class SleepRepositoryTests: XCTestCase {
     
-    
-    
     override func setUp()  {
         super.setUp()
         
@@ -22,7 +20,6 @@ final class SleepRepositoryTests: XCTestCase {
         super.tearDown()
         
     }
-    
     
     private func EmptyEntities(context:NSManagedObjectContext)  {
         let fetch = Sleep.fetchRequest()
@@ -34,7 +31,7 @@ final class SleepRepositoryTests: XCTestCase {
     }
     
     
-    func testSleepSessionsIsEmpty(){
+    func test_WhenSleepSessionsIsEmpty(){
         //Give
         let persistenceController = PersistenceController(inMemory: false)
         let context: NSManagedObjectContext
@@ -56,7 +53,7 @@ final class SleepRepositoryTests: XCTestCase {
         XCTAssert(request.isEmpty == true)
     }
     
-    func testgetSleepSessions(){
+    func test_When_useSleepSessions(){
         //Give
         let persistence = PersistenceController(inMemory: false)
         let context = persistence.container.viewContext
@@ -83,11 +80,12 @@ final class SleepRepositoryTests: XCTestCase {
         XCTAssert(request_Sleep.first?.startDate == date)
         
     }
+    
     func test_addSleepSessions_withMock() {
         //Give
         let date = Date()
         let persistence = PersistenceController(inMemory: false)
-        var context = persistence.container.viewContext
+        let context = persistence.container.viewContext
         EmptyEntities(context: context)
         
         let viewModel = SleepRepository(viewContext: context)
@@ -109,13 +107,10 @@ final class SleepRepositoryTests: XCTestCase {
             XCTFail("Failed to clear context: \(error)")
         }
         
-        
-        
-        
     }
-    
    
 }
+
 class MocksSleepRepository_ : DataSleepProtocol {
     var sleep: [Sleep] = []
     var shouldThrowError = false // Propriété pour contrôler le lancement d'erreur
