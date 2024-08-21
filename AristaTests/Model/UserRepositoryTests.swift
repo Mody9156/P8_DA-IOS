@@ -10,9 +10,9 @@ import XCTest
 import CoreData
 
 final class UserRepositoryTests: XCTestCase {
-
-
-
+    
+    
+    
     private func emptyEntities(context:NSManagedObjectContext){
         let fetchRequest = User.fetchRequest()
         let object  = try!  context.fetch(fetchRequest)
@@ -22,7 +22,7 @@ final class UserRepositoryTests: XCTestCase {
         }
     }
     
-   
+    
     
     func test_WhenAddNewUser() throws {
         //Give
@@ -35,7 +35,6 @@ final class UserRepositoryTests: XCTestCase {
         newUser.firstName = "User_2"
         newUser.lastName = "Nelson"
         let user = UserRepository(viewContext: context)
-//        addUser(context: context, userFirstName: "User_2", userLastName: "Nelson")
         
         //When
         let request =  try! user.getUser()
@@ -46,7 +45,7 @@ final class UserRepositoryTests: XCTestCase {
         XCTAssert(request?.lastName == "Nelson")
         XCTAssert((request != nil))
     }
-
+    
     func test_WhenUserIsEmpty() throws {
         //Give
         let persistenceController = PersistenceController(inMemory: false)
@@ -59,11 +58,11 @@ final class UserRepositoryTests: XCTestCase {
         let User_request = try! users.getUser()
         
         //Then
-       XCTAssert(User_request?.firstName?.isEmpty == nil)
-       XCTAssert(User_request?.lastName?.isEmpty == nil)
+        XCTAssert(User_request?.firstName?.isEmpty == nil)
+        XCTAssert(User_request?.lastName?.isEmpty == nil)
         
     }
-
+    
 }
 
 
