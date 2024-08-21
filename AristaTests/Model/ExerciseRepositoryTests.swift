@@ -139,7 +139,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
     }
     
-    func test_addExercise(){
+    func test_WhenAdding_NewExercise(){
         //Give
         let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
@@ -168,7 +168,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
     }
     
-    func test_ExerciseIsEmpty() throws {
+    func test_WhenExerciseIsEmpty() throws {
         //Give
         let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
