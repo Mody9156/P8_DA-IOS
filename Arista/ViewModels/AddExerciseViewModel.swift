@@ -33,7 +33,7 @@ class AddExerciseViewModel: ObservableObject {
         do{
             
             try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
-         
+            
             return true
             
         }catch{
