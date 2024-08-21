@@ -19,19 +19,19 @@ class AddSleepViewModel : ObservableObject{
     
     private var viewContext: NSManagedObjectContext
     private var userRepository: DataSleepProtocol
-
+    
     // MARK: - Init
     
     init(context: NSManagedObjectContext,repository : DataSleepProtocol = SleepRepository()) {
         self.viewContext = context
         self.userRepository = repository
     }
-  
+    
     // MARK: - Public
-  
+    
     func addSleepSessions() -> Bool {
         do{
-          try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
+            try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
             return true
         }catch{
             return false
