@@ -13,11 +13,11 @@ struct ExerciseRepository : DataExerciseProtocol{
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-
+    
     // MARK: - Init
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
-) {
+    ) {
         self.viewContext = viewContext
     }
     
@@ -25,20 +25,20 @@ struct ExerciseRepository : DataExerciseProtocol{
     
     func getExercise() throws -> [Exercise] {
         var result : [Exercise] = []
-     try viewContext.performAndWait {
+        try viewContext.performAndWait {
             let request = Exercise.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate,order: .reverse))]
-          
-                result = try viewContext.fetch(request)
-           
+            
+            result = try viewContext.fetch(request)
+            
         }
-       return result
+        return result
         
     }
     
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws {
         
-      try viewContext.performAndWait {
+        try viewContext.performAndWait {
             let newExercise = Exercise(context: viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
@@ -46,7 +46,7 @@ struct ExerciseRepository : DataExerciseProtocol{
             newExercise.startDate = startDate
             do{
                 newExercise.user = try UserRepository(viewContext: viewContext).getUser()
-
+                
             }
             do{
                 try viewContext.save()
@@ -56,5 +56,5 @@ struct ExerciseRepository : DataExerciseProtocol{
         }
         
     }
-   
+    
 }
