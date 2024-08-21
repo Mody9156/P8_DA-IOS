@@ -11,9 +11,9 @@ import Combine
 import CoreData
 
 final class AddSleepViewModelTests: XCTestCase {
-
-
-    func testAddNewSleep()  {
+    
+    
+    func test_WhenAddingNewSleep()  {
         
         //Given
         let persistence = PersistenceController(inMemory: false)
@@ -28,15 +28,15 @@ final class AddSleepViewModelTests: XCTestCase {
         viewModel.startTime = date
         
         let newSleep = Sleep(context: persistence.container.viewContext)
-
+        
         newSleep.startDate = viewModel.startTime
         newSleep.duration =  Int64(viewModel.duration)
         newSleep.quality =  Int64(viewModel.quality)
         mocksDataSleepProtocol.sleep.append(newSleep)
-
+        
         try? persistence.container.viewContext.save()
         
-      //When
+        //When
         let succes = viewModel.addSleepSessions()
         //Then
         XCTAssertTrue(succes)
@@ -47,57 +47,57 @@ final class AddSleepViewModelTests: XCTestCase {
         XCTAssertEqual(addNewExercise?.duration, 22)
         XCTAssertEqual(addNewExercise?.startDate, date)
         
-      
+        
     }
-
+    
     func testAddNewSleep_ThrowError()  {
+        
         //Given
-
         let persistence = PersistenceController(inMemory: false)
         emptyEntities(context: persistence.container.viewContext)
         let mocksDataSleepProtocol = MocksDataSleepProtocol()
         
         let viewModel = AddSleepViewModel(context: persistence.container.viewContext,repository: mocksDataSleepProtocol)
-
+        
         let newSleep = Sleep(context: persistence.container.viewContext)
-
+        
         mocksDataSleepProtocol.sleep.append(newSleep)
-
+        
         try? persistence.container.viewContext.save()
         
         mocksDataSleepProtocol.shouldFail = true
         
-      //When
+        //When
         let succes = viewModel.addSleepSessions()
+        
         //Then
         XCTAssertFalse(succes)
     }
     
-   
 }
 
 private func emptyEntities(context: NSManagedObjectContext) {
-
-let fetchRequest = Sleep.fetchRequest()
-
-let objects = try! context.fetch(fetchRequest)
-
- 
-
-for sleep in objects {
-
-context.delete(sleep)
-
-}
-
-try! context.save()
-
+    
+    let fetchRequest = Sleep.fetchRequest()
+    
+    let objects = try! context.fetch(fetchRequest)
+    
+    
+    
+    for sleep in objects {
+        
+        context.delete(sleep)
+        
+    }
+    
+    try! context.save()
+    
 }
 class MocksDataSleepProtocol : DataSleepProtocol {
     var sleep : [Sleep] = []
     var shouldFail : Bool = false
-        
-
+    
+    
     func getSleepSessions() throws -> [Sleep] {
         return sleep
     }
