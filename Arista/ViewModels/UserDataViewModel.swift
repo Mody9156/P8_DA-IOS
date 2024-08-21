@@ -14,45 +14,45 @@ class UserDataViewModel: ObservableObject {
     
     @Published var firstName: String = ""
     @Published var lastName: String = ""
-
+    
     private var viewContext: NSManagedObjectContext
     private var userRepository: DataRepositoryProtocol
-
+    
     // MARK: - Init
     
     init(context: NSManagedObjectContext,repository : DataRepositoryProtocol = UserRepository()) {
         self.viewContext = context
         self.userRepository = repository
-       fetchUserData()
+        fetchUserData()
     }
     
     
-    // MARK: - Private
+    // MARK: - Public
     
-     func fetchUserData()  {
-     
-            if let user = try? userRepository.getUser()  {
-           
-                let userFirstName: String? = user.firstName
-
-                if let unwrappedFirstName = userFirstName {
-                    firstName = unwrappedFirstName
-                } else {
-                    firstName = ""
-                }
-                
-                let userLastName: String? = user.lastName
-
-                if let unwrappedLastName = userLastName {
-                    lastName = unwrappedLastName
-                } else {
-                    lastName = ""
-                }
-                
-            }else{
-                return
+    func fetchUserData()  {
+        
+        if let user = try? userRepository.getUser()  {
+            
+            let userFirstName: String? = user.firstName
+            
+            if let unwrappedFirstName = userFirstName {
+                firstName = unwrappedFirstName
+            } else {
+                firstName = ""
             }
-       
+            
+            let userLastName: String? = user.lastName
+            
+            if let unwrappedLastName = userLastName {
+                lastName = unwrappedLastName
+            } else {
+                lastName = ""
+            }
+            
+        }else{
+            return
+        }
+        
     }
 }
 
