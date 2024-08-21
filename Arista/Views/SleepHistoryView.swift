@@ -43,44 +43,44 @@ struct SleepHistoryView: View {
         }
         .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
             AddSleepView(viewModel: AddSleepViewModel(context: viewModel.viewContext)).onAppear{
-               try? viewModel.reload()
+                try? viewModel.reload()
             }
         }
         
     }
     
-   
+    
     
     func didDismiss(){
-      try?  viewModel.reload()
+        try?  viewModel.reload()
     }
 }
+
+struct QualityIndicator: View {
+    let quality: Int
     
-    struct QualityIndicator: View {
-        let quality: Int
-        
-        var body: some View {
-            ZStack {
-                Circle()
-                    .stroke(qualityColor(quality), lineWidth: 5)
-                    .foregroundColor(qualityColor(quality))
-                    .frame(width: 30, height: 30)
-                Text("\(quality)")
-                    .foregroundColor(qualityColor(quality))
-            }
-        }
-        
-        func qualityColor(_ quality: Int) -> Color {
-            switch (10-quality) {
-            case 0...3:
-                return .green
-            case 4...6:
-                return .yellow
-            case 7...10:
-                return .red
-            default:
-                return .gray
-            }
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(qualityColor(quality), lineWidth: 5)
+                .foregroundColor(qualityColor(quality))
+                .frame(width: 30, height: 30)
+            Text("\(quality)")
+                .foregroundColor(qualityColor(quality))
         }
     }
+    
+    func qualityColor(_ quality: Int) -> Color {
+        switch (10-quality) {
+        case 0...3:
+            return .green
+        case 4...6:
+            return .yellow
+        case 7...10:
+            return .red
+        default:
+            return .gray
+        }
+    }
+}
 
