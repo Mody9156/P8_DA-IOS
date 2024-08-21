@@ -41,32 +41,32 @@ struct DefaultData {
                 let sleep5 = Sleep(context: viewContext)
                 
                 let timeIntervalForADay: TimeInterval = 60 * 60 * 24
-
+                
                 sleep1.duration = (0...900).randomElement()!
                 sleep1.quality = (0...10).randomElement()!
                 sleep1.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*5)
                 sleep1.user = initialUser
-                 
+                
                 sleep2.duration = (0...900).randomElement()!
                 sleep2.quality = (0...10).randomElement()!
                 sleep2.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*4)
                 sleep2.user = initialUser
-                 
+                
                 sleep3.duration = (0...900).randomElement()!
                 sleep3.quality = (0...10).randomElement()!
                 sleep3.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*3)
                 sleep3.user = initialUser
-                 
+                
                 sleep4.duration = (0...900).randomElement()!
                 sleep4.quality = (0...10).randomElement()!
                 sleep4.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*2)
                 sleep4.user = initialUser
-                 
+                
                 sleep5.duration = (0...900).randomElement()!
                 sleep5.quality = (0...10).randomElement()!
                 sleep5.startDate = Date(timeIntervalSinceNow: timeIntervalForADay)
                 sleep5.user = initialUser
-                }
+            }
             try? viewContext.save()
         }
     }
