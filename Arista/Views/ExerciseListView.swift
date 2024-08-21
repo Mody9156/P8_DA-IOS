@@ -67,54 +67,54 @@ struct ExerciseListView: View {
         }
         
     }
-        func didDismiss(){
-            viewModel.reload()
+    func didDismiss(){
+        viewModel.reload()
+    }
+    
+    func iconForCategory(_ category: String) -> String {
+        switch category {
+        case "Football":
+            return "sportscourt"
+        case "Natation":
+            return "waveform.path.ecg"
+        case "Running":
+            return "figure.run"
+        case "Marche":
+            return "figure.walk"
+        case "Cyclisme":
+            return "bicycle"
+        case "Yoga" :
+            return "figure.yoga"
+        default:
+            return "questionmark"
         }
-        
-        func iconForCategory(_ category: String) -> String {
-            switch category {
-            case "Football":
-                return "sportscourt"
-            case "Natation":
-                return "waveform.path.ecg"
-            case "Running":
-                return "figure.run"
-            case "Marche":
-                return "figure.walk"
-            case "Cyclisme":
-                return "bicycle"
-            case "Yoga" :
-                return "figure.yoga"
-            default:
-                return "questionmark"
-            }
+    }
+}
+
+struct IntensityIndicator: View {
+    var intensity: Int
+    
+    var body: some View {
+        Circle()
+            .fill(colorForIntensity(intensity))
+            .frame(width: 10, height: 10)
+    }
+    
+    func colorForIntensity(_ intensity: Int) -> Color {
+        switch intensity {
+        case 0...3:
+            return .green
+        case 4...6:
+            return .yellow
+        case 7...10:
+            return .red
+        default:
+            return .gray
         }
     }
     
-    struct IntensityIndicator: View {
-        var intensity: Int
-        
-        var body: some View {
-            Circle()
-                .fill(colorForIntensity(intensity))
-                .frame(width: 10, height: 10)
-        }
-        
-        func colorForIntensity(_ intensity: Int) -> Color {
-            switch intensity {
-            case 0...3:
-                return .green
-            case 4...6:
-                return .yellow
-            case 7...10:
-                return .red
-            default:
-                return .gray
-            }
-        }
-        
-        
-        
-        
-    }
+    
+    
+    
+}
 
