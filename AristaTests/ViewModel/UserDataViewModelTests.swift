@@ -27,7 +27,7 @@ final class UserDataViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "fetch empty list of users")
         
-        // Then
+        // When & Then
         viewModel.$firstName.sink { name in
             XCTAssertTrue(name.isEmpty, "Expected firstName to be empty, but it was: \(name)")
             expectation.fulfill()
@@ -59,7 +59,7 @@ final class UserDataViewModelTests: XCTestCase {
         let firstNameExpectation = XCTestExpectation(description: "fetch first name")
         let lastNameExpectation = XCTestExpectation(description: "fetch last name")
         
-        // Then
+        //When & Then
         viewModel.$firstName.sink { name in
             XCTAssertEqual(name, "User_2")
             firstNameExpectation.fulfill()
@@ -75,7 +75,7 @@ final class UserDataViewModelTests: XCTestCase {
     }
     
     
-    func testFetchUserData_UserIsNil() {
+    func testFetchUserData_when_UserIsNil() {
         // Given: Créer un mock de UserRepository qui retourne nil
         class MockUserRepository: DataRepositoryProtocol {
             func getUser() throws -> User? {
@@ -96,6 +96,7 @@ final class UserDataViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.firstName, "")
         XCTAssertEqual(viewModel.lastName, "")
     }
+    
     func test_WhenUserFirstNameIsNotNil_FirstNameIsAssignedCorrectly(){
         //Given
         let persistenceController = PersistenceController(inMemory: false)
@@ -114,10 +115,12 @@ final class UserDataViewModelTests: XCTestCase {
         
         //When
         viewModel.fetchUserData()
-        //Then
         
+        //Then
         XCTAssertEqual(user.firstName, "")
+        
     }
+    
     func test_WhenUserFirstNameIsNotNil_LastNameIsAssignedCorrectly(){
         //Given
         let persistenceController = PersistenceController(inMemory: false)
