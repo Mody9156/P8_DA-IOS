@@ -13,8 +13,6 @@ import Combine
 final class ExerciseListViewModelTests: XCTestCase {
     
     var cancellable = Set<AnyCancellable>()
-   
-    
     
     
     func test_WhenNoExerciseIsInDatabase_FetchExercise_ReturnEmptyList()  {
@@ -173,7 +171,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         // Then
         XCTAssertFalse(result, "fetchExercises() devrait retourner false lorsque getExercise() lance une erreur.")
     }
-
+    
     
     
     private func emptyEntities(context: NSManagedObjectContext) {
@@ -194,20 +192,20 @@ final class ExerciseListViewModelTests: XCTestCase {
         
     }
     
-   
+    
 }
 class MocksExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
     var throwsError : Bool = false
     
-  
+    
     func getExercise() throws -> [Exercise] {
         if throwsError{
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
         }else{
             return exercises
         }
-
+        
     }
     
     func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
@@ -222,6 +220,5 @@ class MocksExerciseViewModel : DataExerciseProtocol {
             exercises.append(newExercise)
         }
     }
-    
     
 }
