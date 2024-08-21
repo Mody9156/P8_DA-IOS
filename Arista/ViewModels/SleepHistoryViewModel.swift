@@ -27,7 +27,7 @@ class SleepHistoryViewModel: ObservableObject {
     }
     
     
-    // MARK: - Private
+    // MARK: - Public
     
     func fetchSleepSessions()  -> Bool  {
         
@@ -41,8 +41,6 @@ class SleepHistoryViewModel: ObservableObject {
         }
         
     }
-    
-    // MARK: - Public
     
     func reload() throws  {
         _ = fetchSleepSessions()
