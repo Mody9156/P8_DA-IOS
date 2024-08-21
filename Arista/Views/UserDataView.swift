@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserDataView: View {
     @ObservedObject var viewModel: UserDataViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
