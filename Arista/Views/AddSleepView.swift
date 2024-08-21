@@ -13,53 +13,53 @@ struct AddSleepView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var date : Date = Date.distantPast
     @State private var value = 0
-
+    
     var body: some View {
         NavigationStack {
             VStack {
                 Form{
-                        Section{
-                            DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
-                                .onChange(of: date) { newDate in
-                                    viewModel.startTime = newDate
-                                }
-                           
-                            Text("Durée : \(Int(slider)) heure(s)")
-                            Slider(
-                                value: $slider,
-                                in: 0...24){} minimumValueLabel : {
-                                    Text("0")
-                                } maximumValueLabel: {
-                                    Text("24")
-                                }
-                                .onChange(of: slider) { newValue in
-                                    viewModel.duration = Int(newValue)
-                                }
-                            Stepper {
-                                Text("Quality : \(value)")
-                            }onIncrement: {
-                                incrementStep()
-                            }onDecrement: {
-                                decrementStep()
-                            }.onChange(of: value) { newValue in
-                                viewModel.quality = Int(Int64(newValue))
+                    Section{
+                        DatePicker("Heure de démarrage : ", selection: $date,displayedComponents: .hourAndMinute)
+                            .onChange(of: date) { newDate in
+                                viewModel.startTime = newDate
                             }
-                         
+                        
+                        Text("Durée : \(Int(slider)) heure(s)")
+                        Slider(
+                            value: $slider,
+                            in: 0...24){} minimumValueLabel : {
+                                Text("0")
+                            } maximumValueLabel: {
+                                Text("24")
+                            }
+                            .onChange(of: slider) { newValue in
+                                viewModel.duration = Int(newValue)
+                            }
+                        Stepper {
+                            Text("Quality : \(value)")
+                        }onIncrement: {
+                            incrementStep()
+                        }onDecrement: {
+                            decrementStep()
+                        }.onChange(of: value) { newValue in
+                            viewModel.quality = Int(Int64(newValue))
                         }
+                        
+                    }
                     
-                  
-                   
-               }.formStyle(.grouped)
+                    
+                }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
                     if viewModel.addSleepSessions() {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }.buttonStyle(.borderedProminent)
-
+                
             } .navigationTitle("Nouvel element ...")
         }
     }
+    
     func incrementStep(){
         value += 1
         
@@ -67,7 +67,7 @@ struct AddSleepView: View {
             value = 10
             
         }
-//        viewModel.intensity = value
+        
     }
     
     func decrementStep(){
@@ -76,7 +76,7 @@ struct AddSleepView: View {
         if value < 0{
             value = 0
         }
-//        viewModel.intensity = value
+        
     }
 }
 

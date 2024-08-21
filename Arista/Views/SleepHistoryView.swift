@@ -32,7 +32,7 @@ struct SleepHistoryView: View {
                             Text("Durée : \(Int(session.duration)) heure(s)")
                         }
                     }
-                } 
+                }
             }
             .navigationTitle("Historique de sommeil")
             .navigationBarItems(trailing: Button(action: {
