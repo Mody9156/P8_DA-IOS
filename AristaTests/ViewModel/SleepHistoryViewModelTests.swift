@@ -14,8 +14,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
     var cancellable = Set<AnyCancellable>()
     
     
-    
-    func test_WhenSleep_Is_Empty() throws {
+    func test_WhenSleep_is_Empty() throws {
         //Give
         let persistenceController = PersistenceController(inMemory: false)
         emptyEntities(context: persistenceController.container.viewContext)
@@ -27,7 +26,6 @@ final class SleepHistoryViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "fetch empty list of users")
         
-        
         //When & Then
        
         viewModel.$sleepSessions.sink { sleep in
@@ -37,9 +35,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
-    
-    //Then
-    
+
     
     func test_AddingSleepSession_IncreasesCount() {
         // Given
@@ -82,13 +78,12 @@ final class SleepHistoryViewModelTests: XCTestCase {
         try! persistenceController.container.viewContext.save()
         mocksSleepRepository_ThrowsError.shouldThrowError = true
          repository.throwError = true
+        
         //When & Then
         let result = viewModel.fetchSleepSessions()
-//        XCTAssertFalse(result)
-        
-        
        
-        
+        XCTAssertFalse(result)
+ 
     }
     
     func test_When_reload_isNoEmpty(){
@@ -114,11 +109,9 @@ private func emptyEntities(context: NSManagedObjectContext) {
     let objects = try! context.fetch(fetchRequest)
     
     
-    
     for sleep in objects {
         
         context.delete(sleep)
-        
     }
     
     try! context.save()
