@@ -11,11 +11,11 @@ class PersistenceController {
     // MARK: - Singleton
     
     static let shared = PersistenceController()
-
-
+    
+    
     let container: NSPersistentContainer
     let backgroundContext : NSManagedObjectContext
-
+    
     // MARK: - Init
     
     init(inMemory: Bool = false) {
@@ -25,7 +25,7 @@ class PersistenceController {
         if inMemory {
             try! DefaultData(viewContext: self.backgroundContext).apply()
         }
-    
+        
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
