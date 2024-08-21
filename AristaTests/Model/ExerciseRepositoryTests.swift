@@ -11,7 +11,6 @@ import CoreData
 final class ExerciseRepositoryTests: XCTestCase {
     
     
-    
     private func emptyEntities(context:NSManagedObjectContext) {
         let fetchRequest = Exercise.fetchRequest()
         let objects = try! context.fetch(fetchRequest)
@@ -19,10 +18,9 @@ final class ExerciseRepositoryTests: XCTestCase {
         for exercise in objects {
             context.delete(exercise)
         }
-        
     }
     
-    private func EmptyExercise(context:NSManagedObjectContext){//Maj
+    private func emptyExercise(context:NSManagedObjectContext){
         let fetchRequest  : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Exercise")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
@@ -49,7 +47,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         exercise.user = newUser
         
         try! context.save()
-    }//*
+    }
     
     
     func test_WhenNoExerciseIsInDatabase_GetExercise_ReturnEmptyList()  {
@@ -70,13 +68,18 @@ final class ExerciseRepositoryTests: XCTestCase {
         let persistenceController = PersistenceController(inMemory:false)
         emptyEntities(context: persistenceController.container.viewContext)
         let date = Date()
-        addExercises(context: persistenceController.container.viewContext,
-                     category: "Football",
-                     duration: 30,
-                     intensity: 5,
-                     startDate: date,
-                     userFirstName: "Magic",
-                     userLastName: "Bryan")
+        
+        let mockDataExerciseProtocol = MockDataExerciseProtocol()
+        
+        try? mockDataExerciseProtocol.addExercise(category: "Football", duration: 30, intensity: 5, startDate: date)
+        
+//        addExercises(context: persistenceController.container.viewContext,
+//                     category: "Football",
+//                     duration: 30,
+//                     intensity: 5,
+//                     startDate: date,
+//                     userFirstName: "Magic",
+//                     userLastName: "Bryan")
         let data = ExerciseRepository(viewContext:persistenceController.container.viewContext)
         
         
@@ -147,7 +150,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
         context = persistenceController.container.viewContext
         
-        EmptyExercise(context: context)
+        emptyExercise(context: context)
         addExercises(context: context, category: "Yoga", duration: 23, intensity: 10, startDate: date, userFirstName: "Mickael", userLastName: "James")
         
         //When
@@ -189,3 +192,37 @@ final class ExerciseRepositoryTests: XCTestCase {
     }
     
 }
+
+
+class MockDataExerciseProtocol : DataExerciseProtocol {
+    var exercise : [Exercise] = []
+    var shouldThrowError = false // Propriété pour contrôler le lancement d'erreur
+
+    func getExercise() throws -> [Exercise] {
+        if shouldThrowError {
+            // Simule une erreur en lançant une exception
+            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
+        }
+        return exercise
+    }
+    
+    func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
+        
+        if shouldThrowError {
+            // Simule une erreur en lançant une exception
+            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
+        }
+        
+        let newExercise = Exercise()
+        newExercise.category = category
+        newExercise.duration = Int64(duration)
+        newExercise.intensity = Int64(intensity)
+        newExercise.startDate = startDate
+        exercise.append(newExercise)
+    }
+    
+    
+}
+
+
+
