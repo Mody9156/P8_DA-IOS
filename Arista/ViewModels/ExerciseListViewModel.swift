@@ -17,7 +17,7 @@ class ExerciseListViewModel: ObservableObject {
     
     var viewContext: NSManagedObjectContext
     private var exerciseRepository: DataExerciseProtocol
-
+    
     
     // MARK: - Init
     
@@ -27,9 +27,9 @@ class ExerciseListViewModel: ObservableObject {
         _ = fetchExercises()
     }
     
-    // MARK: - Private
+    // MARK: - Public
     
-     func fetchExercises() -> Bool{
+    func fetchExercises() -> Bool{
         
         do{
             exercises = try exerciseRepository.getExercise()
@@ -37,12 +37,10 @@ class ExerciseListViewModel: ObservableObject {
         }catch{
             return false
         }
-       
+        
     }
     
-    // MARK: - Public
-    
     func reload(){
-        fetchExercises()
+        _ = fetchExercises()
     }
 }
