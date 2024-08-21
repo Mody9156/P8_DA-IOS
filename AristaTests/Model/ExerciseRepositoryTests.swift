@@ -79,7 +79,6 @@ final class ExerciseRepositoryTests: XCTestCase {
                      userLastName: "Bryan")
         let data = ExerciseRepository(viewContext:persistenceController.container.viewContext)
         
-        
         //When
         
         let exercise =  try! data.getExercise()
@@ -139,7 +138,7 @@ final class ExerciseRepositoryTests: XCTestCase {
         
     }
     
-    func test_WhenAdding_NewExercise(){
+    func test_When_addNewExercise(){
         //Give
         let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
@@ -170,17 +169,13 @@ final class ExerciseRepositoryTests: XCTestCase {
     
     func test_WhenExerciseIsEmpty() throws {
         //Give
-        let date = Date()
         let persistenceController = PersistenceController(inMemory: false)
         let context : NSManagedObjectContext!
         context = persistenceController.container.viewContext
         
         emptyEntities(context: context)
         
-        //When
-        let data = ExerciseRepository(viewContext: context)
-        
-        //Then
+        //When & Then
         let fetchRequest  : NSFetchRequest<Exercise> = Exercise.fetchRequest()
         let exercise = try! context.fetch(fetchRequest)
         XCTAssert(exercise.count == 0)
@@ -189,5 +184,4 @@ final class ExerciseRepositoryTests: XCTestCase {
     }
     
 }
-
 

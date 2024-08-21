@@ -110,33 +110,3 @@ final class SleepRepositoryTests: XCTestCase {
     }
    
 }
-
-class MocksSleepRepository_ : DataSleepProtocol {
-    var sleep: [Sleep] = []
-    var shouldThrowError = false // Propriété pour contrôler le lancement d'erreur
-    
-    func getSleepSessions() throws -> [Sleep] {
-        if shouldThrowError {
-            // Simule une erreur en lançant une exception
-            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Simulated fetch error"])
-        }
-        return sleep
-    }
-    
-    func addSleepSessions(duration: Int, quality: Int, startDate: Date) throws {
-        
-        if shouldThrowError {
-            // Simule une erreur en lançant une exception
-            throw NSError(domain: "MockErrorDomain", code: 2, userInfo: [NSLocalizedDescriptionKey: "Simulated add error"])
-        }
-        
-        let newSleepSessions = Sleep()
-        newSleepSessions.duration = Int64(duration)
-        newSleepSessions.quality = Int64(quality)
-        newSleepSessions.startDate = startDate
-        sleep.append(newSleepSessions)
-    }
-}
-
-
-
