@@ -14,7 +14,7 @@ final class AddExerciseViewModelTests: XCTestCase {
     var cancellable = Set<AnyCancellable>()
     
     
-    func testAddNewExercise()  {
+    func testAdd_whenAdding_NewExercise()  {
         
         //Given
         let persistence = PersistenceController(inMemory: false)
@@ -41,6 +41,7 @@ final class AddExerciseViewModelTests: XCTestCase {
         
         //When
         let succes = viewModel.addExercise()
+        
         //Then
         XCTAssertTrue(succes)
         XCTAssertEqual(mockExerciseViewModel.exercises.count, 1)
@@ -54,22 +55,22 @@ final class AddExerciseViewModelTests: XCTestCase {
         
     }
     
-    func test_AddNewExerciseFailure(){
+    func test_When_AddNewExercise_throws_errors(){
         //Given
         let persistence = PersistenceController(inMemory: false)
         emptyEntities(context: persistence.container.viewContext)
         let mockExerciseViewModel = MockExerciseViewModel()
-
+        
         let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
-
+        
         let newExercise = Exercise(context: persistence.container.viewContext)
-
+        
         mockExerciseViewModel.exercises.append(newExercise)
         
         try? persistence.container.viewContext.save()
         
         mockExerciseViewModel.shouldFail = true
-
+        
         //When
         let success = viewModel.addExercise()
         
@@ -79,15 +80,16 @@ final class AddExerciseViewModelTests: XCTestCase {
     
     
     private func emptyEntities(context: NSManagedObjectContext) {
-           let fetchRequest = Exercise.fetchRequest()
-           let objects = try! context.fetch(fetchRequest)
-           for exercise in objects {
-               context.delete(exercise)
-           }
-           try! context.save()
-       }
+        let fetchRequest = Exercise.fetchRequest()
+        let objects = try! context.fetch(fetchRequest)
+        for exercise in objects {
+            context.delete(exercise)
+        }
+        try! context.save()
+    }
     
 }
+
 class MockExerciseViewModel : DataExerciseProtocol {
     var exercises : [Exercise] = []
     var shouldFail : Bool = false
@@ -111,9 +113,6 @@ class MockExerciseViewModel : DataExerciseProtocol {
             exercises.append(newExercise)
         }
         
-       
-        
     }
-    
     
 }
