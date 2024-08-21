@@ -23,14 +23,14 @@ struct UserRepository : DataRepositoryProtocol {
     
     func getUser() throws -> User? {
         var result : User?
-       try viewContext.performAndWait {
+        try viewContext.performAndWait {
             let request : NSFetchRequest<User> = User.fetchRequest()
             request.fetchLimit = 1
-          result = try viewContext.fetch(request).first
-           
+            result = try viewContext.fetch(request).first
+            
         }
         return result
-                 
+        
     }
     
 }
