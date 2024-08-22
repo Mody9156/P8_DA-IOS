@@ -33,14 +33,14 @@ class SleepHistoryViewModel: ObservableObject {
     
     // MARK: - Public
     
-    func fetchSleepSessions()    {
+    func fetchSleepSessions() throws {
         
         do {
             sleepSessions = try sleepRepository.getSleepSessions()
             
           
         }catch{
-            FetchSleepSessionsError.fetchFailed
+        throw FetchSleepSessionsError.fetchFailed
             
         }
         

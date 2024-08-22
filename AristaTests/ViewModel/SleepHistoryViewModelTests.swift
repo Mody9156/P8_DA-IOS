@@ -90,13 +90,14 @@ final class SleepHistoryViewModelTests: XCTestCase {
         let persistenceController = PersistenceController(inMemory: false)
         let mocksSleepRepository = MocksSleepRepository(viewContext: PersistenceController.shared.container.viewContext)
         let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
-        
-        //When
+        mocksSleepRepository.throwError = true
+        //When && Then
         let reload: ()? = try? viewModel.reload()
-        let error: () = viewModel.fetchSleepSessions()
-        //Then
+     
         XCTAssertNotNil(reload)
-        XCTAssertThrowsError(error)
+        XCTAssertThrowsError(try viewModel.fetchSleepSessions()){error in
+            XCTAssertEqual(error as? SleepHistoryViewModel.FetchSleepSessionsError, .fetchFailed)
+        }
 
     }
 }
