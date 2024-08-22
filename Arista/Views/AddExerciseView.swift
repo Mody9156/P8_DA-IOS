@@ -17,8 +17,7 @@ struct AddExerciseView: View {
     @State private var value = 0
     @State var date : Date = Date.distantPast
     @State private var slider = 0.0
-    
-    let array : [String] = ["...","Football","Natation","Running","Marche","Cyclisme","Yoga"]
+    let array : [String] = ["Sélectionnez une catégorie","Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
         
