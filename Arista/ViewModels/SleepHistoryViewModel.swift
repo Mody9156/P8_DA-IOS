@@ -28,6 +28,7 @@ class SleepHistoryViewModel: ObservableObject {
     
     
     // MARK: - Public
+    @discardableResult
     
     func fetchSleepSessions()  -> Bool  {
         
@@ -43,7 +44,7 @@ class SleepHistoryViewModel: ObservableObject {
     }
     
     func reload() throws  {
-        _ = fetchSleepSessions()
+      fetchSleepSessions()
         
     }
 }

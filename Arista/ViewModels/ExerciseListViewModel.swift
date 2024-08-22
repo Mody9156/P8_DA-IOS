@@ -28,7 +28,7 @@ class ExerciseListViewModel: ObservableObject {
     }
     
     // MARK: - Public
-    
+    @discardableResult
     func fetchExercises() -> Bool{
         
         do{
@@ -41,6 +41,6 @@ class ExerciseListViewModel: ObservableObject {
     }
     
     func reload(){
-        _ = fetchExercises()
+        fetchExercises()
     }
 }

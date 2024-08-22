@@ -16,6 +16,7 @@ class AddSleepViewModel : ObservableObject{
     @Published var startTime: Date = Date()
     @Published var duration: Int = 0
     
+    @Published var errorMessage = ""
     
     private var viewContext: NSManagedObjectContext
     private var userRepository: DataSleepProtocol
@@ -29,12 +30,14 @@ class AddSleepViewModel : ObservableObject{
     
     // MARK: - Public
     
-    func addSleepSessions() -> Bool {
+    func addSleepSessions()  {
         do{
             try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
-            return true
+            errorMessage = ""
+            
         }catch{
-            return false
+            errorMessage = "Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement."
+            
         }
     }
     

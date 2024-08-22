@@ -51,9 +51,9 @@ struct AddSleepView: View {
                 }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
-                    if viewModel.addSleepSessions() {
+                        viewModel.addSleepSessions()
                         presentationMode.wrappedValue.dismiss()
-                    }
+                   
                 }.buttonStyle(.borderedProminent)
                 
             } .navigationTitle("Nouvel element ...")
