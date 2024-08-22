@@ -20,8 +20,10 @@ struct ExerciseRepository : DataExerciseProtocol{
     ) {
         self.viewContext = viewContext
     }
+
     
     // MARK: - Public
+    @discardableResult
     
     func getExercise() throws -> [Exercise] {
         var result : [Exercise] = []
@@ -38,7 +40,7 @@ struct ExerciseRepository : DataExerciseProtocol{
     
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws {
         
-        try viewContext.performAndWait {
+         viewContext.performAndWait {
             let newExercise = Exercise(context: viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
@@ -47,11 +49,13 @@ struct ExerciseRepository : DataExerciseProtocol{
             do{
                 newExercise.user = try UserRepository(viewContext: viewContext).getUser()
                 
+            }catch{
+                 fatalError("Erreur : Impossible de récupérer l'utilisateur. Veuillez réessayer plus tard.")
             }
             do{
                 try viewContext.save()
             }catch{
-                throw error
+                 fatalError("Erreur : Impossible de sauvegarder l'utilisateur. Veuillez réessayer plus tard.")
             }
         }
         

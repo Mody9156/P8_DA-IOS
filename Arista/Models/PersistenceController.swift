@@ -8,11 +8,9 @@ import CoreData
 
 class PersistenceController {
     
-    // MARK: - Singleton
-    
+    // MARK: - Properties
+  
     static let shared = PersistenceController()
-    
-    
     let container: NSPersistentContainer
     let backgroundContext : NSManagedObjectContext
     

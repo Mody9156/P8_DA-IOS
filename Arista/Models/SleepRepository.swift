@@ -13,7 +13,7 @@ struct SleepRepository : DataSleepProtocol {
     // MARK: - Properties
     
     let viewContext : NSManagedObjectContext
-    var throwError = false // Propriété pour simuler les erreurs
+    // Propriété pour simuler les erreurs
     
     // MARK: - Init
     
@@ -47,12 +47,14 @@ struct SleepRepository : DataSleepProtocol {
             
             do{
                 newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
+            }catch {
+                throw fatalError()
             }
             
             do{
                 try viewContext.save()
             }catch{
-                throw error
+                throw fatalError()
             }
         }
         
