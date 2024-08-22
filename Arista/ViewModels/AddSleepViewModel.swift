@@ -29,7 +29,21 @@ class AddSleepViewModel : ObservableObject{
     
     // MARK: - Public
     
+    @discardableResult
+    
+    func whenElementIsEmpty() -> Bool {
+        if  duration <= 0  {
+            errorMessage = "Erreur : Tous les champs doivent être remplis correctement."
+            return true
+        }
+        errorMessage = ""
+        return false
+    }
+    
     func addSleepSessions()  {
+        
+        whenElementIsEmpty()
+        
         do{
             try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
             errorMessage = ""

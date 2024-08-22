@@ -17,7 +17,7 @@ class AddExerciseViewModel: ObservableObject {
     @Published var duration: Int = 0
     @Published var intensity: Int = 0
     @Published var errorMessage = ""
-
+    
     private var viewContext: NSManagedObjectContext
     private var userRepository: DataExerciseProtocol
     // MARK: - Init
@@ -29,7 +29,7 @@ class AddExerciseViewModel: ObservableObject {
     
     // MARK: - Public
     
-@discardableResult
+    @discardableResult
     
     func whenElementIsEmpty() -> Bool {
         if category.isEmpty || duration <= 0  {
@@ -46,14 +46,14 @@ class AddExerciseViewModel: ObservableObject {
         
         do{
             
-                try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
-        
+            try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+            
         }catch{
-                
+            
             fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
         }
     }
-   
-
+    
+    
 }
 
