@@ -47,7 +47,7 @@ class AddSleepViewModel : ObservableObject{
         return false
     }
     
-    func addSleepSessions()  {
+    func addSleepSessions() throws {
         
         whenElementIsEmpty()
         
@@ -57,7 +57,7 @@ class AddSleepViewModel : ObservableObject{
             
         }catch{
             
-            AddSleepSessionError.addSleepSessionFailure
+          throw  AddSleepSessionError.addSleepSessionFailure
         }
     }
     

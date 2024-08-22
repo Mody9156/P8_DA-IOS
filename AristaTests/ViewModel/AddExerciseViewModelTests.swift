@@ -60,7 +60,7 @@ final class AddExerciseViewModelTests: XCTestCase {
         let persistence = PersistenceController(inMemory: false)
         let date = Date()
         emptyEntities(context: persistence.container.viewContext)
-        let mockExerciseViewModelThrowError = MockExerciseViewModelThrowError()
+        let mockExerciseViewModelThrowError = MockExerciseViewModel()
         
         let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModelThrowError)
         
@@ -241,20 +241,3 @@ class MockExerciseViewModel : DataExerciseProtocol {
     
 }
 
-
-class MockExerciseViewModelThrowError : DataExerciseProtocol {
-    var shouldFail : Bool = false
-
-    func getExercise() throws -> [Exercise] {
-        return []
-    }
-    
-    func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
-        if shouldFail {
-            throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
-        }
-    }
-    
-    
-    
-}
