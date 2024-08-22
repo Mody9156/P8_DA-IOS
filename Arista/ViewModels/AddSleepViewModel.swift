@@ -15,7 +15,6 @@ class AddSleepViewModel : ObservableObject{
     @Published var quality: Int = 0
     @Published var startTime: Date = Date()
     @Published var duration: Int = 0
-    
     @Published var errorMessage = ""
     
     private var viewContext: NSManagedObjectContext
