@@ -25,7 +25,7 @@ class ExerciseListViewModel: ObservableObject {
     init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
         self.exerciseRepository = repository
-         fetchExercises()
+        try? fetchExercises()
     }
     
     // MARK: - ENUM
@@ -47,6 +47,6 @@ class ExerciseListViewModel: ObservableObject {
     }
     
     func reload(){
-        fetchExercises()
+       try? fetchExercises()
     }
 }

@@ -174,7 +174,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         try? persistenceController.container.viewContext.save()
         
         // When && Then
-        XCTAssertThrowsError(viewModel.fetchExercises()){ error in
+        XCTAssertThrowsError(try? viewModel.fetchExercises()){ error in
             XCTAssertEqual(error as? ExerciseListViewModel.FetchExercisesError, .fetchFailed)
         }
     }

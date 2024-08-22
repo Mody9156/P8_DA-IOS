@@ -79,7 +79,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
         mocksSleepRepository_ThrowsError.shouldThrowError = true
         
         //When & Then
-        let result = viewModel.fetchSleepSessions()
+        let result =  try? viewModel.fetchSleepSessions()
        
         XCTAssertThrowsError(result)
  
