@@ -29,13 +29,13 @@ class ExerciseListViewModel: ObservableObject {
     
     // MARK: - Public
     @discardableResult
-    func fetchExercises() -> Bool{
+    func fetchExercises() {
         
         do{
             exercises = try exerciseRepository.getExercise()
-            return true
+          
         }catch{
-            return false
+            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
         }
         
     }
