@@ -50,7 +50,7 @@ class UserDataViewModel: ObservableObject {
             }
             
         }else{
-            return
+            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
         }
         
     }

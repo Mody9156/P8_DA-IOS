@@ -20,15 +20,16 @@ class ExerciseListViewModel: ObservableObject {
     
     
     // MARK: - Init
-    
+    @discardableResult
+
     init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
         self.exerciseRepository = repository
-        _ = fetchExercises()
+         fetchExercises()
     }
     
     // MARK: - Public
-    @discardableResult
+    
     func fetchExercises() {
         
         do{
