@@ -34,14 +34,14 @@ class ExerciseListViewModel: ObservableObject {
     }
 
     // MARK: - Public
-    
-    func fetchExercises() {
+   
+    func fetchExercises() throws {
         
         do{
             exercises = try exerciseRepository.getExercise()
           
         }catch{
-            FetchExercisesError.fetchFailed
+          throw  FetchExercisesError.fetchFailed
         }
         
     }

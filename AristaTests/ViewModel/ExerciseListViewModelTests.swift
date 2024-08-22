@@ -159,18 +159,26 @@ final class ExerciseListViewModelTests: XCTestCase {
         // Given
         let persistenceController = PersistenceController(inMemory: false)
         let mocksExerciseViewModel = MocksExerciseViewModel()
+        let newExercise  = Exercise(context: persistenceController.container.viewContext)
+        newExercise.intensity = 0
+        newExercise.category = ""
+        mocksExerciseViewModel.exercises.append(newExercise)
+
+        emptyEntities(context: persistenceController.container.viewContext)
         
         // Configurez le mock pour lancer une erreur
         mocksExerciseViewModel.throwsError = true
         
         let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext, repository: mocksExerciseViewModel)
         
-        // When
-        let result = try? viewModel.fetchExercises()
+        try? persistenceController.container.viewContext.save()
         
-        // Then
-        XCTAssertThrowsError(result, "fetchExercises() devrait retourner false lorsque getExercise() lance une erreur.")
+        // When && Then
+        XCTAssertThrowsError(viewModel.fetchExercises()){ error in
+            XCTAssertEqual(error as? ExerciseListViewModel.FetchExercisesError, .fetchFailed)
+        }
     }
+
     
     
     
@@ -213,7 +221,7 @@ class MocksExerciseViewModel : DataExerciseProtocol {
         if throwsError{
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
         }else{
-            let newExercise = Exercise()
+            let newExercise = Exercise(context: PersistenceController.shared.container.viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
             newExercise.intensity = Int64(intensity)
