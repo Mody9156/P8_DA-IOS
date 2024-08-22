@@ -95,6 +95,8 @@ final class AddExerciseViewModelTests: XCTestCase {
         try? persistence.container.viewContext.save()
         
         //When
+        
+        let result = viewModel.whenElementIsEmpty()
         XCTAssert(viewModel.errorMessage.isEmpty == false)
       
     }

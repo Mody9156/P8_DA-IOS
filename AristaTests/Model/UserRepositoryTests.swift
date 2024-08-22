@@ -31,7 +31,6 @@ final class UserRepositoryTests: XCTestCase {
         context = persistenceController.container.viewContext
         emptyEntities(context: context)
         let newUser = User(context: context)
-        let mockViewContext = MockViewContext(user: newUser)
         newUser.firstName = "User_2"
         newUser.lastName = "Nelson"
         let user = UserRepository(viewContext: context)
