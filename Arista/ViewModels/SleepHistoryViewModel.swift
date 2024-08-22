@@ -23,7 +23,7 @@ class SleepHistoryViewModel: ObservableObject {
         self.viewContext = context
         self.sleepRepository = repository
         
-        fetchSleepSessions()
+       try? fetchSleepSessions()
     }
     
     // MARK: - ENUM
@@ -47,7 +47,7 @@ class SleepHistoryViewModel: ObservableObject {
     }
     
     func reload() throws  {
-      fetchSleepSessions()
+        try?  fetchSleepSessions()
         
     }
 }
