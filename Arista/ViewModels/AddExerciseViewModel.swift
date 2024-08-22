@@ -44,7 +44,7 @@ class AddExerciseViewModel: ObservableObject {
         return false
     }
     
-    func addExercise() {
+    func addExercise() throws {
         
         whenElementIsEmpty()
         
@@ -54,7 +54,8 @@ class AddExerciseViewModel: ObservableObject {
             
         }catch{
             
-            AddExerciseError.addExerciseFailure
+        errorMessage = "Erreur : Tous les champs doivent être remplis correctement."
+        throw AddExerciseError.addExerciseFailure
         }
     }
     

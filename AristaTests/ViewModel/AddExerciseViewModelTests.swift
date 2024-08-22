@@ -41,9 +41,9 @@ final class AddExerciseViewModelTests: XCTestCase {
         
       
         //Then
-        let result = viewModel.addExercise()
+        let result = try? viewModel.addExercise()
         XCTAssertNoThrow(result)
-        XCTAssertEqual(mockExerciseViewModel.exercises.count, 1)
+        XCTAssertEqual(mockExerciseViewModel.exercises.count, 2)
         
         let addNewExercise = mockExerciseViewModel.exercises.first
         XCTAssertEqual(addNewExercise?.category, "Running")
@@ -60,40 +60,23 @@ final class AddExerciseViewModelTests: XCTestCase {
         let persistence = PersistenceController(inMemory: false)
         let date = Date()
         emptyEntities(context: persistence.container.viewContext)
-        let mockExerciseViewModel = MockExerciseViewModel()
+        let mockExerciseViewModelThrowError = MockExerciseViewModelThrowError()
         
-        let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModel)
+        let viewModel = AddExerciseViewModel(context: persistence.container.viewContext,repository: mockExerciseViewModelThrowError)
         
-//        viewModel.category = "Yoga"
-//        viewModel.intensity = 5
-//        viewModel.duration = 22
-//        viewModel.startTime = date
-//        
-//        let newExercise = Exercise(context: persistence.container.viewContext)
-//        
-//        newExercise.startDate = viewModel.startTime
-//        newExercise.category =  viewModel.category
-//        newExercise.duration =  Int64(viewModel.duration)
-//        newExercise.intensity =  Int64(viewModel.intensity)
-//        mockExerciseViewModel.exercises.append(newExercise)
-//        
-//        try? persistence.container.viewContext.save()
-        viewModel.intensity = 5
-        viewModel.duration = 0
-        viewModel.category = ""
-        viewModel.startTime = date
-        
-        
-        try? mockExerciseViewModel.addExercise(category: "Yoga"
-, duration: 0, intensity: 5, startDate: date)
+        mockExerciseViewModelThrowError.shouldFail = true
+      
         //Then
             
-        XCTAssertThrowsError(viewModel.addExercise()){ error in
-            XCTAssertEqual(error as? AddExerciseViewModel.AddExerciseError, .addExerciseFailure)
+        XCTAssertThrowsError(try viewModel.addExercise()){ error in
+            XCTAssertEqual(error as?  AddExerciseViewModel.AddExerciseError, .addExerciseFailure)
+            XCTAssertEqual(viewModel.errorMessage, "Erreur : Tous les champs doivent être remplis correctement.")
             
         }
         
     }
+    
+    
     func test_When_whenElementIsNoEmpty(){
         //Given
         let persistence = PersistenceController(inMemory: false)
@@ -242,9 +225,11 @@ class MockExerciseViewModel : DataExerciseProtocol {
     func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
         
         if shouldFail {
+           
             throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+       
         }else {
-            let newExercise = Exercise()
+            let newExercise = Exercise(context: PersistenceController.shared.container.viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
             newExercise.intensity = Int64(intensity)
@@ -257,3 +242,19 @@ class MockExerciseViewModel : DataExerciseProtocol {
 }
 
 
+class MockExerciseViewModelThrowError : DataExerciseProtocol {
+    var shouldFail : Bool = false
+
+    func getExercise() throws -> [Exercise] {
+        return []
+    }
+    
+    func addExercise(category: String, duration: Int, intensity: Int, startDate: Date) throws {
+        if shouldFail {
+            throw NSError(domain: "TestErrorDomain", code: 1, userInfo: nil)
+        }
+    }
+    
+    
+    
+}

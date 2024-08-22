@@ -37,7 +37,7 @@ final class AddSleepViewModelTests: XCTestCase {
         try? persistence.container.viewContext.save()
         
         //When
-        let succes = viewModel.addSleepSessions()
+        let succes = try? viewModel.addSleepSessions()
         //Then
         XCTAssertThrowsError(succes)
         XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 1)
@@ -68,7 +68,7 @@ final class AddSleepViewModelTests: XCTestCase {
         mocksDataSleepProtocol.shouldFail = true
         
         //When
-        let succes = viewModel.addSleepSessions()
+        let succes = try? viewModel.addSleepSessions()
         
         //Then
         XCTAssertThrowsError(succes)

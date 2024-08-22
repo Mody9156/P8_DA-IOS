@@ -27,6 +27,13 @@ class AddSleepViewModel : ObservableObject{
         self.userRepository = repository
     }
     
+    // MARK: - ENUM
+    enum AddSleepSessionError: Error {
+        case emptyFields
+        case addSleepSessionFailure
+        // Vous pouvez ajouter d'autres cas d'erreurs si nécessaire
+    }
+    
     // MARK: - Public
     
     @discardableResult
@@ -49,8 +56,8 @@ class AddSleepViewModel : ObservableObject{
          
             
         }catch{
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
             
+            AddSleepSessionError.addSleepSessionFailure
         }
     }
     

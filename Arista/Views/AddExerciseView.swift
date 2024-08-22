@@ -70,7 +70,7 @@ struct AddExerciseView: View {
                 
                 Button("Ajouter l'exercice") {
                     if  !viewModel.whenElementIsEmpty(){
-                        viewModel.addExercise()
+                       try? viewModel.addExercise()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)
