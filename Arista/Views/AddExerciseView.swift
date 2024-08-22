@@ -17,6 +17,7 @@ struct AddExerciseView: View {
     @State private var value = 0
     @State var date : Date = Date.distantPast
     @State private var slider = 0.0
+    
     let array : [String] = ["Sélectionnez une catégorie","Football","Natation","Running","Marche","Cyclisme","Yoga"]
     
     var body: some View {
@@ -25,7 +26,7 @@ struct AddExerciseView: View {
             VStack {
                 Form {
                     Section{
-                        Picker("Catégorie", selection: $viewModel.category) {
+                        Picker("Catégorie : ", selection: $viewModel.category) {
                             ForEach(array,id:\.self) { category in
                                 Text(category).tag(category).foregroundColor(.black)
                             }
@@ -70,7 +71,7 @@ struct AddExerciseView: View {
                 
                 Button("Ajouter l'exercice") {
                     if  !viewModel.whenElementIsEmpty(){
-                       try? viewModel.addExercise()
+                        try? viewModel.addExercise()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)

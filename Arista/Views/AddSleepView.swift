@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AddSleepView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var slider = 0.0
     @ObservedObject var viewModel: AddSleepViewModel
-    @Environment(\.presentationMode) var presentationMode
     @State var date : Date = Date.distantPast
     @State private var value = 0
     
@@ -47,8 +47,8 @@ struct AddSleepView: View {
                         
                     }
                     
-                    
                 }.formStyle(.grouped)
+                
                 Spacer()
                 
                 Text(viewModel.errorMessage)
@@ -58,7 +58,7 @@ struct AddSleepView: View {
                 
                 Button("Ajouter l'exercice") {
                     if !viewModel.whenElementIsEmpty(){
-                       try? viewModel.addSleepSessions()
+                        try? viewModel.addSleepSessions()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)

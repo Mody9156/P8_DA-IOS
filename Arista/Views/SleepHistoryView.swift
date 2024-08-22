@@ -10,12 +10,14 @@ import SwiftUI
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
     @State private var showingAddExerciseView = false
+    
     let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
+    
     var body: some View {
         NavigationStack{
             List {
@@ -43,16 +45,14 @@ struct SleepHistoryView: View {
         }
         .sheet(isPresented: $showingAddExerciseView,onDismiss:didDismiss ) {
             AddSleepView(viewModel: AddSleepViewModel(context: viewModel.viewContext)).onAppear{
-                try? viewModel.reload()
+                viewModel.reload()
             }
         }
         
     }
     
-    
-    
     func didDismiss(){
-        try?  viewModel.reload()
+        viewModel.reload()
     }
 }
 

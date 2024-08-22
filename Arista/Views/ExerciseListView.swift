@@ -10,6 +10,7 @@ import SwiftUI
 struct ExerciseListView: View {
     @ObservedObject var viewModel: ExerciseListViewModel
     @State private var showingAddExerciseView = false
+    
     let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -67,6 +68,7 @@ struct ExerciseListView: View {
         }
         
     }
+    
     func didDismiss(){
         viewModel.reload()
     }

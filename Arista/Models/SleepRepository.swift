@@ -11,16 +11,18 @@ import CoreData
 struct SleepRepository : DataSleepProtocol {
     
     // MARK: - Properties
+    
     let viewContext : NSManagedObjectContext
+    
     // MARK: - Init
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
     }
-  
     
     // MARK: - Public
-   @discardableResult
+    
+    @discardableResult
     
     func getSleepSessions() throws -> [Sleep] {
         var result : [Sleep] = []
@@ -36,7 +38,7 @@ struct SleepRepository : DataSleepProtocol {
         return  result
     }
     
-     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
+    func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
         try? viewContext.performAndWait {
             let newSleepSessions = Sleep(context: viewContext)
             newSleepSessions.duration = Int64(duration)
@@ -44,9 +46,8 @@ struct SleepRepository : DataSleepProtocol {
             newSleepSessions.startDate = startDate
             
             newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
-           try viewContext.save()
+            try viewContext.save()
             
         }
-        
     }
 }

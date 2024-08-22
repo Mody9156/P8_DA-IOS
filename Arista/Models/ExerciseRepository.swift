@@ -20,8 +20,9 @@ struct ExerciseRepository : DataExerciseProtocol{
     ) {
         self.viewContext = viewContext
     }
- 
+    
     // MARK: - Public
+    
     @discardableResult
     
     func getExercise() throws -> [Exercise] {
@@ -31,28 +32,24 @@ struct ExerciseRepository : DataExerciseProtocol{
             request.sortDescriptors = [NSSortDescriptor(SortDescriptor<Exercise>(\.startDate,order: .reverse))]
             
             result = try viewContext.fetch(request)
-            
         }
         return result
-        
     }
     
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws {
         
-      try?   viewContext.performAndWait {
+        try?   viewContext.performAndWait {
             let newExercise = Exercise(context: viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
             newExercise.intensity = Int64(intensity)
             newExercise.startDate = startDate
-           
+            
             newExercise.user = try UserRepository(viewContext: viewContext).getUser()
-                
-             try viewContext.save()
-           
+            
+            try viewContext.save()
+            
         }
-        
     }
-    
 }
 
