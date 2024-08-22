@@ -78,17 +78,20 @@ final class AddExerciseViewModelTests: XCTestCase {
 //        mockExerciseViewModel.exercises.append(newExercise)
 //        
 //        try? persistence.container.viewContext.save()
+        viewModel.intensity = 5
+        viewModel.duration = 0
+        viewModel.category = ""
+        viewModel.startTime = date
+        
         
         try? mockExerciseViewModel.addExercise(category: "Yoga"
 , duration: 0, intensity: 5, startDate: date)
         //Then
-        do {
-            let result: () = viewModel.addExercise()
-            XCTAssertThrowsError(result)
-        }catch let error = AddExerciseViewModel.AddExerciseError{
-            XCTAssertEqual(error, <#Error#>, )
+            
+        XCTAssertThrowsError(viewModel.addExercise()){ error in
+            XCTAssertEqual(error as? AddExerciseViewModel.AddExerciseError, .addExerciseFailure)
+            
         }
-        
         
     }
     func test_When_whenElementIsNoEmpty(){
