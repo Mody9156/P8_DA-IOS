@@ -54,7 +54,7 @@ struct AddSleepView: View {
                 Text(viewModel.errorMessage).foregroundColor(.red)
                 
                 Button("Ajouter l'exercice") {
-                    if viewModel.errorMessage.isEmpty{
+                    if viewModel.errorMessage.isEmpty {
                         viewModel.addSleepSessions()
                         presentationMode.wrappedValue.dismiss()
                     }

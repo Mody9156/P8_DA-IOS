@@ -66,7 +66,7 @@ struct AddExerciseView: View {
                 Text(viewModel.errorMessage).foregroundColor(.red)
 
                 Button("Ajouter l'exercice") {
-                    if viewModel.errorMessage.isEmpty{
+                    if viewModel.errorMessage.isEmpty && !viewModel.category.isEmpty{
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)
