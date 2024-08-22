@@ -29,16 +29,31 @@ class AddExerciseViewModel: ObservableObject {
     
     // MARK: - Public
     
+@discardableResult
+    
+    func whenElementIsEmpty() -> Bool {
+        if category.isEmpty || duration <= 0  {
+            errorMessage = "Erreur : Tous les champs doivent être remplis correctement."
+            return true
+        }
+        errorMessage = ""
+        return false
+    }
+    
     func addExercise() {
+        
+        whenElementIsEmpty()
         
         do{
             
-            try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
-            
-            errorMessage = ""
-            
+                try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+        
         }catch{
-            errorMessage = "Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement."
+                
+            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
         }
     }
+   
+
 }
+
