@@ -90,7 +90,7 @@ final class UserDataViewModelTests: XCTestCase {
         
         let viewModel = UserDataViewModel(context: persistenceController.container.viewContext, repository: mockRepository)
         // When
-        viewModel.fetchUserData()
+        try? viewModel.fetchUserData()
         
         // Then
         XCTAssertEqual(viewModel.firstName, "")
@@ -114,7 +114,7 @@ final class UserDataViewModelTests: XCTestCase {
         try? persistenceController.container.viewContext.save()
         
         //When
-        viewModel.fetchUserData()
+        try? viewModel.fetchUserData()
         
         //Then
         XCTAssertEqual(user.firstName, "")
@@ -138,7 +138,7 @@ final class UserDataViewModelTests: XCTestCase {
         try? persistenceController.container.viewContext.save()
         
         //When
-        viewModel.fetchUserData()
+        try? viewModel.fetchUserData()
         //Then
         
         XCTAssertEqual(user.lastName, "")

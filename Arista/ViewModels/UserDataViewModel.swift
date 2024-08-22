@@ -23,7 +23,7 @@ class UserDataViewModel: ObservableObject {
     init(context: NSManagedObjectContext,repository : DataRepositoryProtocol = UserRepository()) {
         self.viewContext = context
         self.userRepository = repository
-        fetchUserData()
+        try? fetchUserData()
     }
     
     // MARK: - ENUM
@@ -33,7 +33,7 @@ class UserDataViewModel: ObservableObject {
     
     // MARK: - Public
     
-    func fetchUserData()  {
+    func fetchUserData() throws {
         
         if let user = try? userRepository.getUser()  {
             
@@ -54,7 +54,7 @@ class UserDataViewModel: ObservableObject {
             }
             
         }else{
-            FetchUserDataError.userFetchFailed
+            throw  FetchUserDataError.userFetchFailed
         }
         
     }

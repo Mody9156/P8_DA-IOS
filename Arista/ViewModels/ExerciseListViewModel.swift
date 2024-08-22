@@ -21,7 +21,7 @@ class ExerciseListViewModel: ObservableObject {
     
     // MARK: - Init
     @discardableResult
-
+    
     init(context: NSManagedObjectContext,repository : DataExerciseProtocol = ExerciseRepository()) {
         self.viewContext = context
         self.exerciseRepository = repository
@@ -32,21 +32,21 @@ class ExerciseListViewModel: ObservableObject {
     enum FetchExercisesError: Error {
         case fetchFailed
     }
-
+    
     // MARK: - Public
-   
+    
     func fetchExercises() throws {
         
         do{
             exercises = try exerciseRepository.getExercise()
-          
+            
         }catch{
-          throw  FetchExercisesError.fetchFailed
+            throw  FetchExercisesError.fetchFailed
         }
         
     }
     
     func reload(){
-       try? fetchExercises()
+        try? fetchExercises()
     }
 }

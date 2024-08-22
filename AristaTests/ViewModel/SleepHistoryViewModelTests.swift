@@ -63,7 +63,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
    
  
     
-    func test_When_reload_isNoEmpty(){
+    func test_When_fetchSleepSessions_ThrowError(){
         //Given
         let persistenceController = PersistenceController(inMemory: false)
         let mocksSleepRepository = MocksSleepRepository(viewContext: PersistenceController.shared.container.viewContext)
@@ -75,6 +75,16 @@ final class SleepHistoryViewModelTests: XCTestCase {
             XCTAssertEqual(error as? SleepHistoryViewModel.FetchSleepSessionsError, .fetchFailed)
         }
 
+    }
+    func test_When_reload_ThrowError(){
+        //Given
+        let persistenceController = PersistenceController(inMemory: false)
+        let mocksSleepRepository = MocksSleepRepository(viewContext: PersistenceController.shared.container.viewContext)
+        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository)
+        
+        //When && Then
+        XCTAssertNotNil(viewModel.reload())
+        
     }
 }
 

@@ -31,7 +31,6 @@ class AddSleepViewModel : ObservableObject{
     enum AddSleepSessionError: Error {
         case emptyFields
         case addSleepSessionFailure
-        // Vous pouvez ajouter d'autres cas d'erreurs si nécessaire
     }
     
     // MARK: - Public
@@ -53,11 +52,10 @@ class AddSleepViewModel : ObservableObject{
         
         do{
             try userRepository.addSleepSessions(duration: duration, quality: quality, startDate: startTime)
-         
             
         }catch{
             
-          throw  AddSleepSessionError.addSleepSessionFailure
+            throw  AddSleepSessionError.addSleepSessionFailure
         }
     }
     
