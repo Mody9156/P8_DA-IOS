@@ -171,10 +171,8 @@ final class ExerciseListViewModelTests: XCTestCase {
         
         let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext, repository: mocksExerciseViewModel)
         
-        try? persistenceController.container.viewContext.save()
-        
         // When && Then
-        XCTAssertThrowsError(try? viewModel.fetchExercises()){ error in
+        XCTAssertThrowsError(try viewModel.fetchExercises()){ error in
             XCTAssertEqual(error as? ExerciseListViewModel.FetchExercisesError, .fetchFailed)
         }
     }
