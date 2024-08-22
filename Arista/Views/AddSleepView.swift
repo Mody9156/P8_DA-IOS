@@ -50,7 +50,7 @@ struct AddSleepView: View {
                     
                 }.formStyle(.grouped)
                 Spacer()
-                Text("voici le message d'erreur ").foregroundColor(red)
+                Text("voici le message d'erreur ").foregroundColor(.red)
                 Button("Ajouter l'exercice") {
                         viewModel.addSleepSessions()
                         presentationMode.wrappedValue.dismiss()
