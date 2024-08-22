@@ -50,12 +50,12 @@ struct ExerciseRepository : DataExerciseProtocol{
                 newExercise.user = try UserRepository(viewContext: viewContext).getUser()
                 
             }catch{
-                 fatalError("Erreur : Impossible de récupérer l'utilisateur. Veuillez réessayer plus tard.")
+                 fatalError("Erreur : Impossible de récupérer l'utilisateur. Veuillez réessayer plus tard : \(error.localizedDescription)")
             }
             do{
                 try viewContext.save()
             }catch{
-                 fatalError("Erreur : Impossible de sauvegarder l'utilisateur. Veuillez réessayer plus tard.")
+                 fatalError("Erreur : Impossible de sauvegarder l'utilisateur. Veuillez réessayer plus tard : \(error.localizedDescription)")
             }
         }
         

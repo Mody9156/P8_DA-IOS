@@ -23,6 +23,7 @@ struct SleepRepository : DataSleepProtocol {
     }
     
     // MARK: - Public
+   @discardableResult
     
     func getSleepSessions() throws -> [Sleep] {
         var result : [Sleep] = []
@@ -39,7 +40,7 @@ struct SleepRepository : DataSleepProtocol {
     }
     
     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
-        try viewContext.performAndWait {
+         viewContext.performAndWait {
             let newSleepSessions = Sleep(context: viewContext)
             newSleepSessions.duration = Int64(duration)
             newSleepSessions.quality = Int64(quality)
@@ -48,13 +49,13 @@ struct SleepRepository : DataSleepProtocol {
             do{
                 newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
             }catch {
-                throw fatalError()
+                fatalError("Erreur : Impossible de récupérer la session. Veuillez réessayer plus tard.\(error.localizedDescription)")
             }
             
             do{
                 try viewContext.save()
             }catch{
-                throw fatalError()
+                fatalError("Erreur : Impossible de sauvegarder la session. Veuillez réessayer plus tard : \(error.localizedDescription)")
             }
         }
         

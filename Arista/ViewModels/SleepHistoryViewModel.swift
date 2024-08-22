@@ -23,12 +23,11 @@ class SleepHistoryViewModel: ObservableObject {
         self.viewContext = context
         self.sleepRepository = repository
         
-        _ = fetchSleepSessions()
+        fetchSleepSessions()
     }
     
     
     // MARK: - Public
-    @discardableResult
     
     func fetchSleepSessions()    {
         
@@ -38,7 +37,7 @@ class SleepHistoryViewModel: ObservableObject {
           
         }catch{
             
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
+            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement. Description : \(error.localizedDescription)")
             
         }
         

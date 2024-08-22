@@ -36,7 +36,7 @@ class ExerciseListViewModel: ObservableObject {
             exercises = try exerciseRepository.getExercise()
           
         }catch{
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
+            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement. Description : \(error.localizedDescription)")
         }
         
     }
