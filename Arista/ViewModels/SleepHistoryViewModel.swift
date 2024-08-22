@@ -28,7 +28,7 @@ class SleepHistoryViewModel: ObservableObject {
     
     // MARK: - ENUM
     enum FetchSleepSessionsError: Error {
-        case fetchFailed
+        case fetchFailed,reloadFailed
     }
     
     // MARK: - Public
@@ -46,8 +46,7 @@ class SleepHistoryViewModel: ObservableObject {
         
     }
     
-    func reload() throws  {
-        try?  fetchSleepSessions()
-        
+    func reload()  {
+      try?  fetchSleepSessions()
     }
 }

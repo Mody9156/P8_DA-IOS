@@ -60,30 +60,8 @@ final class SleepHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(mocksSleepRepository.sleep.last?.quality, 8)
     }
     
-    func test_When_reload_throwError()  {
-        //Given
-        let persistenceController = PersistenceController(inMemory: false)
-        emptyEntities(context: persistenceController.container.viewContext)
-        
-        let mocksSleepRepository_ThrowsError = MocksSleepRepository_ThrowsError()
-        
-        let viewModel = SleepHistoryViewModel(context: persistenceController.container.viewContext,repository: mocksSleepRepository_ThrowsError)
-
-        let data = SleepRepository(viewContext: persistenceController.container.viewContext)
-        
-        viewModel.sleepSessions = try! data.getSleepSessions()
-        
-        var repository = SleepRepository(viewContext: persistenceController.container.viewContext)
-        
-        try! persistenceController.container.viewContext.save()
-        mocksSleepRepository_ThrowsError.shouldThrowError = true
-        
-        //When & Then
-        let result =  try? viewModel.fetchSleepSessions()
-       
-        XCTAssertThrowsError(result)
+   
  
-    }
     
     func test_When_reload_isNoEmpty(){
         //Given

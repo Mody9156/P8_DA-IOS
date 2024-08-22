@@ -41,7 +41,7 @@ final class AddExerciseViewModelTests: XCTestCase {
         
       
         //Then
-        let result = try? viewModel.addExercise()
+        let result: ()? = try? viewModel.addExercise()
         XCTAssertNoThrow(result)
         XCTAssertEqual(mockExerciseViewModel.exercises.count, 2)
         
@@ -58,7 +58,6 @@ final class AddExerciseViewModelTests: XCTestCase {
         
         //Given
         let persistence = PersistenceController(inMemory: false)
-        let date = Date()
         emptyEntities(context: persistence.container.viewContext)
         let mockExerciseViewModelThrowError = MockExerciseViewModel()
         
@@ -96,8 +95,6 @@ final class AddExerciseViewModelTests: XCTestCase {
         try? persistence.container.viewContext.save()
         
         //When
-        
-        let result = viewModel.whenElementIsEmpty()
         XCTAssert(viewModel.errorMessage.isEmpty == false)
       
     }
