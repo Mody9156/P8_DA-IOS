@@ -148,7 +148,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         let viewModel = ExerciseListViewModel(context: persistenceController.container.viewContext,repository: mocksExerciseViewModel)
         
         //When
-        let reload = viewModel.reload()
+        let reload: () = viewModel.reload()
         
         //Then
         XCTAssertNotNil(reload)
