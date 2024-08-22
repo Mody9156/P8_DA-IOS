@@ -63,7 +63,7 @@ struct AddExerciseView: View {
                 }.formStyle(.grouped)
                 
                 Spacer()
-             
+                
                 Text(viewModel.errorMessage)
                     .foregroundColor(.red)
                     .opacity(viewModel.errorMessage.isEmpty ? 0 : 1)
