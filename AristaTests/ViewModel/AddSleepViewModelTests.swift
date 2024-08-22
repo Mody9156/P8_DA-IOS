@@ -37,10 +37,10 @@ final class AddSleepViewModelTests: XCTestCase {
         try? persistence.container.viewContext.save()
         
         //When
-        let succes = try? viewModel.addSleepSessions()
+        let succes: ()? = try? viewModel.addSleepSessions()
         //Then
-        XCTAssertThrowsError(succes)
-        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 1)
+        XCTAssertNoThrow(succes)
+        XCTAssertEqual(mocksDataSleepProtocol.sleep.count, 2)
         
         let addNewExercise = mocksDataSleepProtocol.sleep.first
         XCTAssertEqual(addNewExercise?.quality, 5)
@@ -67,11 +67,11 @@ final class AddSleepViewModelTests: XCTestCase {
         
         mocksDataSleepProtocol.shouldFail = true
         
-        //When
-        let succes = try? viewModel.addSleepSessions()
-        
-        //Then
-        XCTAssertThrowsError(succes)
+        //When && Then
+        XCTAssertThrowsError(try viewModel.addSleepSessions()){ error in
+            XCTAssertEqual(error as? AddSleepViewModel.AddSleepSessionError, .addSleepSessionFailure)
+        }
+
     }
     
 }
@@ -108,7 +108,7 @@ class MocksDataSleepProtocol : DataSleepProtocol {
         }
         
         
-        let newSleep = Sleep()
+        let newSleep = Sleep(context: PersistenceController.shared.container.viewContext)
         newSleep.duration = Int64(duration)
         newSleep.quality = Int64(quality)
         newSleep.startDate = startDate

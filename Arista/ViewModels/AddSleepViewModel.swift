@@ -52,7 +52,7 @@ class AddSleepViewModel : ObservableObject{
         whenElementIsEmpty()
         
         do{
-            try SleepRepository(viewContext: viewContext).addSleepSessions(duration: duration, quality: quality, startDate: startTime)
+            try userRepository.addSleepSessions(duration: duration, quality: quality, startDate: startTime)
          
             
         }catch{

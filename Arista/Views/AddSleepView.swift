@@ -58,7 +58,7 @@ struct AddSleepView: View {
                 
                 Button("Ajouter l'exercice") {
                     if !viewModel.whenElementIsEmpty(){
-                        viewModel.addSleepSessions()
+                       try? viewModel.addSleepSessions()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)
