@@ -16,7 +16,8 @@ class AddExerciseViewModel: ObservableObject {
     @Published var startTime: Date = Date()
     @Published var duration: Int = 0
     @Published var intensity: Int = 0
-    
+    @Published var errorMessage = ""
+
     private var viewContext: NSManagedObjectContext
     private var userRepository: DataExerciseProtocol
     // MARK: - Init
@@ -28,16 +29,16 @@ class AddExerciseViewModel: ObservableObject {
     
     // MARK: - Public
     
-    func addExercise() -> Bool {
+    func addExercise() {
         
         do{
             
             try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
             
-            return true
+            errorMessage = ""
             
         }catch{
-            return false
+            errorMessage = "Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement."
         }
     }
 }

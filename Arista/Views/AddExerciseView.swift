@@ -63,8 +63,10 @@ struct AddExerciseView: View {
                 }.formStyle(.grouped)
                 
                 Spacer()
+                Text(viewModel.errorMessage).foregroundColor(.red)
+
                 Button("Ajouter l'exercice") {
-                    if viewModel.addExercise() {
+                    if viewModel.errorMessage.isEmpty{
                         presentationMode.wrappedValue.dismiss()
                     }
                 }.buttonStyle(.borderedProminent)
