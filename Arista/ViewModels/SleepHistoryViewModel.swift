@@ -26,6 +26,10 @@ class SleepHistoryViewModel: ObservableObject {
         fetchSleepSessions()
     }
     
+    // MARK: - ENUM
+    enum FetchSleepSessionsError: Error {
+        case fetchFailed
+    }
     
     // MARK: - Public
     
@@ -36,8 +40,7 @@ class SleepHistoryViewModel: ObservableObject {
             
           
         }catch{
-            
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement. Description : \(error.localizedDescription)")
+            FetchSleepSessionsError.fetchFailed
             
         }
         

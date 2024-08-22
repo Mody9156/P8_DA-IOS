@@ -28,6 +28,11 @@ class ExerciseListViewModel: ObservableObject {
          fetchExercises()
     }
     
+    // MARK: - ENUM
+    enum FetchExercisesError: Error {
+        case fetchFailed
+    }
+
     // MARK: - Public
     
     func fetchExercises() {
@@ -36,7 +41,7 @@ class ExerciseListViewModel: ObservableObject {
             exercises = try exerciseRepository.getExercise()
           
         }catch{
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement. Description : \(error.localizedDescription)")
+            FetchExercisesError.fetchFailed
         }
         
     }

@@ -77,12 +77,11 @@ final class SleepHistoryViewModelTests: XCTestCase {
         
         try! persistenceController.container.viewContext.save()
         mocksSleepRepository_ThrowsError.shouldThrowError = true
-         repository.throwError = true
         
         //When & Then
         let result = viewModel.fetchSleepSessions()
        
-        XCTAssertFalse(result)
+        XCTAssertThrowsError(result)
  
     }
     
@@ -94,10 +93,10 @@ final class SleepHistoryViewModelTests: XCTestCase {
         
         //When
         let reload: ()? = try? viewModel.reload()
-        let error = viewModel.fetchSleepSessions()
+        let error: () = viewModel.fetchSleepSessions()
         //Then
         XCTAssertNotNil(reload)
-        XCTAssertTrue(error)
+        XCTAssertThrowsError(error)
 
     }
 }

@@ -11,16 +11,13 @@ import CoreData
 struct SleepRepository : DataSleepProtocol {
     
     // MARK: - Properties
-    
     let viewContext : NSManagedObjectContext
-    // Propriété pour simuler les erreurs
-    
     // MARK: - Init
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
-        
     }
+  
     
     // MARK: - Public
    @discardableResult
@@ -39,24 +36,16 @@ struct SleepRepository : DataSleepProtocol {
         return  result
     }
     
-    func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
-         viewContext.performAndWait {
+     func addSleepSessions(duration:Int,quality:Int,startDate:Date) throws {
+        try? viewContext.performAndWait {
             let newSleepSessions = Sleep(context: viewContext)
             newSleepSessions.duration = Int64(duration)
             newSleepSessions.quality = Int64(quality)
             newSleepSessions.startDate = startDate
             
-            do{
-                newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
-            }catch {
-                fatalError("Erreur : Impossible de récupérer la session. Veuillez réessayer plus tard.\(error.localizedDescription)")
-            }
+            newSleepSessions.user = try UserRepository(viewContext: viewContext).getUser()
+           try viewContext.save()
             
-            do{
-                try viewContext.save()
-            }catch{
-                fatalError("Erreur : Impossible de sauvegarder la session. Veuillez réessayer plus tard : \(error.localizedDescription)")
-            }
         }
         
     }

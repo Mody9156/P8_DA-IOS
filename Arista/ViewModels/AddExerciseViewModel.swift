@@ -26,6 +26,10 @@ class AddExerciseViewModel: ObservableObject {
         self.viewContext = context
         self.userRepository = repository
     }
+    // MARK: - ENUM
+    enum AddExerciseError: Error {
+        case addExerciseFailure
+    }
     
     // MARK: - Public
     
@@ -46,11 +50,11 @@ class AddExerciseViewModel: ObservableObject {
         
         do{
             
-            try ExerciseRepository(viewContext: viewContext).addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
+            try userRepository.addExercise(category: category, duration: duration, intensity: intensity, startDate: startTime)
             
         }catch{
             
-            fatalError("Erreur : Les éléments entrés sont incorrects. Veuillez vérifier les informations saisies et réessayer. Assurez-vous que tous les champs obligatoires sont remplis correctement.")
+            AddExerciseError.addExerciseFailure
         }
     }
     

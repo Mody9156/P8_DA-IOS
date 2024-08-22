@@ -169,7 +169,7 @@ final class ExerciseListViewModelTests: XCTestCase {
         let result = viewModel.fetchExercises()
         
         // Then
-        XCTAssertFalse(result, "fetchExercises() devrait retourner false lorsque getExercise() lance une erreur.")
+        XCTAssertThrowsError(result, "fetchExercises() devrait retourner false lorsque getExercise() lance une erreur.")
     }
     
     

@@ -20,8 +20,7 @@ struct ExerciseRepository : DataExerciseProtocol{
     ) {
         self.viewContext = viewContext
     }
-
-    
+ 
     // MARK: - Public
     @discardableResult
     
@@ -40,23 +39,17 @@ struct ExerciseRepository : DataExerciseProtocol{
     
     func addExercise(category:String,duration:Int,intensity:Int,startDate:Date) throws {
         
-         viewContext.performAndWait {
+      try?   viewContext.performAndWait {
             let newExercise = Exercise(context: viewContext)
             newExercise.category = category
             newExercise.duration = Int64(duration)
             newExercise.intensity = Int64(intensity)
             newExercise.startDate = startDate
-            do{
-                newExercise.user = try UserRepository(viewContext: viewContext).getUser()
+           
+            newExercise.user = try UserRepository(viewContext: viewContext).getUser()
                 
-            }catch{
-                 fatalError("Erreur : Impossible de récupérer l'utilisateur. Veuillez réessayer plus tard : \(error.localizedDescription)")
-            }
-            do{
-                try viewContext.save()
-            }catch{
-                 fatalError("Erreur : Impossible de sauvegarder l'utilisateur. Veuillez réessayer plus tard : \(error.localizedDescription)")
-            }
+             try viewContext.save()
+           
         }
         
     }
