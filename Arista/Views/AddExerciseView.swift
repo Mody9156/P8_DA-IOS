@@ -15,7 +15,7 @@ struct AddExerciseView: View {
     @State private var startTimeText = ""
     @State private var error = ""
     @State private var value = 0
-    @State var date : Date = Date.distantPast
+    @State var date : Date = Date()
     @State private var slider = 0.0
     
     let array : [String] = ["Sélectionnez une catégorie","Football","Natation","Running","Marche","Cyclisme","Yoga"]

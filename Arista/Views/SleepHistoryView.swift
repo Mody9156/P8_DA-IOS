@@ -36,7 +36,7 @@ struct SleepHistoryView: View {
                     }
                 }
             }
-            .navigationTitle("Historique de sommeil")
+            .navigationTitle("Sommeil")
             .navigationBarItems(trailing: Button(action: {
                 showingAddExerciseView = true
             }) {

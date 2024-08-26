@@ -11,7 +11,7 @@ struct AddSleepView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var slider = 0.0
     @ObservedObject var viewModel: AddSleepViewModel
-    @State var date : Date = Date.distantPast
+    @State var date : Date = Date()
     @State private var value = 0
     
     var body: some View {

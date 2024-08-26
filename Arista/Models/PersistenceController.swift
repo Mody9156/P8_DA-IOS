@@ -30,7 +30,7 @@ class PersistenceController {
             }
         }
         
-        self.backgroundContext.automaticallyMergesChangesFromParent = true//
+        self.backgroundContext.automaticallyMergesChangesFromParent = true
         
         // Utilisation de backgroundContext pour charger des données par défaut
         backgroundContext.performAndWait {
