@@ -36,7 +36,7 @@ class AddExerciseViewModel: ObservableObject {
     @discardableResult
     
     func whenElementIsEmpty() -> Bool {
-        if category.isEmpty || duration <= 0  {
+        if category.isEmpty || duration <= 0 {
             errorMessage = "Erreur : Tous les champs doivent être remplis correctement."
             return true
         }

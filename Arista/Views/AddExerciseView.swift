@@ -18,7 +18,7 @@ struct AddExerciseView: View {
     @State var date : Date = Date()
     @State private var slider = 0.0
     
-    let array : [String] = ["Sélectionnez une catégorie","Football","Natation","Running","Marche","Cyclisme","Yoga"]
+    let categories : [String] = ["Football","Natation","Running","Marche","Cyclisme","Yoga","Badminton","Handball","Corde à sauter"]
     
     var body: some View {
         
@@ -27,8 +27,13 @@ struct AddExerciseView: View {
                 Form {
                     Section{
                         Picker("Catégorie : ", selection: $viewModel.category) {
-                            ForEach(array,id:\.self) { category in
-                                Text(category).tag(category).foregroundColor(.black)
+                            
+                            Text("Sélectionnez une catégorie").tag(nil as String?)
+                                            .foregroundColor(.gray)
+                            ForEach(categories,id:\.self) { category in
+                                
+                                
+                                Text(category).tag(category).foregroundColor(category == "Sélectionnez une catégorie" ? .gray : .black)
                             }
                         }.pickerStyle(.navigationLink)
                         

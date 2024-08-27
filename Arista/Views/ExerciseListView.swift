@@ -69,11 +69,16 @@ struct ExerciseListView: View {
         
     }
     
+    
+   
     func didDismiss(){
         viewModel.reload()
     }
     
+   
+    
     func iconForCategory(_ category: String) -> String {
+     
         switch category {
         case "Football":
             return "sportscourt"
@@ -87,6 +92,12 @@ struct ExerciseListView: View {
             return "bicycle"
         case "Yoga" :
             return "figure.yoga"
+        case "Badminton" :
+            return "figure.badminton"
+        case "Handball" :
+            return "figure.handball"
+        case "Corde à sauter" :
+            return "figure.jumprope"
         default:
             return "questionmark"
         }
