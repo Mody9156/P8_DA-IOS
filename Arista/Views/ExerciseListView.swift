@@ -98,6 +98,8 @@ struct ExerciseListView: View {
             return "figure.handball"
         case "Corde à sauter" :
             return "figure.jumprope"
+        case "Randonnée" :
+            return "figure.hiking"
         default:
             return "questionmark"
         }
