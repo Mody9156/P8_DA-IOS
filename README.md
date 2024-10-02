@@ -31,14 +31,13 @@
 
 ## Demo Video
 
-[Watch the demo video](Screenshots/test.mp4)
+<div align="center">
+<img src="Screenshots/test.gif" alt="" width="100">
+</div>
+[Watch the demo video](Screenshots/test.gif)
 
-<video width="600" controls autoplay>
-        <source src="Screenshots/test.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-    To watch the demo video automatically, [click here](Screenshots/test.mp4)
+
+    To watch the demo video automatically, [click here](Screenshots/test.gif)
     
 ## Installation
 
