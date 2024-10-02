@@ -32,7 +32,7 @@
 ## Demo Video
 
 <div align="center">
-<img src="Screenshots/test.gif" alt="" width="200">
+<img src="Screenshots/test.gif" alt="" width="200" height="200">
 </div>
 
 ## Installation
