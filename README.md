@@ -1,5 +1,5 @@
 
-<div>
+<div align="center">
 <img src="Screenshots/icone.png" alt="" width="100">
 </div>
 
