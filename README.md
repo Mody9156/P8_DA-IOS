@@ -35,7 +35,7 @@
         <source src="Screenshots/test.mov" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
+To watch the demo video automatically, [click here](Screenshots/test.mov).
 ## Installation
 
 Clone this repository to your machine and open the project in Xcode. Make sure you have the appropriate versions of iOS development tools installed.
