@@ -31,13 +31,7 @@
 
 ## Demo Video
 
-<video width="600" controls autoplay>
-        <source src="Screenshots/test.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    
-To watch the demo video automatically, [click here](Screenshots/test.mp4).
-
+[Watch the demo video](./Screenshots/test.mp4)
 
 ## Installation
 
