@@ -1,4 +1,8 @@
 
+<div>
+<img src="Screenshots/icone.png" alt="" width="100">
+</div>
+
 # Application de gestion de santé et bien-être
 
 <p>This iOS application was developed as part of the "Implement a Database with CoreData" project in the OpenClassrooms training program. It allows users to manage their health and well-being by tracking their exercise sessions and sleep.</p>
