@@ -31,8 +31,10 @@
 
 ## Demo Video
 
-You can download and watch the demo video by clicking [here](Screenshots/test).
-
+<video width="600" controls autoplay>
+        <source src="Screenshots/test.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
 ## Installation
 
