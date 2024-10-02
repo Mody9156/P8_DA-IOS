@@ -32,13 +32,9 @@
 ## Demo Video
 
 <div align="center">
-<img src="Screenshots/test.gif" alt="" width="100">
+<img src="Screenshots/test.gif" alt="" width="200">
 </div>
-[Watch the demo video](Screenshots/test.gif)
 
-
-    To watch the demo video automatically, [click here](Screenshots/test.gif)
-    
 ## Installation
 
 Clone this repository to your machine and open the project in Xcode. Make sure you have the appropriate versions of iOS development tools installed.
