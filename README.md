@@ -38,7 +38,7 @@
         Your browser does not support the video tag.
     </video>
     
-    To watch the demo video automatically, [click here](Screenshots/test.mp4).
+    To watch the demo video automatically, [click here](Screenshots/test.mp4)
     
 ## Installation
 
