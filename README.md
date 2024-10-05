@@ -39,7 +39,7 @@
 ## Demo Video
 
 <div align="center">
-<img src="Screenshots/test.gif" alt="" width="400">
+<img src="Screenshots/test.gif" alt="" width="500">
 </div>
 
 ## Installation
