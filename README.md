@@ -36,8 +36,9 @@
 <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sleep Interface"></p> |
 <p align="center"><img src="Screenshots/AddSommeil.png" width="200" alt="Add Sleep"></p> |
 
-| **User** | **Exercises** | **Add an exercise** | **Sleep** | **Add sleep** |
 |:--:|:--:|:--:|:--:|:--:|
+| **User** | **Exercises** | **Add an exercise** | **Sleep** | **Add sleep** 
+
 
 
 ## Demo Video
