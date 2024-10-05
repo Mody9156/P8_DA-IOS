@@ -30,7 +30,7 @@
 ## Screenshots
 
 
-| <p align="center"><img src="Screenshots/HomeView.png" width="200" alt="User"></p> | <p align="center"><img src="Screenshots/ExerciseView.png" width="200" alt="Exercise"></p> | <p align="center"><img src="Screenshots/AddExercise.png" width="200" alt="AddAnExercise"></p> | <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sleep Interface"></p> | <p align="center"><img src="Screenshots/AddSommeil.png" width="200" alt="Sleep Interface"></p> |
+| <p align="center"><img src="Screenshots/HomeView.png" width="200" alt="User"></p> | <p align="center"><img src="Screenshots/ExerciseView.png" width="200" alt="Exercise"></p> | <p align="center"><img src="Screenshots/AddExercise.png" width="200" alt="AddAnExercise"></p> | <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sleep Interface"></p> | <p align="center"><img src="Screenshots/AddSommeil.png" width="200" alt="Sleep Interface"></p> 
 |:--:|:--:|:--:|
 | **User** | **Exercises** | **Add an exercise**| **Sleep** | **Add an sleep**
 
