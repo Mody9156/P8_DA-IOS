@@ -29,6 +29,11 @@
 
 ## Screenshots
 
+
+| <p align="center"><img src="Screenshots/HomeView.png" width="200" alt="User"></p> | <p align="center"><img src="Screenshots/ExerciseView.png" width="200" alt="Exercise"></p> | <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sleep Interface"></p> |
+|:--:|:--:|:--:|
+| **User** | **Exercises** | **Sleep** 
+
 ## Demo Video
 
 <div align="center">
