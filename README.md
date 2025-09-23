@@ -1,42 +1,33 @@
-
 <div align="center">
 <img src="Screenshots/icone.png" alt="" width="100">
 </div>
 
-# Health and Well-Being Management Application
+# Application de Gestion de la Santé et du Bien-Être
 
-<p>This iOS application was developed as part of the "Implement a Database with CoreData" project in the OpenClassrooms training program. It allows users to manage their health and well-being by tracking their exercise sessions and sleep.</p>
+<p>Cette application iOS a été développée dans le cadre du projet "Mettre en œuvre une base de données avec CoreData" du programme de formation OpenClassrooms. Elle permet aux utilisateurs de gérer leur santé et leur bien-être en suivant leurs séances d’exercice et leur sommeil.</p>
 
-## Features
+## Fonctionnalités
 
-- The application offers the following features:
+L’application offre les fonctionnalités suivantes :
 
-- Add Exercises: Users can add exercises to their list, specifying the type of exercise, duration, and calories burned.
+- **Ajouter des exercices** : Les utilisateurs peuvent ajouter des exercices à leur liste en précisant le type d’exercice, la durée et les calories brûlées.  
+- **Suivi du sommeil** : Les utilisateurs peuvent enregistrer leurs séances de sommeil en précisant la durée et la qualité de leur sommeil.  
+- **Affichage des statistiques** : L’application fournit des statistiques sur les exercices réalisés et les heures de sommeil enregistrées.  
+- **Persistance des données** : Toutes les données sont stockées localement avec **CoreData**, garantissant que les informations sont conservées même si l’application est redémarrée ou si l’appareil est tourné.  
 
-- Sleep Tracking: Users can record their sleep sessions, specifying the duration and quality of their sleep.
+## Technologies utilisées
 
-- Statistics Display: The app provides statistics on completed exercises and recorded sleep hours.
+- **Swift** : Langage de programmation utilisé pour le développement de l’application.  
+- **CoreData** : Framework iOS intégré pour la gestion des bases de données locales.  
+- **MVVM** : Architecture utilisée pour séparer les responsabilités, rendant l’application modulaire et maintenable.  
 
-- Data Persistence: All data is stored locally using CoreData, ensuring information is retained even if the app is restarted or the device is rotated.
+## Captures d’écran
 
-## Technologies Used
-
-- Swift: The programming language used for developing the application.
-
-- CoreData: The built-in iOS framework for managing local databases.
-
-- MVVM: The architecture used to separate responsibilities, making the app modular and maintainable.
-
-## Screenshots
-
-
-| <p align="center"><img src="Screenshots/HomeView.png" width="200" alt="User"></p> | <p align="center"><img src="Screenshots/ExerciseView.png" width="200" alt="Exercise"></p> | <p align="center"><img src="Screenshots/AddExercise.png" width="200" alt="AddAnExercise"></p> | <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sleep Interface"></p> | <p align="center"><img src="Screenshots/AddSommeil.png" width="200" alt="Add Sleep"></p> |
+| <p align="center"><img src="Screenshots/HomeView.png" width="200" alt="Utilisateur"></p> | <p align="center"><img src="Screenshots/ExerciseView.png" width="200" alt="Exercices"></p> | <p align="center"><img src="Screenshots/AddExercise.png" width="200" alt="Ajouter un exercice"></p> | <p align="center"><img src="Screenshots/SommeilView.png" width="200" alt="Sommeil"></p> | <p align="center"><img src="Screenshots/AddSommeil.png" width="200" alt="Ajouter sommeil"></p> |
 |:--:|:--:|:--:|:--:|:--:|
-| **User** | **Exercises** | **Add an exercise** | **Sleep** | **Add sleep** |
+| **Utilisateur** | **Exercices** | **Ajouter un exercice** | **Sommeil** | **Ajouter sommeil** |
 
-
-
-## Demo Video
+## Vidéo Démo
 
 <div align="center">
 <img src="Screenshots/test.gif" alt="" width="500">
@@ -44,14 +35,12 @@
 
 ## Installation
 
-Clone this repository to your machine and open the project in Xcode. Make sure you have the appropriate versions of iOS development tools installed.
+Clonez ce dépôt sur votre machine et ouvrez le projet dans **Xcode**. Assurez-vous d’avoir installé les versions appropriées des outils de développement iOS.
 
 ## Contributions
 
-Contributions to improving this application are welcome! If you would like to make changes, please open a pull request and describe the proposed modifications.
+Les contributions pour améliorer cette application sont les bienvenues ! Si vous souhaitez apporter des modifications, veuillez ouvrir une **pull request** et décrire les changements proposés.
 
+## Licence
 
-## License
-
-This project is licensed under the MIT License. For more details, please refer to the LICENSE file.
-
+Ce projet est sous licence **MIT**. Pour plus de détails, veuillez consulter le fichier LICENSE.
